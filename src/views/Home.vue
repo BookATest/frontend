@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <bat-loader v-if="settings === null" />
+  <div v-else>
     <div class="text-header text-header--white">
       <div class="text-header__content">
         <img :src="`${apiUrl}/v1/settings/logo.png`" alt="Brand Name" class="text-header__image">
@@ -9,8 +10,12 @@
     </div>
 
     <div class="content">
-      <router-link to="/templates/pages/book/index.php" class="btn btn--primary" role="button">Book an test</router-link> |
-      <router-link to="/templates/pages/appointment/index.php" class="btn btn--secondary" role="button">My appointment</router-link>
+      <router-link to="/templates/pages/book/index.php" class="btn btn--primary" role="button">
+        Book a test
+      </router-link>
+      <router-link to="/templates/pages/appointment/index.php" class="btn btn--secondary" role="button">
+        My appointments
+      </router-link>
     </div>
   </div>
 </template>
@@ -21,8 +26,11 @@ import Settings from '@/utilities/Settings';
 export default {
   data() {
     return {
-      settings: new Settings(),
+      settings: null,
     };
+  },
+  created() {
+    Settings.create().then(settings => this.settings = settings);
   },
 };
 </script>
