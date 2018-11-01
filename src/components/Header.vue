@@ -16,12 +16,14 @@
 <script>
 export default {
   name: 'Header',
+
   props: {
     hide: {
       required: false,
       type: Boolean,
     },
   },
+
   computed: {
     headerClass() {
       return {

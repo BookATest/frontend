@@ -1,5 +1,5 @@
-import SettingsInterface from "@/utilities/SettingsInterface";
-import http from "@/http";
+import SettingsInterface from '@/utilities/SettingsInterface';
+import http from '@/http';
 
 export default class Settings {
   public static async create(): Promise<Settings> {

@@ -15,7 +15,10 @@ Vue.mixin({
   },
 });
 
+Vue.component('BatButton', () => import('@/components/Button.vue'));
+Vue.component('BatContent', () => import('@/components/Content.vue'));
 Vue.component('BatLoader', () => import('@/components/Loader.vue'));
+Vue.component('BatTextHeader', () => import('@/components/TextHeader.vue'));
 
 Vue.config.productionTip = false;
 
