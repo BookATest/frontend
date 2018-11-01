@@ -14,7 +14,7 @@
 
       <div class="footer__powered flex-col flex-col--3 text-center mobile-hide">
         <h5 class="footer__powered__title">Powered by</h5>
-        <img src="/assets/dist/img/logo--alt.svg" alt="BookATest.hiv">
+        <img src="@/assets/logo.svg" alt="BookATest.hiv">
       </div>
     </div>
   </footer>
