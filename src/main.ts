@@ -8,7 +8,8 @@ import router from './router';
 Vue.mixin({
   data(): object {
     return {
-      $http: import('@/http'),
+      http: import('@/http'),
+      apiUrl: process.env.VUE_APP_API_URL,
     };
   },
 });

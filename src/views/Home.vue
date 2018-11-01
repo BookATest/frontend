@@ -2,7 +2,7 @@
   <div>
     <div class="text-header text-header--white">
       <div class="text-header__content">
-        <img src="/assets/dist/img/brand-logo.png" alt="Brand Name" class="text-header__image">
+        <img :src="`${apiUrl}/v1/settings/logo.png`" alt="Brand Name" class="text-header__image">
         <h1 class="text-header__title">Welcome to {{ settings.name }}</h1>
         <p class="text-header__description sm-copy">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque dictum.</p>
       </div>
