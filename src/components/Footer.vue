@@ -3,7 +3,7 @@
     <div class="flex-container flex-container--align-center">
       <div class="footer__brand flex-col flex-col--3 mobile-hide">
         <router-link :to="{ name: 'home' }">
-          <img src="/assets/dist/img/brand-logo.png" alt="Brand Logo">
+          <img :src="`${apiUrl}/v1/settings/logo.png`" alt="Brand Logo">
         </router-link>
       </div>
 
