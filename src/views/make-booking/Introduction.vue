@@ -6,7 +6,7 @@
     </bat-text-header>
 
     <bat-content>
-      <bat-button to="/templates/pages/book/what.php" primary>Continue</bat-button>
+      <bat-button :to="{ name: 'questions' }" primary>Continue</bat-button>
     </bat-content>
   </div>
 </template>
