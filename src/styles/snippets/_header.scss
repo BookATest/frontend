@@ -1,0 +1,46 @@
+/* HEADER */
+
+.header {
+  background-color: $white;
+  color: $black;
+  padding: $base-margin*0.5 $base-margin;
+  box-sizing: border-box;
+  overflow: hidden;
+
+  a {
+    text-decoration: none;
+    font-weight: $font_semi_bold;
+    margin: 0 $base-margin;
+  }
+
+  p {
+    margin-bottom: $base-margin*0.25;
+  }
+
+  &__brand {
+    float: left;
+    
+    img {
+      max-width: auto;
+      max-height: 45px;
+    }
+  }
+
+  &__powered {
+    float: right;
+    margin-top: $base-margin*0.25;
+
+    &__title {
+      font-size: $base-font-size*0.625;
+      line-height: $base-line-height*0.75;
+      margin-bottom: $base-margin*0.375;
+    }
+
+    img {
+      display: block;
+      margin: 0 auto;
+      max-width: 107px;
+      height: auto;
+    }
+  }
+}

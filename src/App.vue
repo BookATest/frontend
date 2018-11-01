@@ -1,29 +1,42 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+
+    <bat-header :hide="hideHeader"/>
+
+    <main
+      id="content"
+      class="page flex-container flex-container--align-center flex-container--justify"
+      :class="contentClass"
+      role="main"
+    >
+      <div class="page__wrapper">
+        <div class="v-align">
+
+          <router-view/>
+
+        </div>
+      </div>
+    </main>
+
   </div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-#nav {
-  padding: 30px;
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
-</style>
+<script>
+import Header from '@/components/Header';
+
+export default {
+  components: {
+    BatHeader: Header,
+  },
+  computed: {
+    hideHeader() {
+      return this.$route.name === 'home';
+    },
+    contentClass() {
+      return {
+        'page--no-footer': this.$route.name === 'home',
+      };
+    },
+  },
+};
+</script>

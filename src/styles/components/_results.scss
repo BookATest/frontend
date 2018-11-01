@@ -1,0 +1,22 @@
+/* RESULTS */
+
+.results {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: $base-margin*2;
+
+  &__text {
+    font-size: $base-font-size*0.875;
+    line-height: $base-line-height*1.1875;
+    margin-right: $base-margin*0.5;
+  }
+
+  &__term {
+    background-color: $mine-shaft-05;
+    padding: $base-margin;
+    margin: 0 $base-margin*0.5;
+    font-size: $base-font-size*0.875;
+    line-height: $base-line-height*1.1875;
+  }
+}

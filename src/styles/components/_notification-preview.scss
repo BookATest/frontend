@@ -1,0 +1,17 @@
+/* NOTIFICATION PREVIEW */
+
+.notification-preview {
+  display: flex;
+  align-items: center;
+  margin-bottom: $base-margin*1.75;
+
+  &__instructions {
+    width: 35%;
+    margin-right: 20%;
+  }
+
+  &__speech-bubble {
+    width: 45% !important;
+    margin: 0 !important;
+  }
+}

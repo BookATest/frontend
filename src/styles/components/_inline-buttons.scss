@@ -1,0 +1,10 @@
+/* INLINE BUTTONS */
+
+.inline-buttons {
+  text-align: center;
+
+  .btn {
+    display: inline-block;
+    margin: 0 $base-margin*0.5 $base-margin;
+  }
+}

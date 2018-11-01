@@ -1,0 +1,40 @@
+/* FOOTER */
+
+.footer {
+  background-color: $white;
+  color: $black;
+  padding: $base-margin*1.5 0;
+  box-sizing: border-box;
+
+  @include breakpoint($break_mobile) {
+    background-color: transparent;
+  }
+
+  a {
+    text-decoration: none;
+    font-weight: $font_semi_bold;
+    margin: 0 $base-margin;
+  }
+
+  p {
+    margin-bottom: $base-margin*0.25;
+  }
+
+  &__brand {
+    img {
+      width: auto;
+      max-height: 70px;
+    }
+  }
+
+  &__powered {
+    &__title {
+      margin-bottom: $base-margin*0.75;
+    }
+
+    img {
+      display: block;
+      margin: 0 auto;
+    }
+  }
+}

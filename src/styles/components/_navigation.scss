@@ -1,0 +1,30 @@
+/* NAVIGATION */
+
+.nav {
+  float: right;  
+
+  &__link {
+    display: inline-block;
+    margin-left: $base-margin*2;
+    font-weight: $font_bold;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &--footer {
+    float: left;
+
+    .nav__link {
+      display: block;
+      color: $white;
+      margin: 0 0 $base-margin*0.5 0;
+
+      &:last-child {
+        margin: 0;
+      }
+    }
+  }
+}

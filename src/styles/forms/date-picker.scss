@@ -1,0 +1,189 @@
+/* DATE PICKER */
+
+.date-picker {
+  width: 100%;
+  max-width: 331px;
+  background: $white;
+
+  &__options {
+    float: left;
+    width: calc(100% - 42px);
+    white-space: nowrap;
+
+    &__option {
+      background-color: transparent;
+      display: inline-block;
+      margin: 0;
+      font-size: $base-font-size*0.875;
+      line-height: $base-line-height*1.1875;
+      color: $mine-shaft;
+      border: 1px solid $mine-shaft-20;
+      border-radius: 3px;
+      padding: $base-margin*0.5;
+      box-sizing: border-box;
+      text-decoration: none;
+      text-align: center;
+
+      &.selected {
+        background-color: $brand-primary-80;
+        color: $white;
+        font-weight: $font_semi_bold;
+        border-color: $brand-primary-80;
+      }
+
+      @include breakpoint($break_mobile) {
+        width: 33%;
+      }
+    }
+  }
+
+  &__toggle {
+    background: $white;
+    float: right;
+    border: 1px solid $alto;
+    border-radius: 3px;
+    padding: 2px 2px 2px 2px;
+    box-sizing: border-box;
+    z-index: 1;
+
+    > a {
+      text-decoration: none;
+    }
+
+    .active & {
+      border-bottom: 1px solid $white;
+      margin-bottom: -2px;
+    }
+
+    &__icon {
+      display: block;
+      padding: $base-margin*0.4375 $base-margin*0.375 $base-margin*0.5 $base-margin*0.375;
+
+      .active & {
+        padding: $base-margin*0.625 $base-margin*0.375;
+      }
+
+      .selected & {
+        display: none;
+        padding: $base-margin*0.4375 $base-margin*0.375 $base-margin*0.5 $base-margin*0.375;
+      }
+
+      i {
+        color: $brand-primary;
+  
+        &:before {
+          width: auto;
+          margin: 0;
+        }
+      }
+    }
+
+    &__selection {
+      display: none;
+      padding: $base-margin*0.25 $base-margin*0.5 $base-margin*0.3125 $base-margin*0.5;
+      background-color: $brand-primary-80;
+      border-radius: 3px;
+      color: $white;
+      text-align: center;
+
+      .selected & {
+        display: block;
+      }
+
+      .day {
+        display: block;
+        font-size: $base-font-size*0.6875;
+        font-weight: $font_semi_bold;
+        line-height: $base-line-height*0.9375;
+      }
+
+      .month {
+        display: block;
+        font-family: $font_secondary;
+        font-size: $base-font-size*0.375;
+        font-weight: $font_semi_bold;
+        line-height: $base-line-height*0.4375;
+        text-transform: uppercase;
+      }
+    }
+  }
+
+  &__table {
+    display: none;
+    width: 100%;
+    border: 1px solid $alto;
+    border-radius: 3px;
+    border-spacing: 3px;
+    border-collapse: inherit;
+    padding: 6px 3px;
+
+    .active & {
+      display: table;
+    }
+
+    thead {
+      th {
+        font-family: $font_secondary;
+        font-size: $base-font-size*0.75;
+        font-weight: $font_semi_bold;
+        line-height: $base-line-height*0.9375;
+        padding: $base-margin*0.25;
+        text-align: center;
+      }
+    }
+
+    tbody {
+      tr {
+        td {
+          position: relative;
+          width: 44px;
+          border: 1px solid $mine-shaft-20;
+          border-radius: 3px;
+          font-size: $base-font-size*0.75;
+          line-height: $base-line-height*1.0625;
+          padding: $base-margin*0.25;
+          text-align: center;
+
+          > a {
+            display: block;
+            text-decoration: none;
+          }
+
+          &.unavailable {
+            background-color: $mine-shaft-05;
+            color: $mine-shaft-50;
+            border: transparent;
+          }
+
+          &.current {
+            color: $brand-primary;
+            font-weight: $font_semi_bold;
+          }
+
+          &.selected {
+            background-color: $brand-primary-80;
+            border: transparent;
+            color: $white;
+            font-weight: $font_semi_bold;
+
+            > a {
+              color: $white;
+            }
+          }
+
+          .month {
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            font-family: $font_secondary;
+            font-size: $base-font-size*0.5;
+            font-weight: $font_semi_bold;
+            line-height: $base-line-height*0.625;
+            text-transform: uppercase;
+          }
+        }
+      }
+    }
+  }
+}

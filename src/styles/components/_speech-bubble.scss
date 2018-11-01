@@ -1,0 +1,23 @@
+/* SPEECH BUBBLE */
+
+.speech-bubble {
+  position: relative;
+  display: block;
+  margin: 0 auto $base-margin*1.5;
+  width: 100%;
+  max-width: 235px;
+  background-color: $lochmara;
+  color: $white;
+  padding: $base-margin;
+  box-sizing: border-box;
+  border-radius: 15px;
+
+  &:after {
+    content: url('/assets/dist/img/speech-bubble-corner.svg');
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 12px;
+    height: 14px;
+  }
+}

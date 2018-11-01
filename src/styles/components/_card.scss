@@ -1,0 +1,139 @@
+/* CARD */
+
+.card {
+  position: relative;
+  width: 100%;
+  background-color: $white;
+  margin-bottom: $base-margin*1.25;
+  padding: $base-margin $base-margin*6 $base-margin $base-margin;
+  box-sizing: border-box;
+  border: 1px solid $brand-primary;
+  border-radius: 6px;
+  overflow: hidden;
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+
+  > a {
+    text-decoration: none;
+  }
+
+  &--selected {
+    background-color: $brand-primary-10;
+    border-width: 2px;
+  }
+
+  &--inactive {
+    border-color: $mine-shaft;
+  }
+
+  &--not-eligible {
+    background-color: $brand-primary-10;
+    border-color: transparent;
+    padding: $base-margin;
+  }
+
+  &--alert {
+    display: flex;
+    border-radius: 7px;
+    background-color: $mine-shaft-05;
+    border: none;
+    padding: $base-margin;
+    align-items: center;
+  }
+
+  &--booking {
+    display: block;
+    margin: 0 auto $base-margin*1.5;
+    max-width: 272px;
+    background-color: $brand-primary-10;
+    border: none;
+    padding: $base-margin $base-margin*1.5;
+  }
+
+  &__content {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  &__title {
+    display: block;
+    width: 100%;
+    margin-bottom: $base-margin*0.5;
+  }
+
+  &__description {
+    
+  }
+
+  &__meta {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    border-top: 1px solid $brand-primary;
+    border-left: 1px solid $brand-primary;
+    padding: $base-margin*0.5 $base-margin*0.75;
+    font-family: $font_secondary;
+    font-weight: $font_medium;
+    background-color: $brand-primary-05;
+    color: $brand-primary;
+
+    .card--inactive & {
+      background-color: $mine-shaft-05;
+      border-color: $mine-shaft;
+      color: $mine-shaft;
+    }
+  }
+
+  &__icon {
+    color: $mine-shaft-50;
+    margin-right: $base-margin;
+  }
+
+  &__message {
+    font-size: $base-font-size*0.875;
+    line-height: $base-line-height*1.1875;
+    text-align: center;
+    overflow: hidden;
+    vertical-align: middle;
+
+    .card--alert--icon & {
+      text-align: left;
+    }
+  }
+
+  &__details {
+    display: block;
+    width: 100%;
+    border-top: 1px dashed $mine-shaft-20;
+    padding-top: $base-margin*0.75;
+    margin-top: $base-margin*0.75;
+
+    &__item {
+      display: block;
+
+      &:first-child {
+        margin-bottom: $base-margin*0.5;
+      }
+
+      span {
+        display: inline-block;
+        
+        &:first-child {
+          color: $mine-shaft-50;
+          font-size: $base-font-size*0.875;
+          line-height: $base-line-height*1.1875;
+          margin-right: $base-margin;
+          width: 60px;
+        }
+
+        &:first-child {
+          font-size: $base-font-size;
+          line-height: $base-line-height*1.375;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,195 @@
+/* BASE FORMS */
+
+form,
+.form {
+  display: block;
+  margin: 0 auto;
+
+  // GENERAL FIELD WRAPPER
+  .field {
+    position: relative;
+    display: block;
+    width: 100%;
+    margin: 0 auto $base-margin*1.5;
+    overflow: hidden;
+
+    @include breakpoint($break_mobile) {
+      width: 100%;
+      margin-bottom: $base-margin*1.5;
+    }
+
+    // Text field
+    &--text {
+      &--label-top {
+        display: block;
+        width: 100%;
+        max-width: 300px;
+
+        label {
+          display: block;
+          width: 100%;
+          text-align: center;
+          margin-bottom: $base-margin*1.5;
+          font-size: $base-font-size*1.125;
+          line-height: $base-line-height*1.375;
+        }
+      }
+    }
+
+    // Inline field
+    &--inline {
+      padding-bottom: $base-margin;
+      margin-bottom: $base-margin;
+      border-bottom: 1px dashed $alto;
+
+      &:last-of-type {
+        border: none;
+      }
+
+      label {
+        display: inline-block;
+        width: 50%;
+        margin: 0;
+        padding-right: $base-margin;
+        box-sizing: border-box;
+        text-align: left;
+
+        @include breakpoint($break_mobile) {
+          display: block;
+          width: 100%;
+          margin-bottom: $base-margin*0.75;
+        }
+
+        .number {
+          display: inline-block;
+          vertical-align: top;
+          width: 28px;
+          padding-right: $base-margin*0.5;
+          box-sizing: border-box;
+        }
+
+        .question {
+          display: inline-block;
+          vertical-align: top;
+          width: calc(100% - 32px);
+        }
+      }
+    }
+
+    // Toggle buttons
+    &--radio,
+    &--checkbox {
+      .field__title {
+        display: block;
+        width: 100%;
+        margin-bottom: $base-margin*0.75;
+      }
+    }
+
+    // Postcode field
+    &--search {
+      width: 156px;
+      margin-bottom: $base-margin*1.25;
+      white-space: nowrap;
+
+      input {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+        border-right: transparent;
+      }
+
+      button {
+        display: inline-block;
+        vertical-align: middle;
+        font-size: $base-font-size;
+        line-height: $base-line-height;
+        background-color: $mine-shaft-10;
+        color: $mine-shaft-50;
+        border: 1px solid $alto;
+        border-top-right-radius: 4px;
+        border-bottom-right-radius: 4px;
+        padding: $base-margin*0.845 $base-margin*0.5 $base-margin*0.84 $base-margin*0.5;
+        margin-left: -4px;
+        box-sizing: border-box;
+
+        &:focus {
+          outline: 0;
+        }
+      }
+    }
+
+    // Time field
+    &--time,
+    &--date-picker {
+      width: fit-content;
+      text-align: left;
+
+      > label {
+        font-size: $base-font-size*1.125;
+        line-height: $base-line-height*1.375;
+        margin-bottom: $base-margin;
+      }
+    }
+
+    .error-message {
+      display: inline-block;
+      width: 70px;
+      margin-left: $base-margin;
+      color: $red;
+      font-size: $base-font-size*0.75;
+      line-height: $base-line-height*0.9375;
+      vertical-align: middle;
+
+      @include breakpoint($break_tablet) {
+        display: block;
+        width: 100%;
+        margin-left: 0;
+        margin-top: $base-margin*0.5;
+      }
+    }
+  }
+
+  // LABEL STYLE
+  label,
+  .field__title {
+    display: inline-block;
+    min-width: 60px;
+    color: $black;
+    font-family: $font_secondary;
+    font-weight: $font_semi_bold;
+    font-size: $base-font-size;
+    line-height: $base-line-height*1.25;
+    margin-right: $base-margin*1.5;
+    vertical-align: middle;
+    cursor: pointer;
+
+    @include breakpoint($break_tablet) {
+      vertical-align: top;
+    }
+
+    @include breakpoint($break_mobile) {
+      display: block;
+      width: 100%;
+      margin-bottom: $base-margin*0.75;
+    }
+
+    .field--text--label-top & {
+      display: block;
+    }
+
+    .instructions {
+      display: block;
+      font-size: $base-font-size*0.75;
+      line-height: $base-line-height*0.9375;
+    }
+  }
+
+  .actions {
+    display: block;
+    text-align: center;
+
+    .btn {
+      display: block;
+    }
+  }
+}

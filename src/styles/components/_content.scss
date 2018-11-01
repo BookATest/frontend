@@ -1,0 +1,15 @@
+/* CONTENT */
+
+.content {
+  background-color: $white;
+  padding: 0 $base-margin*2.5 $base-margin*2.5 $base-margin*2.5;
+  box-sizing: border-box;
+
+  @include breakpoint($break_mobile) {
+    padding: $base-margin*1.5;
+  }
+
+  &__footer {
+    margin-top: $base-margin*1.5;
+  }
+}

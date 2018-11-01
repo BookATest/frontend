@@ -1,0 +1,83 @@
+/* INPUT */
+
+.field__input {
+  display: inline-block;
+ 
+  @include breakpoint($break_mobile) {
+    display: block;
+  }
+
+  .field--inline & {
+    width: 48%;
+    padding-left: $base-margin;
+    box-sizing: border-box;
+
+    @include breakpoint($break_mobile) {
+      width: 100%;
+      padding-left: $base-margin*2;
+    }
+  }
+}
+
+input, textarea, .input, select {
+  background: $white;
+  color: $black;
+  display: inline-block;
+  vertical-align: middle;
+  width: 100%;
+  max-width: 184px;
+  font-size: $base-font-size*0.875;
+  line-height: $base-line-height*1.1875;
+  border: 1px solid $alto;
+  border-radius: 4px;
+  padding: $base-margin*0.75 $base-margin;
+  box-sizing: border-box;
+  transition: all 0.1s ease-out;
+
+  &:focus {
+    border-color: $mine-shaft-50;
+    outline: 0;
+    -webkit-text-fill-color: $black;
+  }
+
+  .field--search & {
+    width: 115px;
+
+    @include breakpoint($break_mobile) {
+      display: inline-block;
+    }
+  }
+
+  .field--code & {
+    width: 32px;
+    padding: $base-margin*0.75 $base-margin*0.5;
+    margin: 0 $base-margin*0.15;
+    text-align: center;
+
+    @include breakpoint($break_mobile) {
+      display: inline-block;
+    }
+  }
+
+  .field--dropdown & {
+    width: 100%;
+
+    @include breakpoint($break_mobile) {
+      max-width: 188px;
+    }
+  }
+
+  .field--inline {    
+    @include breakpoint($break_mobile) {
+      display: block;
+    }
+  }
+}
+
+select {
+  height: 42px;
+}
+
+textarea {
+  height: 220px;
+}

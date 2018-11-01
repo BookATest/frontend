@@ -1,0 +1,37 @@
+/* HERO */
+
+.hero {
+  background-color: $black;
+
+  .flex-container {
+    position: relative;
+  }
+
+  &__image {
+    background-size: cover;
+    min-height: 420px;
+  }
+
+  &__content {
+    padding: $base-margin*1.5;
+  }
+
+  &__title {
+    color: $white;
+    margin-bottom: $base-margin*1.5;
+  }
+
+  &__sub-title {
+    color: $white;
+    margin-bottom: 0;
+  }
+
+  &__description {
+    color: $white;
+    margin-bottom: 0;
+  }
+
+  &__cta {
+    margin-top: $base-margin*2;
+  }
+}
