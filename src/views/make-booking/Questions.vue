@@ -12,13 +12,7 @@
         <bat-field inline select>
           <bat-label for="question_1" :number="1">What is your gender?</bat-label>
           <bat-field-input>
-            <select id="question_1" class="select">
-              <option value="" disabled selected>-</option>
-              <option>Male</option>
-              <option>Female</option>
-              <option>Non-binary</option>
-              <option>Prefer not to say</option>
-            </select>
+            <bat-select-input v-model="question1" id="question_1" :options="question1Options" />
           </bat-field-input>
         </bat-field>
 
@@ -32,14 +26,29 @@
 import Field from '@/components/Field';
 import FieldInput from '@/components/FieldInput';
 import Label from '@/components/Label';
+import SelectInput from '@/components/SelectInput';
 
 export default {
   components: {
     BatField: Field,
     BatFieldInput: FieldInput,
     BatLabel: Label,
+    BatSelectInput: SelectInput,
   },
 
   name: 'Questions',
+
+  data() {
+    return {
+      question1: null,
+      question1Options: [
+        { value: null, text: '-', disabled: true, selected: true },
+        { value: 'Male', text: 'Male' },
+        { value: 'Female', text: 'Female' },
+        { value: 'Non-binary', text: 'Non-binary' },
+        { value: 'Prefer not to say', text: 'Prefer not to say' },
+      ],
+    };
+  },
 };
 </script>
