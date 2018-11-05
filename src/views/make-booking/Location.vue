@@ -18,8 +18,10 @@
         <template v-if="hasGeolocationCapabilities">
           <p class="sm-copy text-center">or</p>
 
-          <bat-button location @click="onGetLocation">
-            Find my location <bat-icon location-arrow />
+          <bat-button location @click="fetchCoordinate">
+            <template v-if="loadingLocation">Finding location...</template>
+            <template v-else>Find my location</template>
+            <bat-icon location-arrow />
           </bat-button>
         </template>
 
@@ -36,6 +38,8 @@
 import Field from '@/components/Field';
 import PostcodeInput from "@/components/PostcodeInput";
 
+import Location from "@/utilities/Location";
+
 export default {
   name: 'Location',
 
@@ -46,8 +50,10 @@ export default {
 
   data() {
     return {
+      loadingLocation: false,
+      location: new Location(),
       postcode: '',
-      location: {
+      coordinate: {
         lat: null,
         lon: null,
       },
@@ -56,17 +62,47 @@ export default {
   },
 
   methods: {
+    /**
+     * Triggered when entering a postcode.
+     */
     onNext() {
-      //
+      this.cachePostcode();
+      this.$router.push({ name: 'clinics' });
     },
 
-    onGetLocation() {
+    /**
+     * Triggerred when using the geo location.
+     */
+    fetchCoordinate() {
+      this.loadingLocation = true;
+
       navigator.geolocation.getCurrentPosition(position => {
-        this.location.lat = position.coords.latitude;
-        this.location.lon = position.coords.longitude;
-        this.$forceUpdate();
+        this.coordinate.lat = position.coords.latitude;
+        this.coordinate.lon = position.coords.longitude;
+
+        this.cacheCoordinate();
+
+        this.loadingLocation = false;
+
+        this.$router.push({ name: 'clinics' });
       });
     },
+
+    cacheCoordinate() {
+      this.location.cache(this.coordinate);
+    },
+
+    fetchPostcode() {
+      this.postcode = this.location.getPostcode;
+    },
+
+    cachePostcode() {
+      this.location.cache(this.postcode);
+    },
+  },
+
+  created() {
+    this.fetchPostcode();
   },
 };
 </script>

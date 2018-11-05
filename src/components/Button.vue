@@ -6,6 +6,7 @@
     :class="classes"
     role="button"
     :tag="tag"
+    :disabled="disabled"
   >
     <slot />
   </router-link>
@@ -41,6 +42,9 @@ export default {
     back: {
       type: Boolean,
     },
+    disabled: {
+      type: Boolean,
+    },
     tag: {
       default: 'a'
     },
@@ -53,6 +57,7 @@ export default {
         'btn--secondary': this.secondary,
         'btn--location': this.location,
         'btn--back': this.back,
+        'btn--disabled': this.disabled,
       };
     }
   },
