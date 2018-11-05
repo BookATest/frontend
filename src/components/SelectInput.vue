@@ -1,5 +1,6 @@
 <template>
   <select @change="onChange" class="select">
+    <option :value="null" disabled :selected="value === null">-</option>
     <option
       v-for="option in options"
       :key="option.value"

@@ -48,7 +48,7 @@
         </bat-field>
 
         <div class="actions">
-          <bat-button :to="{ name: 'location' }" tag="button" primary>Continue</bat-button>
+          <bat-button @click="onNext" tag="button" primary>Continue</bat-button>
         </div>
 
       </div>
@@ -65,6 +65,10 @@ import SelectInput from '@/components/SelectInput';
 import DateInput from '@/components/DateInput';
 import TextInput from '@/components/TextInput';
 import CheckboxInput from '@/components/CheckboxInput';
+
+import Answers from "@/utilities/Answers";
+
+const answersCacheKey = 'answers';
 
 export default {
   name: 'Questions',
@@ -83,17 +87,7 @@ export default {
     return {
       loading: false,
       questions: [],
-      question1: null,
-      question1Options: [
-        { value: null, text: '-', disabled: true, selected: true },
-        { value: 'Male', text: 'Male' },
-        { value: 'Female', text: 'Female' },
-        { value: 'Non-binary', text: 'Non-binary' },
-        { value: 'Prefer not to say', text: 'Prefer not to say' },
-      ],
-      question2: '',
-      question3: '',
-      question4: false,
+      answers: new Answers(),
     };
   },
 
@@ -103,6 +97,7 @@ export default {
 
       const response = await this.http.get('/v1/questions');
       this.questions = response.data.data.map(this.parseQuestion);
+      this.fetchAnswers();
 
       this.loading = false;
     },
@@ -112,7 +107,6 @@ export default {
           case 'select':
             question.answer = null;
             question.options = question.options.map(option => ({ value: option, text: option }));
-            question.options.unshift({ value: null, text: '-', disabled: true, selected: true });
             break;
           case 'checkbox':
             question.answer = false;
@@ -125,7 +119,33 @@ export default {
         }
 
         return question;
-    }
+    },
+
+    fetchAnswers() {
+      // Loop through each question.
+      this.questions.forEach(question => {
+        // Get the answer for the question.
+        const answer = this.answers.find(question.id);
+
+        // If the answer exists then set it.
+        if (answer) {
+          question.answer = answer.answer;
+        }
+      });
+    },
+
+    cacheAnswers() {
+      // Create a parsed answers array.
+      const answers = this.questions.map(question => ({ question_id: question.id, answer: question.answer }));
+
+      // Store the answers array as a JSON string in session storage.
+      this.answers.cache(answers);
+    },
+
+    onNext() {
+      this.cacheAnswers();
+      this.$router.push({ name: 'location' });
+    },
   },
 
   created() {

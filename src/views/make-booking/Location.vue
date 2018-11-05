@@ -15,11 +15,13 @@
           <bat-postcode-input v-model="postcode" @click="onNext" />
         </bat-field>
 
-        <p class="sm-copy text-center">or</p>
+        <template v-if="hasGeolocationCapabilities">
+          <p class="sm-copy text-center">or</p>
 
-        <bat-button location>
-          Find my location <bat-icon location-arrow />
-        </bat-button>
+          <bat-button location @click="onGetLocation">
+            Find my location <bat-icon location-arrow />
+          </bat-button>
+        </template>
 
         <bat-content-footer>
           <bat-button :to="{ name: 'questions' }" back>Back</bat-button>
@@ -49,12 +51,21 @@ export default {
         lat: null,
         lon: null,
       },
+      hasGeolocationCapabilities: navigator.geolocation,
     };
   },
 
   methods: {
     onNext() {
       //
+    },
+
+    onGetLocation() {
+      navigator.geolocation.getCurrentPosition(position => {
+        this.location.lat = position.coords.latitude;
+        this.location.lon = position.coords.longitude;
+        this.$forceUpdate();
+      });
     },
   },
 };
