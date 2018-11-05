@@ -16,6 +16,13 @@
           </bat-field-input>
         </bat-field>
 
+        <bat-field inline date>
+          <bat-label for="question_2" :number="2">What's your date of birth?</bat-label>
+          <bat-field-input>
+            <bat-date-input v-model="question2" id="question_2" />
+          </bat-field-input>
+        </bat-field>
+
       </div>
     </bat-content>
 
@@ -27,6 +34,7 @@ import Field from '@/components/Field';
 import FieldInput from '@/components/FieldInput';
 import Label from '@/components/Label';
 import SelectInput from '@/components/SelectInput';
+import DateInput from '@/components/DateInput';
 
 export default {
   components: {
@@ -34,6 +42,7 @@ export default {
     BatFieldInput: FieldInput,
     BatLabel: Label,
     BatSelectInput: SelectInput,
+    BatDateInput: DateInput,
   },
 
   name: 'Questions',
@@ -48,6 +57,7 @@ export default {
         { value: 'Non-binary', text: 'Non-binary' },
         { value: 'Prefer not to say', text: 'Prefer not to say' },
       ],
+      question2: '',
     };
   },
 };
