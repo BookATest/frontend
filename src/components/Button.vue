@@ -5,6 +5,7 @@
     class="btn"
     :class="classes"
     role="button"
+    :tag="tag"
   >
     <slot />
   </router-link>
@@ -23,6 +24,9 @@ export default {
     },
     secondary: {
       type: Boolean,
+    },
+    tag: {
+      default: 'a'
     },
   },
 

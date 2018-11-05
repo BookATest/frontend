@@ -30,6 +30,17 @@
           </bat-field-input>
         </bat-field>
 
+        <bat-field inline checkbox>
+          <bat-label for="question_4" :number="4">Are you a smoker?</bat-label>
+          <bat-field-input>
+            <bat-checkbox-input v-model="question4" id="question_4" />
+          </bat-field-input>
+        </bat-field>
+
+        <div class="actions">
+          <bat-button to="/next" tag="button" primary>Continue</bat-button>
+        </div>
+
       </div>
     </bat-content>
 
@@ -43,6 +54,7 @@ import Label from '@/components/Label';
 import SelectInput from '@/components/SelectInput';
 import DateInput from '@/components/DateInput';
 import TextInput from '@/components/TextInput';
+import CheckboxInput from '@/components/CheckboxInput';
 
 export default {
   components: {
@@ -52,6 +64,7 @@ export default {
     BatSelectInput: SelectInput,
     BatDateInput: DateInput,
     BatTextInput: TextInput,
+    BatCheckboxInput: CheckboxInput,
   },
 
   name: 'Questions',
@@ -68,6 +81,7 @@ export default {
       ],
       question2: '',
       question3: '',
+      question4: false,
     };
   },
 };
