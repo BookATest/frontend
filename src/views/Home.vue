@@ -2,9 +2,9 @@
   <bat-loader v-if="settings === null" />
   <div v-else>
     <bat-text-header white>
-      <img :src="`${apiUrl}/v1/settings/logo.png`" alt="Brand Name" class="text-header__image">
-      <h1 class="text-header__title">Welcome to {{ settings.name }}</h1>
-      <p class="text-header__description sm-copy">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque dictum.</p>
+      <bat-text-header-image :src="`${apiUrl}/v1/settings/logo.png`" alt="Brand Name" />
+      <bat-text-header-title>Welcome to {{ settings.name }}</bat-text-header-title>
+      <bat-text-header-description small>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque dictum.</bat-text-header-description>
     </bat-text-header>
 
     <bat-content>

@@ -19,6 +19,10 @@ Vue.component('BatButton', () => import('@/components/Button.vue'));
 Vue.component('BatContent', () => import('@/components/Content.vue'));
 Vue.component('BatLoader', () => import('@/components/Loader.vue'));
 Vue.component('BatTextHeader', () => import('@/components/TextHeader.vue'));
+Vue.component('BatTextHeaderProgress', () => import('@/components/TextHeaderProgress.vue'));
+Vue.component('BatTextHeaderTitle', () => import('@/components/TextHeaderTitle.vue'));
+Vue.component('BatTextHeaderDescription', () => import('@/components/TextHeaderDescription.vue'));
+Vue.component('BatTextHeaderImage', () => import('@/components/TextHeaderImage.vue'));
 
 Vue.config.productionTip = false;
 

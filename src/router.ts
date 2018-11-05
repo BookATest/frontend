@@ -22,6 +22,11 @@ const router = new Router({
       name: 'questions',
       component: () => import('@/views/make-booking/Questions.vue'),
     },
+    {
+      path: '/make-booking/location',
+      name: 'location',
+      component: () => import('@/views/make-booking/Location.vue'),
+    },
   ],
 });
 

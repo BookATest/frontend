@@ -2,8 +2,10 @@
   <div>
 
     <bat-text-header>
-      <h1 class="text-header__title">What are you looking for?</h1>
-      <p class="text-header__description sm-copy">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque dictum.</p>
+      <bat-text-header-title>What are you looking for?</bat-text-header-title>
+      <bat-text-header-description small>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque dictum.
+      </bat-text-header-description>
     </bat-text-header>
 
     <bat-content>
@@ -46,7 +48,7 @@
         </bat-field>
 
         <div class="actions">
-          <bat-button to="/next" tag="button" primary>Continue</bat-button>
+          <bat-button :to="{ name: 'location' }" tag="button" primary>Continue</bat-button>
         </div>
 
       </div>

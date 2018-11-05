@@ -25,6 +25,9 @@ export default {
     secondary: {
       type: Boolean,
     },
+    location: {
+      type: Boolean,
+    },
     tag: {
       default: 'a'
     },
@@ -35,6 +38,7 @@ export default {
       return {
         'btn--primary': this.primary,
         'btn--secondary': this.secondary,
+        'btn--location': this.location,
       };
     }
   },

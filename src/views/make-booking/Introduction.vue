@@ -1,8 +1,12 @@
 <template>
   <div>
     <bat-text-header>
-      <h1 class="text-header__title">Book test here</h1>
-      <p class="text-header__description sm-copy">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque dictum sem quis aliquet laoreet. Duis blandit luctus nulla vel ullamcorper. Suspendisse eu efficitur justo. Quisque mollis in erat sit amet rhoncus.</p>
+      <bat-text-header-title>Book test here</bat-text-header-title>
+      <bat-text-header-description small>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque dictum sem quis aliquet laoreet.
+        Duis blandit luctus nulla vel ullamcorper. Suspendisse eu efficitur justo.
+        Quisque mollis in erat sit amet rhoncus.
+      </bat-text-header-description>
     </bat-text-header>
 
     <bat-content>
