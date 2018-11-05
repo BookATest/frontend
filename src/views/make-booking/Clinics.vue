@@ -11,16 +11,27 @@
         <span class="results__term" v-text="locationText" />
       </div>
 
-      <bat-card primary title="Metro Centre - London">
-        <p>
-          1st Floor Equitable House<br>
-          7 General Gordon Square<br>
-          London<br>
-          SE18 6FH
-        </p>
+      <bat-loader v-if="loading" />
 
-        <span slot="meta">99 miles</span>
-      </bat-card>
+      <template v-else>
+        <bat-card v-for="clinic in clinics" :key="clinic.id" primary :title="clinic.name">
+          <p>
+            {{ clinic.address_line_1 }}<br>
+            <template v-if="clinic.address_line_2">
+              {{ clinic.address_line_2 }}<br>
+            </template>
+            <template v-if="clinic.address_line_3">
+              {{ clinic.address_line_3 }}<br>
+            </template>
+            {{ clinic.city }}<br>
+            {{ clinic.postcode }}
+          </p>
+
+          <span slot="meta">{{ toMiles(clinic.distance) }} miles</span>
+        </bat-card>
+
+        <p v-if="clinics.length === 0">You're not eligible at any clinics.</p>
+      </template>
 
       <bat-content-footer>
         <bat-button :to="{ name: 'questions' }" disabled>Select location</bat-button>
@@ -34,6 +45,7 @@
 import Card from "@/components/Card";
 
 import Location from "@/utilities/Location";
+import Answers from "@/utilities/Answers";
 
 export default {
   name: 'Clinics',
@@ -45,6 +57,9 @@ export default {
   data() {
     return {
       location: new Location(),
+      answers: new Answers(),
+      clinics: [],
+      loading: false,
     };
   },
 
@@ -56,6 +71,35 @@ export default {
 
       return 'your location';
     },
+  },
+
+  methods: {
+    async fetchClinics() {
+      this.loading = true;
+
+      let payload = {
+        answers: this.answers.all,
+      };
+
+      if (this.location.getPostcode !== undefined) {
+        payload.postcode = this.location.getPostcode;
+      } else {
+        payload.location = this.location.getCoordinate;
+      }
+
+      const response = await this.http.post('/v1/bookings/eligibility', payload);
+      this.clinics = response.data.data;
+
+      this.loading = false;
+    },
+
+    toMiles(meters) {
+      return (0.000621371 * meters).toFixed(2);
+    }
+  },
+
+  created() {
+    this.fetchClinics();
   },
 };
 </script>
