@@ -23,6 +23,13 @@
           </bat-field-input>
         </bat-field>
 
+        <bat-field inline text>
+          <bat-label for="question_3" :number="3">Where did you hear about us?</bat-label>
+          <bat-field-input>
+            <bat-text-input v-model="question3" id="question_3" />
+          </bat-field-input>
+        </bat-field>
+
       </div>
     </bat-content>
 
@@ -35,6 +42,7 @@ import FieldInput from '@/components/FieldInput';
 import Label from '@/components/Label';
 import SelectInput from '@/components/SelectInput';
 import DateInput from '@/components/DateInput';
+import TextInput from '@/components/TextInput';
 
 export default {
   components: {
@@ -43,6 +51,7 @@ export default {
     BatLabel: Label,
     BatSelectInput: SelectInput,
     BatDateInput: DateInput,
+    BatTextInput: TextInput,
   },
 
   name: 'Questions',
@@ -58,6 +67,7 @@ export default {
         { value: 'Prefer not to say', text: 'Prefer not to say' },
       ],
       question2: '',
+      question3: '',
     };
   },
 };
