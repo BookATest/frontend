@@ -61,11 +61,12 @@
   &__title {
     display: block;
     width: 100%;
+    margin-top: 0;
     margin-bottom: $base-margin*0.5;
   }
 
   &__description {
-    
+
   }
 
   &__meta {
@@ -120,7 +121,7 @@
 
       span {
         display: inline-block;
-        
+
         &:first-child {
           color: $mine-shaft-50;
           font-size: $base-font-size*0.875;

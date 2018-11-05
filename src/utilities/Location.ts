@@ -30,7 +30,7 @@ export default class Location {
 
   public cache(location: string | Coordinate): Location {
     if (typeof(location) === 'string') {
-      window.sessionStorage.setItem(this.postcodeCacheKey, JSON.stringify(location));
+      window.sessionStorage.setItem(this.postcodeCacheKey, JSON.stringify(location.toUpperCase()));
     } else {
       window.sessionStorage.setItem(this.coordinateCacheKey, JSON.stringify(location));
     }

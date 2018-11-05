@@ -11,17 +11,36 @@
         <span class="results__term" v-text="locationText" />
       </div>
 
-      <bat-button :to="{ name: 'questions' }" disabled>Select location</bat-button>
-      <bat-button :to="{ name: 'location' }" back>Back</bat-button>
+      <bat-card primary title="Metro Centre - London">
+        <p>
+          1st Floor Equitable House<br>
+          7 General Gordon Square<br>
+          London<br>
+          SE18 6FH
+        </p>
+
+        <span slot="meta">99 miles</span>
+      </bat-card>
+
+      <bat-content-footer>
+        <bat-button :to="{ name: 'questions' }" disabled>Select location</bat-button>
+        <bat-button :to="{ name: 'location' }" back>Back</bat-button>
+      </bat-content-footer>
     </bat-content>
   </div>
 </template>
 
 <script>
+import Card from "@/components/Card";
+
 import Location from "@/utilities/Location";
 
 export default {
   name: 'Clinics',
+
+  components: {
+    BatCard: Card,
+  },
 
   data() {
     return {
