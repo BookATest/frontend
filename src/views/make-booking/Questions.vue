@@ -7,33 +7,41 @@
     </bat-text-header>
 
     <bat-content>
-      <div class="form">
+      <bat-loader v-if="loading" />
 
-        <bat-field inline select>
-          <bat-label for="question_1" :number="1">What is your gender?</bat-label>
-          <bat-field-input>
-            <bat-select-input v-model="question1" id="question_1" :options="question1Options" />
-          </bat-field-input>
-        </bat-field>
+      <div v-else class="form">
 
-        <bat-field inline date>
-          <bat-label for="question_2" :number="2">What's your date of birth?</bat-label>
+        <bat-field
+          v-for="(question, index) in questions" :key="question.id"
+          inline
+          :select="question.type === 'select'"
+          :text="question.type === 'text'"
+          :checkbox="question.type === 'checkbox'"
+          :date="question.type === 'date'"
+        >
+          <bat-label :for="question.id" :number="index + 1" v-text="question.question" />
           <bat-field-input>
-            <bat-date-input v-model="question2" id="question_2" />
-          </bat-field-input>
-        </bat-field>
-
-        <bat-field inline text>
-          <bat-label for="question_3" :number="3">Where did you hear about us?</bat-label>
-          <bat-field-input>
-            <bat-text-input v-model="question3" id="question_3" />
-          </bat-field-input>
-        </bat-field>
-
-        <bat-field inline checkbox>
-          <bat-label for="question_4" :number="4">Are you a smoker?</bat-label>
-          <bat-field-input>
-            <bat-checkbox-input v-model="question4" id="question_4" />
+            <bat-select-input
+              v-if="question.type === 'select'"
+              v-model="question.answer"
+              id="question.id"
+              :options="question.options"
+            />
+            <bat-date-input
+              v-if="question.type === 'date'"
+              v-model="question.answer"
+              id="question.id"
+            />
+            <bat-text-input
+              v-if="question.type === 'text'"
+              v-model="question.answer"
+              id="question.id"
+            />
+            <bat-checkbox-input
+              v-if="question.type === 'checkbox'"
+              v-model="question.answer"
+              id="question.id"
+            />
           </bat-field-input>
         </bat-field>
 
@@ -71,6 +79,8 @@ export default {
 
   data() {
     return {
+      loading: false,
+      questions: [],
       question1: null,
       question1Options: [
         { value: null, text: '-', disabled: true, selected: true },
@@ -83,6 +93,41 @@ export default {
       question3: '',
       question4: false,
     };
+  },
+
+  methods: {
+    async fetchQuestions() {
+      this.loading = true;
+
+      const response = await this.http.get('/v1/questions');
+      this.questions = response.data.data.map(this.parseQuestion);
+
+      this.loading = false;
+    },
+
+    parseQuestion(question) {
+      switch (question.type) {
+          case 'select':
+            question.answer = null;
+            question.options = question.options.map(option => ({ value: option, text: option }));
+            question.options.unshift({ value: null, text: '-', disabled: true, selected: true });
+            break;
+          case 'checkbox':
+            question.answer = false;
+            break;
+          case 'date':
+          case 'text':
+          default:
+            question.answer = '';
+            break;
+        }
+
+        return question;
+    }
+  },
+
+  created() {
+    this.fetchQuestions();
   },
 };
 </script>
