@@ -6,6 +6,11 @@
     </bat-text-header>
 
     <bat-content>
+      <div class="results">
+        <span class="results__text">Showing results for</span>
+        <span class="results__term" v-text="locationText" />
+      </div>
+
       <bat-button :to="{ name: 'questions' }" disabled>Select location</bat-button>
       <bat-button :to="{ name: 'location' }" back>Back</bat-button>
     </bat-content>
@@ -13,7 +18,25 @@
 </template>
 
 <script>
+import Location from "@/utilities/Location";
+
 export default {
-  name: 'Introduction',
+  name: 'Clinics',
+
+  data() {
+    return {
+      location: new Location(),
+    };
+  },
+
+  computed: {
+    locationText() {
+      if (this.location.getPostcode !== undefined) {
+        return this.location.getPostcode;
+      }
+
+      return 'your location';
+    },
+  },
 };
 </script>

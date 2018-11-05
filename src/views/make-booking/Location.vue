@@ -66,6 +66,7 @@ export default {
      * Triggered when entering a postcode.
      */
     onNext() {
+      this.location.clear();
       this.cachePostcode();
       this.$router.push({ name: 'clinics' });
     },
@@ -80,6 +81,7 @@ export default {
         this.coordinate.lat = position.coords.latitude;
         this.coordinate.lon = position.coords.longitude;
 
+        this.location.clear();
         this.cacheCoordinate();
 
         this.loadingLocation = false;

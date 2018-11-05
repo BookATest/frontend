@@ -37,4 +37,23 @@ export default class Location {
 
     return this;
   }
+
+  public clearPostcode(): Location {
+    window.sessionStorage.removeItem(this.postcodeCacheKey);
+
+    return this;
+  }
+
+  public clearCoordinate(): Location {
+    window.sessionStorage.removeItem(this.coordinateCacheKey);
+
+    return this;
+  }
+
+  public clear(): Location {
+    this.clearPostcode();
+    this.clearCoordinate();
+
+    return this;
+  }
 };
