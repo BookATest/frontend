@@ -18,6 +18,8 @@
 import Settings from '@/utilities/Settings';
 
 export default {
+  name: 'Home',
+
   data() {
     return {
       settings: null,

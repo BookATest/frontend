@@ -1,20 +1,26 @@
 <template>
   <div class="text-header__progress">
+
     <span class="text-header__progress__icon" :class="{ active: active === 1 }">
-      <i class="icon-location"></i>
+      <bat-icon location />
     </span>
+
     <span class="text-header__progress__icon" :class="{ active: active === 2 }">
-      <i class="icon-time"></i>
+      <bat-icon time />
     </span>
+
     <span class="text-header__progress__icon" :class="{ active: active === 3 }">
-      <i class="icon-user"></i>
+      <bat-icon user />
     </span>
+
     <span class="text-header__progress__icon" :class="{ active: active === 4 }">
-      <i class="icon-notification"></i>
+      <bat-icon notification />
     </span>
+
     <span class="text-header__progress__icon" :class="{ active: active === 5 }">
-      <i class="icon-complete"></i>
+      <bat-icon complete />
     </span>
+
   </div>
 </template>
 

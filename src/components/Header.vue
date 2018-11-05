@@ -2,13 +2,13 @@
   <header class="header mobile-show" :class="headerClass">
     <div class="header__brand">
       <a href="/">
-        <img src="/assets/dist/img/brand-logo.png" alt="Brand Logo">
+        <img :src="`${apiUrl}/v1/settings/logo.png`" alt="Brand Logo">
       </a>
     </div>
 
     <div class="header__powered text-center">
       <h5 class="header__powered__title">Powered by</h5>
-      <img src="/assets/dist/img/logo--alt.svg" alt="BookATest.hiv">
+      <img src="@/assets/img/logo.svg" alt="BookATest.hiv">
     </div>
   </header>
 </template>

@@ -14,3 +14,9 @@
     </bat-content>
   </div>
 </template>
+
+<script>
+export default {
+  name: 'Introduction',
+};
+</script>

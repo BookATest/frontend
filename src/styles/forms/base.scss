@@ -96,6 +96,11 @@ form,
         border-top-right-radius: 0;
         border-bottom-right-radius: 0;
         border-right: transparent;
+        line-height: 18px;
+
+        @include breakpoint($break_mobile) {
+          line-height: 19px;
+        }
       }
 
       button {

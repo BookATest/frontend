@@ -1,0 +1,142 @@
+/* BRAND SPECIFIC OVERRIDES */
+
+/* Solid Color */
+
+.color-primary {
+  color: rgba(45, 75, 145, 1);
+}
+
+.btn {
+  border-color: rgba(45, 75, 145, 1);
+}
+
+.btn--primary {
+  background-color: rgba(45, 75, 145, 1);
+  border-color: rgba(45, 75, 145, 1);
+}
+
+.btn--disabled {
+  color: rgba(45, 75, 145, 1);
+}
+
+.btn--secondary {
+  color: rgba(45, 75, 145, 1);
+  border-color: rgba(45, 75, 145, 1);
+}
+
+.dropdown-trigger {
+  color: rgba(45, 75, 145, 1);
+}
+
+.card--primary {
+  border-color: rgba(45, 75, 145, 1);
+}
+
+.card__meta {
+  color: rgba(45, 75, 145, 1);
+  border-color: rgba(45, 75, 145, 1);
+}
+
+.text-header__progress__icon.active {
+  color: rgba(45, 75, 145, 1);
+}
+
+.date-picker__toggle__icon i {
+  color: rgba(45, 75, 145, 1);
+}
+
+.date-picker__table tbody tr td.current {
+  color: rgba(45, 75, 145, 1);
+}
+
+.time__row__items__item input:checked + label {
+  border-color: rgba(45, 75, 145, 1);
+}
+
+.toggle-button label:hover {
+  border-color: rgba(45, 75, 145, 1);
+}
+
+.toggle-button input:checked + label {
+  border-color: rgba(45, 75, 145, 1);
+}
+
+.radio input:checked + label:before {
+  background-color: rgba(45, 75, 145, 1);
+}
+
+/* Opacity Colors */
+
+body {
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(45, 75, 145, 0.1)), color-stop(50%, rgba(45, 75, 145, 0.1)), color-stop(50%, rgba(45, 75, 145, 0.05)), to(rgba(45, 75, 145, 0.05)));
+  background: linear-gradient(to bottom, rgba(45, 75, 145, 0.1) 0%, rgba(45, 75, 145, 0.1) 50%, rgba(45, 75, 145, 0.05) 50%, rgba(45, 75, 145, 0.05) 100%);
+}
+
+.page__wrapper {
+  border-color: rgba(45, 75, 145, 0.5);
+}
+
+.btn:hover {
+  -webkit-box-shadow: 0px 0px 0px 4px rgba(45, 75, 145, 0.2);
+          box-shadow: 0px 0px 0px 4px rgba(45, 75, 145, 0.2);
+}
+
+.btn--location {
+  background-color: rgba(45, 75, 145, 0.8);
+}
+
+.card--selected {
+  background-color: rgba(45, 75, 145, 0.1);
+}
+
+.card--not-eligible {
+  background-color: rgba(45, 75, 145, 0.1);
+}
+
+.card--booking {
+  background-color: rgba(45, 75, 145, 0.1);
+}
+
+.card__meta {
+  background-color: rgba(45, 75, 145, 0.05);
+}
+
+@media (max-width: 600px) {
+  .text-header {
+    background-color: rgba(45, 75, 145, 0.1);
+  }
+}
+
+.text-header__progress__icon {
+  color: rgba(45, 75, 145, 0.2);
+}
+
+.text-header__progress__icon:after {
+  margin: 0 .25rem;
+  color: rgba(45, 75, 145, 0.2);
+}
+
+.date-picker__options__option.selected {
+  background-color: rgba(45, 75, 145, 0.8);
+  border-color: rgba(45, 75, 145, 0.8);
+}
+
+.date-picker__toggle__selection {
+  background-color: rgba(45, 75, 145, 0.8);
+}
+
+.date-picker__table tbody tr td.selected {
+  background-color: rgba(45, 75, 145, 0.8);
+}
+
+.time__row__items__item input:checked + label {
+  background-color: rgba(45, 75, 145, 0.8);
+}
+
+.toggle-button label:hover {
+  background-color: rgba(45, 75, 145, 0.5);
+}
+
+.toggle-button input:checked + label {
+  background-color: rgba(45, 75, 145, 0.8);
+}

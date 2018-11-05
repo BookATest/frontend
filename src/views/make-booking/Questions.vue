@@ -26,23 +26,23 @@
             <bat-select-input
               v-if="question.type === 'select'"
               v-model="question.answer"
-              id="question.id"
+              :id="question.id"
               :options="question.options"
             />
             <bat-date-input
               v-if="question.type === 'date'"
               v-model="question.answer"
-              id="question.id"
+              :id="question.id"
             />
             <bat-text-input
               v-if="question.type === 'text'"
               v-model="question.answer"
-              id="question.id"
+              :id="question.id"
             />
             <bat-checkbox-input
               v-if="question.type === 'checkbox'"
               v-model="question.answer"
-              id="question.id"
+              :id="question.id"
             />
           </bat-field-input>
         </bat-field>
@@ -67,6 +67,8 @@ import TextInput from '@/components/TextInput';
 import CheckboxInput from '@/components/CheckboxInput';
 
 export default {
+  name: 'Questions',
+
   components: {
     BatField: Field,
     BatFieldInput: FieldInput,
@@ -76,8 +78,6 @@ export default {
     BatTextInput: TextInput,
     BatCheckboxInput: CheckboxInput,
   },
-
-  name: 'Questions',
 
   data() {
     return {

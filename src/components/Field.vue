@@ -24,6 +24,9 @@ export default {
     checkbox: {
       type: Boolean
     },
+    search: {
+      type: Boolean
+    },
   },
 
   computed: {
@@ -34,6 +37,7 @@ export default {
         'field--date': this.date,
         'field--text': this.text,
         'field--checkbox': this.checkbox,
+        'field--search': this.search,
       };
     },
   },

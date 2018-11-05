@@ -17,6 +17,8 @@ Vue.mixin({
 
 Vue.component('BatButton', () => import('@/components/Button.vue'));
 Vue.component('BatContent', () => import('@/components/Content.vue'));
+Vue.component('BatContentFooter', () => import('@/components/ContentFooter.vue'));
+Vue.component('BatIcon', () => import('@/components/Icon.vue'));
 Vue.component('BatLoader', () => import('@/components/Loader.vue'));
 Vue.component('BatTextHeader', () => import('@/components/TextHeader.vue'));
 Vue.component('BatTextHeaderProgress', () => import('@/components/TextHeaderProgress.vue'));

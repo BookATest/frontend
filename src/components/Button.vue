@@ -9,6 +9,16 @@
   >
     <slot />
   </router-link>
+
+  <button
+    v-else
+    class="btn"
+    :class="classes"
+    role="button"
+    @click="onClick"
+  >
+    <slot />
+  </button>
 </template>
 
 <script>
@@ -17,7 +27,7 @@ export default {
 
   props: {
     to: {
-      required: true,
+      required: false,
     },
     primary: {
       type: Boolean,
@@ -26,6 +36,9 @@ export default {
       type: Boolean,
     },
     location: {
+      type: Boolean,
+    },
+    back: {
       type: Boolean,
     },
     tag: {
@@ -39,8 +52,15 @@ export default {
         'btn--primary': this.primary,
         'btn--secondary': this.secondary,
         'btn--location': this.location,
+        'btn--back': this.back,
       };
     }
+  },
+
+  methods: {
+    onClick() {
+      this.$emit('click');
+    },
   },
 };
 </script>

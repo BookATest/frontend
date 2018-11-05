@@ -9,7 +9,53 @@
     </bat-text-header>
 
     <bat-content>
-      <bat-button :to="{ name: 'questions' }" primary>Continue</bat-button>
+      <div class="form">
+
+        <bat-field search>
+          <bat-postcode-input v-model="postcode" @click="onNext" />
+        </bat-field>
+
+        <p class="sm-copy text-center">or</p>
+
+        <bat-button location>
+          Find my location <bat-icon location-arrow />
+        </bat-button>
+
+        <bat-content-footer>
+          <bat-button :to="{ name: 'questions' }" back>Back</bat-button>
+        </bat-content-footer>
+
+      </div>
     </bat-content>
   </div>
 </template>
+
+<script>
+import Field from '@/components/Field';
+import PostcodeInput from "@/components/PostcodeInput";
+
+export default {
+  name: 'Location',
+
+  components: {
+    BatField: Field,
+    BatPostcodeInput: PostcodeInput,
+  },
+
+  data() {
+    return {
+      postcode: '',
+      location: {
+        lat: null,
+        lon: null,
+      },
+    };
+  },
+
+  methods: {
+    onNext() {
+      //
+    },
+  },
+};
+</script>
