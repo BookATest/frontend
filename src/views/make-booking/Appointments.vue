@@ -98,7 +98,7 @@ export default {
 
       // Cache appointment time and route to next page.
       this.appointmentCache.cache(this.appointment);
-      console.log('NEXT');
+      this.$router.push({ name: 'user-details' });
     },
 
     onBack() {

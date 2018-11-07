@@ -37,6 +37,11 @@ const router = new Router({
       name: 'appointments',
       component: () => import('@/views/make-booking/Appointments.vue'),
     },
+    {
+      path: '/make-booking/user-details',
+      name: 'user-details',
+      component: () => import('@/views/make-booking/UserDetails.vue'),
+    },
   ],
 });
 
