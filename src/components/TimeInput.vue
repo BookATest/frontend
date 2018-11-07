@@ -5,9 +5,9 @@
 
     <bat-loader v-if="loading" />
     <div v-else class="time">
-      <bat-time-row v-model="time" :appointments="morningAppointments">Morning</bat-time-row>
-      <bat-time-row v-model="time" :appointments="afternoonAppointments">Afternoon</bat-time-row>
-      <bat-time-row v-model="time" :appointments="eveningAppointments">Evening</bat-time-row>
+      <bat-time-row :value="value" @input="onInput" :appointments="morningAppointments">Morning</bat-time-row>
+      <bat-time-row :value="value" @input="onInput" :appointments="afternoonAppointments">Afternoon</bat-time-row>
+      <bat-time-row :value="value" @input="onInput" :appointments="eveningAppointments">Evening</bat-time-row>
     </div>
 
   </div>
@@ -19,7 +19,7 @@ import Clinic from '@/utilities/Clinic';
 import TimeRow from '@/components/TimeRow';
 
 export default {
-  name: 'TimePicker',
+  name: 'TimeInput',
 
   components: {
     BatTimeRow: TimeRow,
@@ -40,7 +40,6 @@ export default {
       clinic: new Clinic(),
       appointments: [],
       loading: false,
-      time: null,
     };
   },
 
@@ -86,10 +85,6 @@ export default {
     date(newDate) {
       this.fetchAppointments();
     },
-
-    time(newTime) {
-      this.$emit('input', newTime);
-    },
   },
 
   methods: {
@@ -108,6 +103,10 @@ export default {
       this.appointments = response.data.data;
 
       this.loading = false;
+    },
+
+    onInput(appointment)  {
+      this.$emit('input', appointment);
     },
   },
 

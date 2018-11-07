@@ -14,12 +14,12 @@
         </bat-field>
 
         <bat-field time>
-          <bat-time-input v-model="time" :date="date" />
+          <bat-time-input v-model="appointment" :date="date" />
         </bat-field>
 
         <bat-content-footer>
-          <bat-button @click="onNext" :primary="dateTimeSelected" :disabled="!dateTimeSelected">Continue</bat-button>
-          <bat-button :to="{ name: 'clinics' }" back>Back</bat-button>
+          <bat-button @click="onNext" :primary="appointmentSelected" :disabled="!appointmentSelected">Continue</bat-button>
+          <bat-button @click="onBack" back>Back</bat-button>
         </bat-content-footer>
       </div>
     </bat-content>
@@ -34,6 +34,7 @@ import DatePickerInput from "@/components/DatePickerInput";
 import TimeInput from "@/components/TimeInput";
 
 import Clinic from "@/utilities/Clinic";
+import Appointment from "@/utilities/Appointment";
 
 export default {
   name: 'Appointments',
@@ -46,18 +47,19 @@ export default {
 
   data() {
     return {
-      cache: new Clinic(),
+      clinicCache: new Clinic(),
+      appointmentCache: new Appointment(),
       clinic: null,
       appointments: [],
       loading: false,
       date: moment().format(moment.HTML5_FMT.DATE),
-      time: null,
+      appointment: null,
     };
   },
 
   computed: {
-    dateTimeSelected() {
-      return this.date !== null && this.time !== null;
+    appointmentSelected() {
+      return this.appointment !== null;
     },
   },
 
@@ -69,7 +71,7 @@ export default {
 
   methods: {
     loadClinic() {
-      this.clinic = this.cache.get;
+      this.clinic = this.clinicCache.get;
     },
 
     async fetchAppointments() {
@@ -78,17 +80,30 @@ export default {
       const response = await this.http.get('/v1/appointments');
       this.appointments = response.data.data;
 
+      // Set the selected appointment if cached.
+      const appointment = this.appointmentCache.get;
+      if (appointment) {
+        this.date = moment(appointment.start_at, moment.ISO_8601).format(moment.HTML5_FMT.DATE);
+        this.appointment = appointment;
+      }
+
       this.loading = false;
     },
 
     onNext() {
-      // Do nothing if the date and time have not been selected.
-      if (!this.dateTimeSelected) {
+      // Do nothing if an appointment has not been selected.
+      if (this.appointment === null) {
         return;
       }
 
-      // TODO: Cache appointment time and route to next page.
+      // Cache appointment time and route to next page.
+      this.appointmentCache.cache(this.appointment);
       console.log('NEXT');
+    },
+
+    onBack() {
+      this.appointmentCache.clear();
+      this.$router.push({ name: 'clinics' });
     },
   },
 

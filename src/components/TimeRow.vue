@@ -13,9 +13,9 @@
           type="radio"
           :id="appointment.id"
           class="input input--radio"
-          :value="apiValue(appointment)"
+          :value="appointment.id"
           @change="onSelect(appointment)"
-          :checked="value === apiValue(appointment)"
+          :checked="(value ? value.id : null) === appointment.id"
         >
 
         <label :for="appointment.id">
@@ -49,10 +49,6 @@ export default {
   },
 
   methods: {
-    apiValue(appointment) {
-      return moment(appointment.start_at, moment.ISO_8601).format(moment.HTML5_FMT.TIME_SECONDS);
-    },
-
     time(appointment) {
       return moment(appointment.start_at, moment.ISO_8601).format('h:mm');
     },
@@ -62,7 +58,7 @@ export default {
     },
 
     onSelect(appointment) {
-      this.$emit('input', this.apiValue(appointment));
+      this.$emit('input', appointment);
     },
   },
 };
