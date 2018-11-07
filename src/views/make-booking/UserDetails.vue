@@ -80,7 +80,11 @@ export default {
 
   computed: {
     valid() {
-      return (this.name.length > 1) && (this.phone.length > 1) && (this.preferredContactMethod !== '');
+      if (this.preferredContactMethod === 'phone') {
+        return (this.name.length > 1) && (this.phone.length > 1) && (this.preferredContactMethod !== '');
+      }
+
+      return (this.name.length > 1) && (this.phone.length > 1) && (this.email.length > 1) && (this.preferredContactMethod !== '');
     },
 
     showEmailInput() {
