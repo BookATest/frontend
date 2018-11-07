@@ -40,6 +40,11 @@
           <bat-text-input v-model="email" type="email" id="email" />
         </bat-field>
 
+        <bat-content-footer>
+          <bat-button @click="onNext" :primary="valid" :disabled="!valid">Continue</bat-button>
+          <bat-button @click="onBack" back>Back</bat-button>
+        </bat-content-footer>
+
       </div>
     </bat-content>
 
@@ -71,6 +76,23 @@ export default {
       phone: '',
       email: '',
     };
+  },
+
+  computed: {
+    valid() {
+      return (this.name.length > 1) && (this.phone.length > 1) && (this.preferredContactMethod !== '');
+    },
+  },
+
+  methods: {
+    onNext() {
+      // TODO: Cache the user details.
+      // TODO: Forward to next page.
+    },
+
+    onBack() {
+      this.$router.push({ name: 'appointments' });
+    },
   },
 };
 </script>
