@@ -32,6 +32,11 @@ const router = new Router({
       name: 'clinics',
       component: () => import('@/views/make-booking/Clinics.vue'),
     },
+    {
+      path: '/make-booking/appointments',
+      name: 'appointments',
+      component: () => import('@/views/make-booking/Appointments.vue'),
+    },
   ],
 });
 

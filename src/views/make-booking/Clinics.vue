@@ -42,7 +42,7 @@
       </template>
 
       <bat-content-footer>
-        <bat-button :to="{ name: 'questions' }" :disabled="!clinicSelected">Select location</bat-button>
+        <bat-button @click="onNext" :disabled="selectedClinic === null">Select location</bat-button>
         <bat-button :to="{ name: 'location' }" back>Back</bat-button>
       </bat-content-footer>
     </bat-content>
@@ -54,6 +54,7 @@ import Card from "@/components/Card";
 
 import Location from "@/utilities/Location";
 import Answers from "@/utilities/Answers";
+import Clinic from "@/utilities/Clinic";
 
 export default {
   name: 'Clinics',
@@ -66,6 +67,7 @@ export default {
     return {
       location: new Location(),
       answers: new Answers(),
+      clinic: new Clinic(),
       clinics: [],
       selectedClinicId: null,
       loading: false,
@@ -81,8 +83,12 @@ export default {
       return 'your location';
     },
 
-    clinicSelected() {
-      return this.selectedClinicId !== null;
+    selectedClinic() {
+      if (this.selectedClinicId === null) {
+        return null;
+      }
+
+      return this.clinics.find(clinic => clinic.id === this.selectedClinicId);
     },
   },
 
@@ -118,6 +124,11 @@ export default {
       if (this.selectedClinicId === clinic.id) {
         this.selectedClinicId = null;
       }
+    },
+
+    onNext() {
+      this.clinic.cache(this.selectedClinic);
+      this.$router.push({ name: 'appointments' });
     },
   },
 

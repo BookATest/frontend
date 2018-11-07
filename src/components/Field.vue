@@ -27,6 +27,9 @@ export default {
     search: {
       type: Boolean
     },
+    datePicker: {
+      type: Boolean
+    },
   },
 
   computed: {
@@ -38,6 +41,7 @@ export default {
         'field--text': this.text,
         'field--checkbox': this.checkbox,
         'field--search': this.search,
+        'field--date-picker': this.datePicker,
       };
     },
   },
