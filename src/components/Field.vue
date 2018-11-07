@@ -30,6 +30,9 @@ export default {
     datePicker: {
       type: Boolean
     },
+    time: {
+      type: Boolean
+    },
   },
 
   computed: {
@@ -42,6 +45,7 @@ export default {
         'field--checkbox': this.checkbox,
         'field--search': this.search,
         'field--date-picker': this.datePicker,
+        'field--time': this.time,
       };
     },
   },

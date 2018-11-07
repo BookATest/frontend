@@ -38,7 +38,7 @@
           border-radius: 14px;
           font-family: $font_primary;
           font-weight: $font_regular;
-          font-size: $base-font-size;
+          font-size: $base-font-size !important;
           line-height: $base-line-height*1.375;
           text-align: center;
           margin-right: 0;

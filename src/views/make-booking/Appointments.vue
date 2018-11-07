@@ -12,6 +12,10 @@
         <bat-field date-picker>
           <bat-date-picker-input v-model="date" />
         </bat-field>
+
+        <bat-field time>
+          <bat-time-input v-model="time" />
+        </bat-field>
       </div>
     </bat-content>
   </div>
@@ -22,6 +26,7 @@ import moment from "moment";
 
 import Field from "@/components/Field";
 import DatePickerInput from "@/components/DatePickerInput";
+import TimeInput from "@/components/TimeInput";
 
 import Clinic from "@/utilities/Clinic";
 
@@ -31,6 +36,7 @@ export default {
   components: {
     BatField: Field,
     BatDatePickerInput: DatePickerInput,
+    BatTimeInput: TimeInput,
   },
 
   data() {
@@ -40,6 +46,7 @@ export default {
       appointments: [],
       loading: false,
       date: moment().format(moment.HTML5_FMT.DATE),
+      time: null,
     };
   },
 
