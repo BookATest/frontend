@@ -42,7 +42,7 @@
       </template>
 
       <bat-content-footer>
-        <bat-button :to="{ name: 'questions' }" disabled>Select location</bat-button>
+        <bat-button :to="{ name: 'questions' }" :disabled="!clinicSelected">Select location</bat-button>
         <bat-button :to="{ name: 'location' }" back>Back</bat-button>
       </bat-content-footer>
     </bat-content>
@@ -79,6 +79,10 @@ export default {
       }
 
       return 'your location';
+    },
+
+    clinicSelected() {
+      return this.selectedClinicId !== null;
     },
   },
 
