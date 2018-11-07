@@ -16,6 +16,10 @@
         <bat-field time>
           <bat-time-input v-model="time" :date="date" />
         </bat-field>
+
+        <div class="actions">
+          <bat-button @click="onNext" :primary="dateTimeSelected" :disabled="!dateTimeSelected">Continue</bat-button>
+        </div>
       </div>
     </bat-content>
   </div>
@@ -50,6 +54,18 @@ export default {
     };
   },
 
+  computed: {
+    dateTimeSelected() {
+      return this.date !== null && this.time !== null;
+    },
+  },
+
+  watch: {
+    date() {
+      this.time = null;
+    },
+  },
+
   methods: {
     loadClinic() {
       this.clinic = this.cache.get;
@@ -62,6 +78,16 @@ export default {
       this.appointments = response.data.data;
 
       this.loading = false;
+    },
+
+    onNext() {
+      // Do nothing if the date and time have not been selected.
+      if (!this.dateTimeSelected) {
+        return;
+      }
+
+      // TODO: Cache appointment time and route to next page.
+      console.log('NEXT');
     },
   },
 
