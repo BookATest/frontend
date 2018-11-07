@@ -5,9 +5,9 @@
 
     <bat-loader v-if="loading" />
     <div v-else class="time">
-      <bat-time-row :appointments="morningAppointments">Morning</bat-time-row>
-      <bat-time-row :appointments="afternoonAppointments">Afternoon</bat-time-row>
-      <bat-time-row :appointments="eveningAppointments">Evening</bat-time-row>
+      <bat-time-row v-model="time" :appointments="morningAppointments">Morning</bat-time-row>
+      <bat-time-row v-model="time" :appointments="afternoonAppointments">Afternoon</bat-time-row>
+      <bat-time-row v-model="time" :appointments="eveningAppointments">Evening</bat-time-row>
     </div>
 
   </div>
@@ -40,6 +40,7 @@ export default {
       clinic: new Clinic(),
       appointments: [],
       loading: false,
+      time: null,
     };
   },
 
@@ -84,6 +85,10 @@ export default {
   watch: {
     date(newDate) {
       this.fetchAppointments();
+    },
+
+    time(newTime) {
+      this.$emit('input', newTime);
     },
   },
 
