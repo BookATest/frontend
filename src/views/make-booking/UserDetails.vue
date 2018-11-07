@@ -30,6 +30,16 @@
           </bat-field-input>
         </bat-field>
 
+        <bat-field text>
+          <label for="phone">Phone*</label>
+          <bat-text-input v-model="phone" type="tel" id="phone" />
+        </bat-field>
+
+        <bat-field text>
+          <label for="email">Email</label>
+          <bat-text-input v-model="email" type="email" id="email" />
+        </bat-field>
+
       </div>
     </bat-content>
 
@@ -58,6 +68,8 @@ export default {
     return {
       name: '',
       preferredContactMethod: 'phone',
+      phone: '',
+      email: '',
     };
   },
 };

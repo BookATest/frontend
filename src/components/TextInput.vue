@@ -2,7 +2,7 @@
   <input
     :value="value"
     @input="onInput"
-    type="text"
+    :type="type"
     class="input input--text"
   >
 </template>
@@ -14,6 +14,11 @@ export default {
   props: {
     value: {
       required: true,
+    },
+
+    type: {
+      required: false,
+      default: 'text',
     },
   },
 
