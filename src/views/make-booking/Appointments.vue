@@ -17,9 +17,10 @@
           <bat-time-input v-model="time" :date="date" />
         </bat-field>
 
-        <div class="actions">
+        <bat-content-footer>
           <bat-button @click="onNext" :primary="dateTimeSelected" :disabled="!dateTimeSelected">Continue</bat-button>
-        </div>
+          <bat-button :to="{ name: 'clinics' }" back>Back</bat-button>
+        </bat-content-footer>
       </div>
     </bat-content>
   </div>

@@ -109,6 +109,12 @@ export default {
       const response = await this.http.post('/v1/bookings/eligibility', payload);
       this.clinics = response.data.data;
 
+      // Preselect the clinic if found in cache.
+      const clinic = this.clinic.get;
+      if (clinic) {
+        this.selectedClinicId = clinic.id;
+      }
+
       this.loading = false;
     },
 
