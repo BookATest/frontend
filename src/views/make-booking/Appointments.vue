@@ -10,7 +10,7 @@
 
       <div v-else class="form">
         <bat-field date-picker>
-          <bat-date-picker-input />
+          <bat-date-picker-input v-model="date" />
         </bat-field>
       </div>
     </bat-content>
@@ -18,6 +18,8 @@
 </template>
 
 <script>
+import moment from "moment";
+
 import Field from "@/components/Field";
 import DatePickerInput from "@/components/DatePickerInput";
 
@@ -37,6 +39,7 @@ export default {
       clinic: null,
       appointments: [],
       loading: false,
+      date: moment().format(moment.HTML5_FMT.DATE),
     };
   },
 

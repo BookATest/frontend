@@ -5,10 +5,51 @@
     <div class="date-picker">
 
       <div class="date-picker__options">
-        <a href="#" class="date-picker__options__option selected" role="button">Today</a>&nbsp;<!---->
-        <a href="#" class="date-picker__options__option" role="button">Tomorrow</a>&nbsp;<!---->
-        <a href="#" class="date-picker__options__option" role="button" v-text="dayPlus2.format('dddd')" />&nbsp;<!---->
-        <a href="#" class="date-picker__options__option" role="button" v-text="dayPlus3.format('dddd')" />
+
+        <a
+          @click="onSelect(today)"
+          href="#"
+          class="date-picker__options__option"
+          :class="{ selected: value === today.format(html5DateFormat) }"
+          role="button"
+        >
+          Today
+        </a>
+
+        <!---->&nbsp;<!---->
+
+        <a
+          @click="onSelect(tomorrow)"
+          href="#"
+          class="date-picker__options__option"
+          :class="{ selected: value === tomorrow.format(html5DateFormat) }"
+          role="button"
+        >
+          Tomorrow
+        </a>
+
+        <!---->&nbsp;<!---->
+
+        <a
+          @click="onSelect(dayPlus2)"
+          href="#"
+          class="date-picker__options__option"
+          :class="{ selected: value === dayPlus2.format(html5DateFormat) }"
+          role="button"
+          v-text="dayPlus2.format('dddd')"
+        />
+
+        <!---->&nbsp;<!---->
+
+        <a
+          @click="onSelect(dayPlus3)"
+          href="#"
+          class="date-picker__options__option"
+          :class="{ selected: value === dayPlus3.format(html5DateFormat) }"
+          role="button"
+          v-text="dayPlus3.format('dddd')"
+        />
+
       </div>
 
       <div class="date-picker__toggle">
@@ -85,11 +126,26 @@ import moment from "moment";
 export default {
   name: 'DatePickerInput',
 
+  props: {
+    value: {
+      required: true,
+    },
+  },
+
   data() {
     return {
+      today: moment(),
+      tomorrow: moment().add(1, 'day'),
       dayPlus2: moment().add(2, 'days'),
       dayPlus3: moment().add(3, 'days'),
+      html5DateFormat: moment.HTML5_FMT.DATE,
     };
+  },
+
+  methods: {
+    onSelect(date) {
+      this.$emit('input', date.format(moment.HTML5_FMT.DATE));
+    },
   },
 };
 </script>
