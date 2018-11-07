@@ -10,7 +10,7 @@
 
       <div v-else class="form">
         <bat-field date-picker>
-          <p>lorem</p>
+          <bat-date-picker-input />
         </bat-field>
       </div>
     </bat-content>
@@ -19,6 +19,7 @@
 
 <script>
 import Field from "@/components/Field";
+import DatePickerInput from "@/components/DatePickerInput";
 
 import Clinic from "@/utilities/Clinic";
 
@@ -27,6 +28,7 @@ export default {
 
   components: {
     BatField: Field,
+    BatDatePickerInput: DatePickerInput,
   },
 
   data() {

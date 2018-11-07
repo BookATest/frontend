@@ -25,6 +25,9 @@ export default {
     locationArrow: {
       type: Boolean,
     },
+    arrowUp: {
+      type: Boolean,
+    },
   },
 
   computed: {
@@ -36,6 +39,7 @@ export default {
         'icon-notification': this.notification,
         'icon-complete': this.complete,
         'icon-location-arrow': this.locationArrow,
+        'icon-arrow-up': this.arrowUp,
       };
     }
   },
