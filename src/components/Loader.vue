@@ -1,5 +1,7 @@
 <template>
-  <p>Loading...</p>
+  <p>
+    <slot>Loading</slot>...
+  </p>
 </template>
 
 <script>

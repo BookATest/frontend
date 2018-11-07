@@ -14,7 +14,7 @@
         </bat-field>
 
         <bat-field time>
-          <bat-time-input v-model="time" />
+          <bat-time-input v-model="time" :date="date" />
         </bat-field>
       </div>
     </bat-content>
