@@ -14,7 +14,15 @@
       <bat-loader v-if="loading" />
 
       <template v-else>
-        <bat-card v-for="clinic in clinics" :key="clinic.id" primary :title="clinic.name">
+        <bat-card
+          v-for="clinic in clinics"
+          :key="clinic.id"
+          @select="onSelectClinic(clinic)"
+          @deselect="onDeselectClinic(clinic)"
+          primary
+          :selected="selectedClinicId === clinic.id"
+          :title="clinic.name"
+        >
           <p>
             {{ clinic.address_line_1 }}<br>
             <template v-if="clinic.address_line_2">
@@ -59,6 +67,7 @@ export default {
       location: new Location(),
       answers: new Answers(),
       clinics: [],
+      selectedClinicId: null,
       loading: false,
     };
   },
@@ -95,7 +104,17 @@ export default {
 
     toMiles(meters) {
       return (0.000621371 * meters).toFixed(2);
-    }
+    },
+
+    onSelectClinic(clinic) {
+      this.selectedClinicId = clinic.id;
+    },
+
+    onDeselectClinic(clinic) {
+      if (this.selectedClinicId === clinic.id) {
+        this.selectedClinicId = null;
+      }
+    },
   },
 
   created() {
