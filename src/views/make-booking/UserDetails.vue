@@ -31,13 +31,13 @@
         </bat-field>
 
         <bat-field text>
-          <label for="phone">Phone*</label>
-          <bat-text-input v-model="phone" type="tel" id="phone" />
+          <label for="phone_input">Phone*</label>
+          <bat-text-input v-model="phone" type="tel" id="phone_input" />
         </bat-field>
 
-        <bat-field text>
-          <label for="email">Email</label>
-          <bat-text-input v-model="email" type="email" id="email" />
+        <bat-field text v-if="showEmailInput">
+          <label for="email_input">Email</label>
+          <bat-text-input v-model="email" type="email" id="email_input" />
         </bat-field>
 
         <bat-content-footer>
@@ -81,6 +81,18 @@ export default {
   computed: {
     valid() {
       return (this.name.length > 1) && (this.phone.length > 1) && (this.preferredContactMethod !== '');
+    },
+
+    showEmailInput() {
+      return (this.preferredContactMethod === 'email') || (this.preferredContactMethod === 'both');
+    },
+  },
+
+  watch: {
+    preferredContactMethod(newMethod) {
+      if (newMethod === 'phone') {
+        this.email = '';
+      }
     },
   },
 
