@@ -33,6 +33,9 @@ export default {
     time: {
       type: Boolean
     },
+    radio: {
+      type: Boolean
+    },
   },
 
   computed: {
@@ -46,6 +49,7 @@ export default {
         'field--search': this.search,
         'field--date-picker': this.datePicker,
         'field--time': this.time,
+        'field--radio': this.radio,
       };
     },
   },
