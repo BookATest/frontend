@@ -47,6 +47,11 @@ const router = new Router({
       name: 'notification',
       component: () => import('@/views/make-booking/Notification.vue'),
     },
+    {
+      path: '/make-booking/overview',
+      name: 'overview',
+      component: () => import('@/views/make-booking/Overview.vue'),
+    },
   ],
 });
 

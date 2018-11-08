@@ -65,7 +65,7 @@ export default {
 
   methods: {
     onYes() {
-      //
+      this.$router.push({ name: 'overview' });
     },
 
     onNo() {
