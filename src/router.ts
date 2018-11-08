@@ -42,6 +42,11 @@ const router = new Router({
       name: 'user-details',
       component: () => import('@/views/make-booking/UserDetails.vue'),
     },
+    {
+      path: '/make-booking/notification',
+      name: 'notification',
+      component: () => import('@/views/make-booking/Notification.vue'),
+    },
   ],
 });
 

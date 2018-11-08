@@ -28,6 +28,9 @@ export default {
     arrowUp: {
       type: Boolean,
     },
+    alert: {
+      type: Boolean,
+    },
   },
 
   computed: {
@@ -40,6 +43,7 @@ export default {
         'icon-complete': this.complete,
         'icon-location-arrow': this.locationArrow,
         'icon-arrow-up': this.arrowUp,
+        'icon-alert': this.alert,
       };
     }
   },

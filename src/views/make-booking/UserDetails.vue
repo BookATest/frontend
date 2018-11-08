@@ -112,7 +112,8 @@ export default {
         email: this.email,
       });
 
-      // TODO: Forward to next page.
+      // Forward to next page.
+      this.$router.push({ name: 'notification' });
     },
 
     onBack() {
