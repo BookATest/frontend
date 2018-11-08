@@ -16,7 +16,15 @@
 
       <div class="title-strip title-strip--has-trigger">
         <h4 class="title-strip__text">Location</h4>
-        <a href="#" class="title-strip__trigger dropdown-trigger active">Directions</a>
+        <button
+          @click="showDirections = !showDirections"
+          href="#"
+          class="title-strip__trigger dropdown-trigger"
+          :class="{ active: showDirections }"
+          role="button"
+        >
+          Directions
+        </button>
       </div>
 
       <bat-card inactive :title="clinic.name">
@@ -35,7 +43,7 @@
           <span slot="meta">{{ toMiles(clinic.distance) }} miles</span>
         </bat-card>
 
-        <div id="directions" class="text-container active">
+        <div v-show="showDirections" class="text-container active">
           <p class="sm-copy">{{ clinic.directions }}</p>
         </div>
 
@@ -91,6 +99,7 @@ export default {
       appointment: new Appointment().get,
       clinic: new Clinic().get,
       userDetails: new UserDetails().get,
+      showDirections: false,
     };
   },
 
