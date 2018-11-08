@@ -13,6 +13,11 @@
         :clinic="clinicCache.get"
         :user-details="userDetailsCache.get"
       />
+
+      <div class="inline-buttons">
+        <bat-button @click="onAmmend" secondary>Ammend</bat-button>
+        <bat-button @click="onConfirm" primary>Confirm appointment</bat-button>
+      </div>
     </bat-content>
 
   </div>
@@ -37,6 +42,16 @@ export default {
       clinicCache: new Clinic(),
       userDetailsCache: new UserDetails(),
     };
+  },
+
+  methods: {
+    onAmmend() {
+      this.$router.push({ name: 'appointments' });
+    },
+
+    onConfirm() {
+      //
+    },
   },
 };
 </script>
