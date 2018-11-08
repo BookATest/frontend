@@ -57,6 +57,7 @@ import FieldInput from '@/components/FieldInput';
 import FieldTitle from '@/components/FieldTitle';
 import TextInput from '@/components/TextInput';
 import ToggleButtonInput from '@/components/ToggleButtonInput';
+import UserDetails from '@/utilities/UserDetails';
 
 export default {
   name: 'UserDetails',
@@ -75,6 +76,7 @@ export default {
       preferredContactMethod: 'phone',
       phone: '',
       email: '',
+      userDetailsCache: new UserDetails(),
     };
   },
 
@@ -102,13 +104,39 @@ export default {
 
   methods: {
     onNext() {
-      // TODO: Cache the user details.
+      // Cache the user details.
+      this.userDetailsCache.cache({
+        name: this.name,
+        preferredContactMethod: this.preferredContactMethod,
+        phone: this.phone,
+        email: this.email,
+      });
+
       // TODO: Forward to next page.
     },
 
     onBack() {
       this.$router.push({ name: 'appointments' });
     },
+
+    loadUserDetails() {
+      // Load from cache.
+      const userDetails = this.userDetailsCache.get;
+
+      // Exit if not cached.
+      if (userDetails === undefined) {
+        return;
+      }
+
+      this.name = userDetails.name;
+      this.preferredContactMethod = userDetails.preferredContactMethod;
+      this.phone = userDetails.phone;
+      this.email = userDetails.email;
+    },
+  },
+
+  created() {
+    this.loadUserDetails();
   },
 };
 </script>
