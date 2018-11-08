@@ -50,6 +50,7 @@
 
 <script>
 import moment from 'moment';
+import User from '@/utilities/User';
 
 export default {
   name: 'BookingOverview',
@@ -70,6 +71,7 @@ export default {
 
   data() {
     return {
+      userCache: new User(),
       user: null,
       loading: false,
     };
@@ -108,6 +110,7 @@ export default {
         phone: data.user_phone,
         image_url: `${process.env.VUE_APP_API_URL}/v1/users/${data.user_id}/profile-picture.jpg`,
       };
+      this.userCache.cache(this.user);
 
       this.loading = false;
     },
