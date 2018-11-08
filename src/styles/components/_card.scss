@@ -114,9 +114,10 @@
 
     &__item {
       display: block;
+      margin-bottom: $base-margin*0.5;
 
-      &:first-child {
-        margin-bottom: $base-margin*0.5;
+      &:last-child {
+        margin-bottom: 0;
       }
 
       span {
