@@ -65,7 +65,7 @@
 
         <div class="card card--alert card--alert--icon">
           <div class="card__icon">
-            <i class="icon-alert"></i>
+            <bat-icon alert />
           </div>
 
           <div class="card__message">
