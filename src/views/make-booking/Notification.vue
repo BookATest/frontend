@@ -52,7 +52,7 @@ export default {
 
   computed: {
     confirmationMethod() {
-      switch (this.userDeailsCache.get.preferredContactMethod) {
+      switch (this.userDeailsCache.get.preferred_contact_method) {
         case 'phone':
           return 'SMS message';
         case 'email':

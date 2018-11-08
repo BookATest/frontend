@@ -16,7 +16,9 @@
 
       <div class="inline-buttons">
         <bat-button @click="onAmmend" secondary>Ammend</bat-button>
-        <bat-button @click="onConfirm" primary>Confirm appointment</bat-button>
+
+        <bat-button v-if="submitting" @click="onConfirm" disabled>Confirming...</bat-button>
+        <bat-button v-else @click="onConfirm" primary>Confirm appointment</bat-button>
       </div>
     </bat-content>
 
@@ -28,6 +30,7 @@ import BookingDetails from '@/components/BookingDetails';
 import Appointment from '@/utilities/Appointment';
 import Clinic from '@/utilities/Clinic';
 import UserDetails from '@/utilities/UserDetails';
+import Answers from '@/utilities/Answers';
 
 export default {
   name: 'Overview',
@@ -41,6 +44,8 @@ export default {
       appointmentCache: new Appointment(),
       clinicCache: new Clinic(),
       userDetailsCache: new UserDetails(),
+      answersCache: new Answers(),
+      submitting: false,
     };
   },
 
@@ -49,8 +54,17 @@ export default {
       this.$router.push({ name: 'appointments' });
     },
 
-    onConfirm() {
-      //
+    async onConfirm() {
+      this.submitting = true;
+
+      // Make the booking.
+      await this.http.post('/v1/bookings', {
+        appointment_id: this.appointmentCache.get.id,
+        service_user: this.userDetailsCache.get,
+        answers: this.answersCache.all,
+      });
+
+      this.$router.push({ name: 'confirmation' });
     },
   },
 };

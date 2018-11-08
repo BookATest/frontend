@@ -107,7 +107,7 @@ export default {
       // Cache the user details.
       this.userDetailsCache.cache({
         name: this.name,
-        preferredContactMethod: this.preferredContactMethod,
+        preferred_contact_method: this.preferredContactMethod,
         phone: this.phone,
         email: this.email,
       });
@@ -130,7 +130,7 @@ export default {
       }
 
       this.name = userDetails.name;
-      this.preferredContactMethod = userDetails.preferredContactMethod;
+      this.preferredContactMethod = userDetails.preferred_contact_method;
       this.phone = userDetails.phone;
       this.email = userDetails.email;
     },

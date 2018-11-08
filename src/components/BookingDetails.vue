@@ -93,6 +93,15 @@ export default {
 
   methods: {
     async fetchAppointment() {
+      // First attempt to get from cache.
+      const user = this.userCache.get;
+
+      if (user !== undefined) {
+        this.user = user;
+        return;
+      }
+
+      // Else, load from the API.
       this.loading = true;
 
       const response = await this.http.get(`/v1/appointments/${this.appointment.id}`, {

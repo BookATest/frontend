@@ -13,7 +13,7 @@
   border-radius: 15px;
 
   &:after {
-    content: url('/assets/dist/img/speech-bubble-corner.svg');
+    content: url('~@/assets/img/speech-bubble-corner.svg');
     position: absolute;
     bottom: -4px;
     left: 0;

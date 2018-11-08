@@ -28,6 +28,9 @@ export default {
     selected: {
       type: Boolean,
     },
+    inactive: {
+      type: Boolean,
+    },
   },
 
   computed: {
@@ -35,6 +38,7 @@ export default {
       return {
         'card--primary': this.primary,
         'card--selected': this.selected,
+        'card--inactive': this.inactive,
       };
     },
   },

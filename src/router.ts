@@ -52,6 +52,11 @@ const router = new Router({
       name: 'overview',
       component: () => import('@/views/make-booking/Overview.vue'),
     },
+    {
+      path: '/make-booking/confirmation',
+      name: 'confirmation',
+      component: () => import('@/views/make-booking/Confirmation.vue'),
+    },
   ],
 });
 
