@@ -57,6 +57,11 @@ const router = new Router({
       name: 'confirmation',
       component: () => import('@/views/make-booking/Confirmation.vue'),
     },
+    {
+      path: '/list-bookings/phone-number',
+      name: 'phone-number',
+      component: () => import('@/views/list-bookings/PhoneNumber.vue'),
+    },
   ],
 });
 

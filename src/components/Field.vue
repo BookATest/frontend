@@ -36,6 +36,9 @@ export default {
     radio: {
       type: Boolean
     },
+    textLabelTop: {
+      type: Boolean,
+    },
   },
 
   computed: {
@@ -45,6 +48,7 @@ export default {
         'field--select': this.select,
         'field--date': this.date,
         'field--text': this.text,
+        'field--text--label-top': this.textLabelTop,
         'field--checkbox': this.checkbox,
         'field--search': this.search,
         'field--date-picker': this.datePicker,

@@ -9,7 +9,7 @@
 
     <bat-content>
       <bat-button :to="{ name: 'introduction' }" primary>Book a test</bat-button>
-      <bat-button to="/templates/pages/appointment/index.php" secondary>My appointments</bat-button>
+      <bat-button :to="{ name: 'phone-number' }" secondary>My appointments</bat-button>
     </bat-content>
   </div>
 </template>
