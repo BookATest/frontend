@@ -1,6 +1,6 @@
 export default class UserDetails {
   protected get cacheKey(): string {
-    return 'user-details';
+    return 'user_details';
   }
 
   protected userDetails: string | undefined;

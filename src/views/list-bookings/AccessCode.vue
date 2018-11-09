@@ -12,8 +12,8 @@
           <bat-field-input>
             <label for="phone">Enter phone number</label>
             <bat-text-input v-model="phone" @input="onInput" type="tel" />
-            <p v-if="error" class="color-error">{{ error }}</p>
           </bat-field-input>
+          <p v-if="error" class="color-error">{{ error }}</p>
         </bat-field>
       </div>
 

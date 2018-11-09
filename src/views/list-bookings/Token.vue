@@ -15,13 +15,15 @@
             <bat-text-input v-model="code2" @keyup="onKeyup($event, 2)" ref="code_2" maxlength="1" placeholder="-" />
             <bat-text-input v-model="code3" @keyup="onKeyup($event, 3)" ref="code_3" maxlength="1" placeholder="-" />
             <bat-text-input v-model="code4" @keyup="onKeyup($event, 4)" ref="code_4" maxlength="1" placeholder="-" />
-            <bat-text-input v-model="code5" ref="code_5" maxlength="1" placeholder="-" />
+            <bat-text-input v-model="code5" @keyup="onKeyup($event, 5)" ref="code_5" maxlength="1" placeholder="-" />
           </bat-field-input>
+          <p v-if="error" class="color-error">{{ error }}</p>
         </bat-field>
       </div>
 
       <div class="actions">
-        <bat-button @click="onLogin" primary>Log in</bat-button>
+        <bat-button v-if="requestingToken || fetchingServiceUser" disabled>Logging in...</bat-button>
+        <bat-button v-else @click="onLogin" primary>Log in</bat-button>
       </div>
     </bat-content>
 
@@ -32,6 +34,8 @@
 import Field from '@/components/Field';
 import FieldInput from '@/components/FieldInput';
 import TextInput from '@/components/TextInput';
+import Token from '@/utilities/Token';
+import ServiceUser from '@/utilities/ServiceUser';
 
 export default {
   name: 'Token',
@@ -49,6 +53,11 @@ export default {
       code3: '',
       code4: '',
       code5: '',
+      serviceUserCache: new ServiceUser(),
+      tokenCache: new Token(),
+      requestingToken: false,
+      fetchingServiceUser: false,
+      error: null,
     };
   },
 
@@ -60,13 +69,37 @@ export default {
 
   methods: {
     onLogin() {
-      // TODO: Login
+      this.requestingToken = true;
+
+      this.http.post('/v1/service-users/token', { access_code: this.code })
+        .then(response => {
+          // Cache the access code.
+          const accessCode = response.data.access_code;
+          this.tokenCache.cache(accessCode);
+
+          // Fetch the service user.
+          this.fetchingServiceUser = true;
+          this.http.get(`/v1/service-user/token/${accessCode}`)
+            .then(response => {
+              // Cache the service user.
+              this.serviceUserCache.cache(response.data.data);
+
+              // TODO: Redirect to appointments page.
+            });
+        })
+        .catch(error => {
+          this.error = error.response.data.errors.access_code[0];
+        })
+        .then(() => this.requestingToken = false);
     },
 
     /**
      * Places focus on the next input box.
      */
     onKeyup(key, index) {
+      // First, clear the error if there is one.
+      this.error = null;
+
       // Attempt to parse the key pressed into an integer.
       const number = parseInt(key);
 
@@ -77,6 +110,11 @@ export default {
 
       // Exit if the number is less than 0 or greater than 9.
       if (number < 0 || number > 9) {
+        return;
+      }
+
+      // Do nothing if on last input.
+      if (number === 5) {
         return;
       }
 
