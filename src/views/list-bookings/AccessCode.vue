@@ -18,7 +18,8 @@
       </div>
 
       <div class="actions">
-        <bat-button @click="onSendCode" primary>Send code</bat-button>
+        <bat-button v-if="!sending" @click="onSendCode" primary>Send code</bat-button>
+        <bat-button v-else disabled>Sending...</bat-button>
       </div>
     </bat-content>
 
@@ -57,7 +58,7 @@ export default {
 
       this.http.post('/v1/service-users/access-code', { phone: this.phone })
         .then(response => {
-          // TODO: Cache the response and forward to the next page.
+          this.$router.push({ name: 'token' });
         })
         .catch(error => {
           this.error = error.response.data.errors.phone[0];

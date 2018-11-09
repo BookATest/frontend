@@ -2,6 +2,7 @@
   <input
     :value="value"
     @input="onInput"
+    @keyup="onKeyup"
     :type="type"
     class="input input--text"
   >
@@ -25,6 +26,10 @@ export default {
   methods: {
     onInput(event) {
       this.$emit('input', event.target.value);
+    },
+
+    onKeyup(event) {
+      this.$emit('keyup', event.key);
     },
   },
 };

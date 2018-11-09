@@ -39,6 +39,9 @@ export default {
     textLabelTop: {
       type: Boolean,
     },
+    code: {
+      type: Boolean,
+    },
   },
 
   computed: {
@@ -54,6 +57,7 @@ export default {
         'field--date-picker': this.datePicker,
         'field--time': this.time,
         'field--radio': this.radio,
+        'field--code': this.code,
       };
     },
   },

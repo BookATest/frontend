@@ -58,9 +58,14 @@ const router = new Router({
       component: () => import('@/views/make-booking/Confirmation.vue'),
     },
     {
-      path: '/list-bookings/phone-number',
-      name: 'phone-number',
-      component: () => import('@/views/list-bookings/PhoneNumber.vue'),
+      path: '/list-bookings/access-code',
+      name: 'access-code',
+      component: () => import('@/views/list-bookings/AccessCode.vue'),
+    },
+    {
+      path: '/list-bookings/token',
+      name: 'token',
+      component: () => import('@/views/list-bookings/Token.vue'),
     },
   ],
 });
