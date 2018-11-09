@@ -98,12 +98,12 @@ export default {
 
       // Cache appointment time and route to next page.
       this.appointmentCache.cache(this.appointment);
-      this.$router.push({ name: 'user-details' });
+      this.$router.push({ name: 'make-booking.user-details' });
     },
 
     onBack() {
       this.appointmentCache.clear();
-      this.$router.push({ name: 'clinics' });
+      this.$router.push({ name: 'make-booking.clinics' });
     },
   },
 

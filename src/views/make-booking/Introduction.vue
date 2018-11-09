@@ -10,7 +10,7 @@
     </bat-text-header>
 
     <bat-content>
-      <bat-button :to="{ name: 'questions' }" primary>Continue</bat-button>
+      <bat-button :to="{ name: 'make-booking.questions' }" primary>Continue</bat-button>
     </bat-content>
   </div>
 </template>

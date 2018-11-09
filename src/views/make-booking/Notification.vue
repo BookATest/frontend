@@ -65,7 +65,7 @@ export default {
 
   methods: {
     onYes() {
-      this.$router.push({ name: 'overview' });
+      this.$router.push({ name: 'make-booking.overview' });
     },
 
     onNo() {
@@ -73,7 +73,7 @@ export default {
     },
 
     onBack() {
-      this.$router.push({ name: 'user-details' });
+      this.$router.push({ name: 'make-booking.user-details' });
     },
   },
 };

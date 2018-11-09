@@ -144,7 +144,7 @@ export default {
 
     onNext() {
       this.cacheAnswers();
-      this.$router.push({ name: 'location' });
+      this.$router.push({ name: 'make-booking.location' });
     },
   },
 

@@ -73,18 +73,19 @@ export default {
 
       this.http.post('/v1/service-users/token', { access_code: this.code })
         .then(response => {
-          // Cache the access code.
-          const accessCode = response.data.access_code;
-          this.tokenCache.cache(accessCode);
+          // Cache the token.
+          const token = response.data.token;
+          this.tokenCache.cache(token);
 
           // Fetch the service user.
           this.fetchingServiceUser = true;
-          this.http.get(`/v1/service-user/token/${accessCode}`)
+          this.http.get(`/v1/service-users/token/${token}`)
             .then(response => {
               // Cache the service user.
               this.serviceUserCache.cache(response.data.data);
 
-              // TODO: Redirect to appointments page.
+              // Redirect to appointments page.
+              this.$router.push({ name: 'list-bookings.appointments' });
             });
         })
         .catch(error => {
@@ -114,7 +115,7 @@ export default {
       }
 
       // Do nothing if on last input.
-      if (number === 5) {
+      if (index === 5) {
         return;
       }
 

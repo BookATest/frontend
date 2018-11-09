@@ -8,8 +8,8 @@
     </bat-text-header>
 
     <bat-content>
-      <bat-button :to="{ name: 'introduction' }" primary>Book a test</bat-button>
-      <bat-button :to="{ name: 'access-code' }" secondary>My appointments</bat-button>
+      <bat-button :to="{ name: 'make-booking.introduction' }" primary>Book a test</bat-button>
+      <bat-button :to="{ name: 'list-bookings.access-code' }" secondary>My appointments</bat-button>
     </bat-content>
   </div>
 </template>

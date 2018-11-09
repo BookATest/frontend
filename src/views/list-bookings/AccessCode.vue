@@ -58,7 +58,7 @@ export default {
 
       this.http.post('/v1/service-users/access-code', { phone: this.phone })
         .then(response => {
-          this.$router.push({ name: 'token' });
+          this.$router.push({ name: 'list-bookings.token' });
         })
         .catch(error => {
           this.error = error.response.data.errors.phone[0];

@@ -51,7 +51,7 @@ export default {
 
   methods: {
     onAmmend() {
-      this.$router.push({ name: 'appointments' });
+      this.$router.push({ name: 'make-booking.appointments' });
     },
 
     async onConfirm() {
@@ -64,7 +64,7 @@ export default {
         answers: this.answersCache.all,
       });
 
-      this.$router.push({ name: 'confirmation' });
+      this.$router.push({ name: 'make-booking.confirmation' });
     },
   },
 };

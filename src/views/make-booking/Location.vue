@@ -26,7 +26,7 @@
         </template>
 
         <bat-content-footer>
-          <bat-button :to="{ name: 'questions' }" back>Back</bat-button>
+          <bat-button :to="{ name: 'make-booking.questions' }" back>Back</bat-button>
         </bat-content-footer>
 
       </div>
@@ -68,7 +68,7 @@ export default {
     onNext() {
       this.location.clear();
       this.cachePostcode();
-      this.$router.push({ name: 'clinics' });
+      this.$router.push({ name: 'make-booking.clinics' });
     },
 
     /**
@@ -86,7 +86,7 @@ export default {
 
         this.loadingLocation = false;
 
-        this.$router.push({ name: 'clinics' });
+        this.$router.push({ name: 'make-booking.clinics' });
       });
     },
 

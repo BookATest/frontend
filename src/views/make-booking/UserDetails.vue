@@ -113,11 +113,11 @@ export default {
       });
 
       // Forward to next page.
-      this.$router.push({ name: 'notification' });
+      this.$router.push({ name: 'make-booking.notification' });
     },
 
     onBack() {
-      this.$router.push({ name: 'appointments' });
+      this.$router.push({ name: 'make-booking.appointments' });
     },
 
     loadUserDetails() {

@@ -43,7 +43,7 @@
 
       <bat-content-footer>
         <bat-button @click="onNext" :disabled="selectedClinic === null">Select location</bat-button>
-        <bat-button :to="{ name: 'location' }" back>Back</bat-button>
+        <bat-button :to="{ name: 'make-booking.location' }" back>Back</bat-button>
       </bat-content-footer>
     </bat-content>
   </div>
@@ -134,7 +134,7 @@ export default {
 
     onNext() {
       this.clinic.cache(this.selectedClinic);
-      this.$router.push({ name: 'appointments' });
+      this.$router.push({ name: 'make-booking.appointments' });
     },
   },
 
