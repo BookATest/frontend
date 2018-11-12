@@ -16,16 +16,20 @@ export default class Settings {
     //
   }
 
-  protected get sessionStorageKey(): string {
+  protected static get sessionStorageKey(): string {
     return 'api_settings';
   }
 
   protected get isCached(): boolean {
-    return window.sessionStorage.getItem(this.sessionStorageKey) !== null;
+    return window.sessionStorage.getItem(Settings.sessionStorageKey) !== null;
+  }
+
+  public static get isCached(): boolean {
+    return window.sessionStorage.getItem(Settings.sessionStorageKey) !== null;
   }
 
   protected cache(settings: SettingsInterface): Settings {
-    window.sessionStorage.setItem(this.sessionStorageKey, JSON.stringify(settings));
+    window.sessionStorage.setItem(Settings.sessionStorageKey, JSON.stringify(settings));
 
     return this;
   }
@@ -45,7 +49,7 @@ export default class Settings {
   }
 
   protected load(): SettingsInterface {
-    return JSON.parse(window.sessionStorage.getItem(this.sessionStorageKey) || '{}');
+    return JSON.parse(window.sessionStorage.getItem(Settings.sessionStorageKey) || '{}');
   }
 
   public get name(): string {
