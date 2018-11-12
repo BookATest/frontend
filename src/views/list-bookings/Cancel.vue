@@ -46,10 +46,14 @@ export default {
     async onCancel() {
       this.cancelling = true;
 
-      const response = await this.http.put(`/v1/appointments/${this.$route.params.appointment}/cancel`, {
-        service_user_token: this.tokenCache.get,
-      });
-      this.$router.push({ name: 'list-bookings.cancelled' });
+      try {
+        const response = await this.http.put(`/v1/appointments/${this.$route.params.appointment}/cancel`, {
+          service_user_token: this.tokenCache.get,
+        });
+        this.$router.push({ name: 'list-bookings.cancelled' });
+      } catch (exception) {
+        this.$router.push({ name: 'list-bookings.token-expired' });
+      }
 
       this.cancelling = false;
     },

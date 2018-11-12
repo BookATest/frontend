@@ -82,6 +82,11 @@ const router = new Router({
       name: 'list-bookings.cancelled',
       component: () => import('@/views/list-bookings/Cancelled.vue'),
     },
+    {
+      path: '/list-bookings/token-expired',
+      name: 'list-bookings.token-expired',
+      component: () => import('@/views/list-bookings/TokenExpired.vue'),
+    },
   ],
 });
 

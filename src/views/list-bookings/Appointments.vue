@@ -176,24 +176,28 @@ export default {
       this.loading = true;
 
       // Fetch the appointments.
-      let appointments = await this.fetchAll(`/v1/service-users/${this.serviceUserCache.get.id}/appointments`, {
-        service_user_token: this.tokenCache.get,
-        append: 'user_first_name,user_last_name,user_email,user_phone',
-      });
+      try {
+        let appointments = await this.fetchAll(`/v1/service-users/${this.serviceUserCache.get.id}/appointments`, {
+          service_user_token: this.tokenCache.get,
+          append: 'user_first_name,user_last_name,user_email,user_phone',
+        });
 
-      // Append an expanded property.
-      appointments.forEach(appointment => appointment.expanded = false);
+        // Append an expanded property.
+        appointments.forEach(appointment => appointment.expanded = false);
 
-      // Set the first appointment to be expanded.
-      if (appointments.length > 0) {
-        appointments[0].expanded = true;
+        // Set the first appointment to be expanded.
+        if (appointments.length > 0) {
+          appointments[0].expanded = true;
+        }
+
+        // Append the clinincs.
+        appointments = await this.appendClinics(appointments);
+
+        // Store it in the component data.
+        this.appointments = appointments;
+      } catch (exception) {
+        this.$router.push({ name: 'list-bookings.token-expired' });
       }
-
-      // Append the clinincs.
-      appointments = await this.appendClinics(appointments);
-
-      // Store it in the component data.
-      this.appointments = appointments;
 
       this.loading = false;
     },
