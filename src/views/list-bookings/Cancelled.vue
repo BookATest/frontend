@@ -7,7 +7,7 @@
     </bat-text-header>
 
     <bat-content>
-      <bat-button @click="onBackHome" primary>Back to home</bat-button>
+      <bat-button @click="onBack" primary>Back to appointments</bat-button>
     </bat-content>
 
   </div>
@@ -21,8 +21,8 @@ export default {
   name: 'Cancelled',
 
   methods: {
-    onBackHome() {
-      this.$router.push({ name: 'home' });
+    onBack() {
+      this.$router.push({ name: 'list-bookings.appointments' });
     },
   },
 };

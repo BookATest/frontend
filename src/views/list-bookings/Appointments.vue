@@ -183,7 +183,11 @@ export default {
 
       // Append an expanded property.
       appointments.forEach(appointment => appointment.expanded = false);
-      appointments[0].expanded = true;
+
+      // Set the first appointment to be expanded.
+      if (appointments.length > 0) {
+        appointments[0].expanded = true;
+      }
 
       // Append the clinincs.
       appointments = await this.appendClinics(appointments);

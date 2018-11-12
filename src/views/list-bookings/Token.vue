@@ -7,7 +7,7 @@
     </bat-text-header>
 
     <bat-content>
-      <div class="form text-center">
+      <form @submit.prevent="onLogin" class="form text-center">
         <bat-field code text text-label-top>
           <bat-field-input>
             <label for="code_1">Confirmation code</label>
@@ -19,12 +19,12 @@
           </bat-field-input>
           <p v-if="error" class="color-error">{{ error }}</p>
         </bat-field>
-      </div>
 
-      <div class="actions">
-        <bat-button v-if="requestingToken || fetchingServiceUser" disabled>Logging in...</bat-button>
-        <bat-button v-else @click="onLogin" primary>Log in</bat-button>
-      </div>
+        <div class="actions">
+          <bat-button v-if="requestingToken || fetchingServiceUser" disabled>Logging in...</bat-button>
+          <bat-button v-else primary tpye="submit">Log in</bat-button>
+        </div>
+      </form>
     </bat-content>
 
   </div>

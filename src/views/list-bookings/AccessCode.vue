@@ -7,7 +7,7 @@
     </bat-text-header>
 
     <bat-content>
-      <div class="form text-center">
+      <form @submit.prevent="onSendCode" class="form text-center">
         <bat-field text text-label-top>
           <bat-field-input>
             <label for="phone">Enter phone number</label>
@@ -15,12 +15,12 @@
           </bat-field-input>
           <p v-if="error" class="color-error">{{ error }}</p>
         </bat-field>
-      </div>
 
-      <div class="actions">
-        <bat-button v-if="!sending" @click="onSendCode" primary>Send code</bat-button>
-        <bat-button v-else disabled>Sending...</bat-button>
-      </div>
+         <div class="actions">
+          <bat-button v-if="!sending" primary type="submit">Send code</bat-button>
+          <bat-button v-else disabled>Sending...</bat-button>
+        </div>
+      </form>
     </bat-content>
 
   </div>
