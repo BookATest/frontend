@@ -22,6 +22,19 @@ const router = new Router({
       path: '/',
       name: 'home',
       component: () => import('@/views/Home.vue'),
+      beforeEnter: (to, from, next) => {
+        // Clear all caches.
+        new Appointment().clear();
+        new Clinic().clear();
+        new UserDetails().clear();
+        new Location().clear();
+        new User().clear();
+        new Answers().clear();
+        new Token().clear();
+        new ServiceUser().clear();
+
+        return next();
+      },
     },
     {
       path: '/make-booking/introduction',
