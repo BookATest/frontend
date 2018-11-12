@@ -109,4 +109,11 @@
       content: '\e804';
     }
   }
+
+  &--block {
+    float: none !important;
+    display: block;
+    margin: auto;
+    padding: 1rem !important;
+  }
 }

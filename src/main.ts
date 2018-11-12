@@ -13,6 +13,25 @@ Vue.mixin({
       apiUrl: process.env.VUE_APP_API_URL,
     };
   },
+
+  methods: {
+    async fetchAll(uri: string, params: object = {}) {
+      let page: number = 1;
+      let perPage: number = 100;
+      let mergedParams = { ...params, page, per_page: perPage };
+      let allFetched: boolean = false;
+      let resources: any = [];
+
+      do {
+        const { data } = await http.get(uri, { params: mergedParams });
+        resources = [...resources, ...data.data];
+        allFetched = data.meta.current_page === data.meta.last_page;
+        mergedParams.page++;
+      } while (!allFetched);
+
+      return resources;
+    },
+  },
 });
 
 Vue.component('BatButton', () => import('@/components/Button.vue'));
