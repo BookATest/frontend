@@ -141,7 +141,7 @@ export default {
       });
 
       // Forward to next page.
-      this.$router.push({ name: 'make-booking.notification' });
+      this.$router.push({ name: 'make-booking.consent' });
     },
 
     onBack() {

@@ -43,9 +43,9 @@ const router = new Router({
       component: () => import('@/views/make-booking/UserDetails.vue'),
     },
     {
-      path: '/make-booking/notification',
-      name: 'make-booking.notification',
-      component: () => import('@/views/make-booking/Notification.vue'),
+      path: '/make-booking/consent',
+      name: 'make-booking.consent',
+      component: () => import('@/views/make-booking/Consent.vue'),
     },
     {
       path: '/make-booking/overview',

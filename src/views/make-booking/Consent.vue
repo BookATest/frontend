@@ -3,7 +3,7 @@
 
     <bat-text-header>
       <bat-text-header-progress :active="4" />
-      <bat-text-header-title>Notification</bat-text-header-title>
+      <bat-text-header-title>Give your consent</bat-text-header-title>
     </bat-text-header>
 
     <bat-content>
@@ -35,7 +35,12 @@
 
 <script>
 import Alert from '@/components/Alert';
+import Appointment from '@/utilities/Appointment';
+import Clinic from '@/utilities/Clinic';
 import UserDetails from '@/utilities/UserDetails';
+import Location from '@/utilities/Location';
+import User from '@/utilities/User';
+import Answers from '@/utilities/Answers';
 
 export default {
   name: 'Notification',
@@ -46,13 +51,18 @@ export default {
 
   data() {
     return {
-      userDeailsCache: new UserDetails(),
+      appointmentCache: new Appointment(),
+      clinicCache: new Clinic(),
+      userDetailsCache: new UserDetails(),
+      locationCache: new Location(),
+      userCache: new User(),
+      answersCache: new Answers(),
     };
   },
 
   computed: {
     confirmationMethod() {
-      switch (this.userDeailsCache.get.preferred_contact_method) {
+      switch (this.userDetailsCache.get.preferred_contact_method) {
         case 'phone':
           return 'SMS message';
         case 'email':
@@ -69,7 +79,13 @@ export default {
     },
 
     onNo() {
-      // TODO
+      this.appointmentCache.clear();
+      this.clinicCache.clear();
+      this.userDetailsCache.clear();
+      this.locationCache.clear();
+      this.userCache.clear();
+      this.answersCache.clear();
+      this.$router.push({ name: 'home' });
     },
 
     onBack() {
