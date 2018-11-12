@@ -3,14 +3,14 @@ export default class Appointment {
     return 'appointment';
   }
 
-  protected appointment: string | undefined;
+  protected appointment: object | undefined;
 
   public constructor() {
     const json: string = window.sessionStorage.getItem(this.cacheKey) || 'null';
     this.appointment = JSON.parse(json) || undefined;
   }
 
-  public get get(): string | undefined {
+  public get get(): object | undefined {
     return this.appointment;
   }
 

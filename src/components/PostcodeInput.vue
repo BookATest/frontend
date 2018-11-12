@@ -7,7 +7,7 @@
       ref="input"
       type="text"
       class="input input--text input--search"
-      placeholder="AA00 0AA"
+      placeholder="AB12 1AB"
     >
     <button class="postcode__button" type="button" @click="onClick" :disabled="!valid">
       <i class="icon-arrow-right"></i>

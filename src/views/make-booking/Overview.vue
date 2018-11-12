@@ -57,11 +57,15 @@ export default {
       this.submitting = true;
 
       // Make the booking.
-      await this.http.post('/v1/bookings', {
+      const response = await this.http.post('/v1/bookings', {
         appointment_id: this.appointmentCache.get.id,
         service_user: this.userDetailsCache.get,
         answers: this.answersCache.all,
       });
+
+      // Store the updated appointment in the cache.
+      const appointment = response.data.data;
+      this.appointmentCache.cache(appointment);
 
       this.$router.push({ name: 'make-booking.confirmation' });
     },
