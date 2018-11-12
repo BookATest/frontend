@@ -1,4 +1,4 @@
-import Answer from "@/utilities/Answer";
+import Answer from '@/utilities/Answer';
 
 export default class Answers {
   protected get cacheKey(): string {
@@ -21,7 +21,7 @@ export default class Answers {
       return undefined;
     }
 
-    return this.all.find(answer => answer.question_id === questionId);
+    return this.all.find((answer) => answer.question_id === questionId);
   }
 
   public cache(answers: [Answer]): Answers {
@@ -35,4 +35,4 @@ export default class Answers {
 
     return this;
   }
-};
+}

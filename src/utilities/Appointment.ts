@@ -25,4 +25,4 @@ export default class Appointment {
 
     return this;
   }
-};
+}

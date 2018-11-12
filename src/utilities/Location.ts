@@ -1,4 +1,4 @@
-import Coordinate from "@/utilities/Coordinate";
+import Coordinate from '@/utilities/Coordinate';
 
 export default class Location {
   protected get postcodeCacheKey(): string {
@@ -56,4 +56,4 @@ export default class Location {
 
     return this;
   }
-};
+}

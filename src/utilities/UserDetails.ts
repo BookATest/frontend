@@ -25,4 +25,4 @@ export default class UserDetails {
 
     return this;
   }
-};
+}

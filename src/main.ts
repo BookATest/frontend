@@ -16,9 +16,9 @@ Vue.mixin({
 
   methods: {
     async fetchAll(uri: string, params: object = {}) {
-      let page: number = 1;
-      let perPage: number = 100;
-      let mergedParams = { ...params, page, per_page: perPage };
+      const page: number = 1;
+      const perPage: number = 100;
+      const mergedParams = { ...params, page, per_page: perPage };
       let allFetched: boolean = false;
       let resources: any = [];
 
