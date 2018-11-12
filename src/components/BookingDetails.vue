@@ -63,10 +63,6 @@ export default {
     clinic: {
       required: true,
     },
-
-    userDetails: {
-      required: true,
-    },
   },
 
   data() {

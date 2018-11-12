@@ -6,7 +6,7 @@
       <div class="card__description">
         <slot />
       </div>
-      <div class="card__meta">
+      <div v-if="!!$slots.meta" class="card__meta">
         <slot name="meta" />
       </div>
     </div>

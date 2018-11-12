@@ -5,11 +5,11 @@
       <bat-text-header-title>Appointment booked</bat-text-header-title>
     </bat-text-header>
 
-    <bat-content>
+    <bat-loader v-if="loading" />
+    <bat-content v-else>
       <bat-booking-details
         :appointment="appointment"
         :clinic="clinic"
-        :user-details="userDetails"
       />
 
       <hr>
@@ -39,8 +39,6 @@
             {{ clinic.city }}<br>
             {{ clinic.postcode }}
           </p>
-
-          <span slot="meta">{{ toMiles(clinic.distance) }} miles</span>
         </bat-card>
 
         <div v-show="showDirections" class="text-container active">
@@ -81,6 +79,7 @@
 <script>
 import moment from 'moment';
 import Card from '@/components/Card';
+import BookingDetails from '@/components/BookingDetails';
 import ServiceUser from '@/utilities/ServiceUser';
 import Token from '@/utilities/Token';
 
@@ -98,13 +97,14 @@ export default {
       tokenCache: new Token(),
       showDirections: false,
       appointment: null,
+      clinic: null,
       loading: false,
     };
   },
 
   computed: {
     notificationType() {
-      switch (this.userDetails.preferred_contact_method) {
+      switch (this.serviceUserCache.get.preferred_contact_method) {
         case 'phone':
           return 'a text message';
         case 'email':
@@ -137,8 +137,14 @@ export default {
         },
       });
       this.appointment = response.data.data[0];
+      await this.fetchClinic();
 
       this.loading = false;
+    },
+
+    async fetchClinic() {
+      const response = await this.http.get(`/v1/clinics/${this.appointment.clinic_id}`);
+      this.clinic = response.data.data;
     },
   },
 

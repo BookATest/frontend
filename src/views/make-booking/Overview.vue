@@ -11,7 +11,6 @@
       <bat-booking-details
         :appointment="appointmentCache.get"
         :clinic="clinicCache.get"
-        :user-details="userDetailsCache.get"
       />
 
       <div class="inline-buttons">
