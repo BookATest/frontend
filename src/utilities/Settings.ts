@@ -12,10 +12,6 @@ export default class Settings {
     return settings;
   }
 
-  protected constructor() {
-    //
-  }
-
   protected static get sessionStorageKey(): string {
     return 'api_settings';
   }
@@ -43,12 +39,14 @@ export default class Settings {
       default_appointment_duration: data.default_appointment_duration,
       language: data.language,
       name: data.name,
+      email: data.email,
+      phone: data.phone,
       primary_colour: data.primary_colour,
       secondary_colour: data.secondary_colour,
     };
   }
 
-  protected load(): SettingsInterface {
+  public load(): SettingsInterface {
     return JSON.parse(window.sessionStorage.getItem(Settings.sessionStorageKey) || '{}');
   }
 

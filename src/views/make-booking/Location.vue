@@ -2,10 +2,12 @@
   <div>
     <bat-text-header>
       <bat-text-header-progress :active="1" />
-      <bat-text-header-title>Find location</bat-text-header-title>
-      <bat-text-header-description small>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque dictum.
-      </bat-text-header-description>
+      <bat-text-header-title v-text="settings.language['make-booking'].location.title" />
+      <bat-text-header-description
+        small
+        v-if="settings.language['make-booking'].location.content"
+        v-text="settings.language['make-booking'].location.content"
+      />
     </bat-text-header>
 
     <bat-content>
@@ -35,9 +37,9 @@
 </template>
 
 <script>
+import Settings from '@/utilities/Settings';
 import Field from '@/components/Field';
 import PostcodeInput from "@/components/PostcodeInput";
-
 import Location from "@/utilities/Location";
 
 export default {
@@ -58,6 +60,7 @@ export default {
         lon: null,
       },
       hasGeolocationCapabilities: navigator.geolocation,
+      settings: new Settings().load(),
     };
   },
 

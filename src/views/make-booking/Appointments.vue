@@ -2,7 +2,12 @@
   <div>
     <bat-text-header>
       <bat-text-header-progress :active="2" />
-      <bat-text-header-title>Date / Time</bat-text-header-title>
+      <bat-text-header-title v-text="settings.language['make-booking'].appointments.title" />
+      <bat-text-header-description
+        small
+        v-if="settings.language['make-booking'].appointments.content"
+        v-text="settings.language['make-booking'].appointments.content"
+      />
     </bat-text-header>
 
     <bat-content>
@@ -26,13 +31,12 @@
 
 <script>
 import moment from "moment";
-
 import Field from "@/components/Field";
 import DatePickerInput from "@/components/DatePickerInput";
 import TimeInput from "@/components/TimeInput";
-
 import Clinic from "@/utilities/Clinic";
 import Appointment from "@/utilities/Appointment";
+import Settings from '@/utilities/Settings';
 
 export default {
   name: 'Appointments',
@@ -51,6 +55,7 @@ export default {
       loading: false,
       date: moment().format(moment.HTML5_FMT.DATE),
       appointment: null,
+      settings: new Settings().load(),
     };
   },
 

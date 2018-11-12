@@ -3,8 +3,12 @@
 
     <bat-text-header>
       <bat-text-header-progress :active="3" />
-      <bat-text-header-title>Enter details</bat-text-header-title>
-      <bat-text-header-description small>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque dictum.</bat-text-header-description>
+      <bat-text-header-title v-text="settings.language['make-booking']['user-details'].title" />
+      <bat-text-header-description
+        small
+        v-if="settings.language['make-booking']['user-details'].content"
+        v-text="settings.language['make-booking']['user-details'].content"
+      />
     </bat-text-header>
 
     <bat-content>
@@ -52,6 +56,7 @@
 </template>
 
 <script>
+import Settings from '@/utilities/Settings';
 import Field from '@/components/Field';
 import FieldInput from '@/components/FieldInput';
 import FieldTitle from '@/components/FieldTitle';
@@ -77,6 +82,7 @@ export default {
       phone: '',
       email: '',
       userDetailsCache: new UserDetails(),
+      settings: new Settings().load(),
     };
   },
 

@@ -3,7 +3,12 @@
 
     <bat-text-header>
       <bat-text-header-progress :active="4" />
-      <bat-text-header-title>Give your consent</bat-text-header-title>
+      <bat-text-header-title v-text="settings.language['make-booking'].consent.title" />
+      <bat-text-header-description
+        small
+        v-if="settings.language['make-booking'].consent.content"
+        v-text="settings.language['make-booking'].consent.content"
+      />
     </bat-text-header>
 
     <bat-content>
@@ -34,6 +39,7 @@
 </template>
 
 <script>
+import Settings from '@/utilities/Settings';
 import Alert from '@/components/Alert';
 import Appointment from '@/utilities/Appointment';
 import Clinic from '@/utilities/Clinic';
@@ -57,6 +63,7 @@ export default {
       locationCache: new Location(),
       userCache: new User(),
       answersCache: new Answers(),
+      settings: new Settings().load(),
     };
   },
 

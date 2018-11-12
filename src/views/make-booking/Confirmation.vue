@@ -2,7 +2,12 @@
   <div>
 
     <bat-text-header>
-      <bat-text-header-title>Appointment booked</bat-text-header-title>
+      <bat-text-header-title v-text="settings.language['make-booking'].confirmation.title" />
+      <bat-text-header-description
+        small
+        v-if="settings.language['make-booking'].confirmation.content"
+        v-text="settings.language['make-booking'].confirmation.content"
+      />
     </bat-text-header>
 
     <bat-content>
@@ -92,6 +97,7 @@ import UserDetails from '@/utilities/UserDetails';
 import Location from '@/utilities/Location';
 import User from '@/utilities/User';
 import Answers from '@/utilities/Answers';
+import Settings from '@/utilities/Settings';
 
 export default {
   name: 'Confirmation',
@@ -113,6 +119,7 @@ export default {
       clinic: new Clinic().get,
       userDetails: new UserDetails().get,
       showDirections: false,
+      settings: new Settings().load(),
     };
   },
 

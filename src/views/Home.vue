@@ -3,8 +3,12 @@
   <div v-else>
     <bat-text-header white>
       <bat-text-header-image :src="`${apiUrl}/v1/settings/logo.png`" alt="Brand Name" />
-      <bat-text-header-title>Welcome to {{ settings.name }}</bat-text-header-title>
-      <bat-text-header-description small>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque dictum.</bat-text-header-description>
+      <bat-text-header-title v-text="settings.language.home.title" />
+      <bat-text-header-description
+        small
+        v-if="settings.language.home.content"
+        v-text="settings.language.home.content"
+      />
     </bat-text-header>
 
     <bat-content>
@@ -27,7 +31,7 @@ export default {
   },
 
   created() {
-    Settings.create().then(settings => this.settings = settings);
+    Settings.create().then(settings => this.settings = settings.load());
   },
 };
 </script>

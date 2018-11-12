@@ -1,12 +1,12 @@
 <template>
   <div>
     <bat-text-header>
-      <bat-text-header-title>Book test here</bat-text-header-title>
-      <bat-text-header-description small>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque dictum sem quis aliquet laoreet.
-        Duis blandit luctus nulla vel ullamcorper. Suspendisse eu efficitur justo.
-        Quisque mollis in erat sit amet rhoncus.
-      </bat-text-header-description>
+      <bat-text-header-title v-text="settings.language['make-booking'].introduction.title" />
+      <bat-text-header-description
+        small
+        v-if="settings.language['make-booking'].introduction.content"
+        v-text="settings.language['make-booking'].introduction.content"
+      />
     </bat-text-header>
 
     <bat-content>
@@ -16,7 +16,15 @@
 </template>
 
 <script>
+import Settings from '@/utilities/Settings';
+
 export default {
   name: 'Introduction',
+
+  data() {
+    return {
+      settings: new Settings().load(),
+    };
+  },
 };
 </script>

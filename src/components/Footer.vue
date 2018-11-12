@@ -9,7 +9,7 @@
 
       <div class="footer__contact flex-col flex-col--6 text-center">
         <p class="xs-copy">If you experience any issues with the booking system, please contact:</p>
-        <p class="xs-copy"><a href="mailto:contact@loation.com">contact@loation.com</a> <a href="tel:0773087345">0773087345</a></p>
+        <p class="xs-copy"><a :href="`mailto:${settings.email}`">{{ settings.email }}</a> <a :href="`tel:${settings.phone}`">{{ settings.phone }}</a></p>
       </div>
 
       <div class="footer__powered flex-col flex-col--3 text-center mobile-hide">
@@ -21,7 +21,15 @@
 </template>
 
 <script>
+import Settings from '@/utilities/Settings';
+
 export default {
   name: 'Footer',
+
+  data() {
+    return {
+      settings: new Settings().load(),
+    };
+  },
 };
 </script>

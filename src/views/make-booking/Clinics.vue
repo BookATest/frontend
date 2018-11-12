@@ -2,7 +2,12 @@
   <div>
     <bat-text-header>
       <bat-text-header-progress :active="1" />
-      <bat-text-header-title>Find location</bat-text-header-title>
+      <bat-text-header-title v-text="settings.language['make-booking'].clinics.title" />
+      <bat-text-header-description
+        small
+        v-if="settings.language['make-booking'].clinics.content"
+        v-text="settings.language['make-booking'].clinics.content"
+      />
     </bat-text-header>
 
     <bat-content>
@@ -50,8 +55,8 @@
 </template>
 
 <script>
+import Settings from '@/utilities/Settings';
 import Card from "@/components/Card";
-
 import Location from "@/utilities/Location";
 import Answers from "@/utilities/Answers";
 import Clinic from "@/utilities/Clinic";
@@ -71,6 +76,7 @@ export default {
       clinics: [],
       selectedClinicId: null,
       loading: false,
+      settings: new Settings().load(),
     };
   },
 

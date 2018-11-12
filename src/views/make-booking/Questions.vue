@@ -2,10 +2,12 @@
   <div>
 
     <bat-text-header>
-      <bat-text-header-title>What are you looking for?</bat-text-header-title>
-      <bat-text-header-description small>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque dictum.
-      </bat-text-header-description>
+      <bat-text-header-title v-text="settings.language['make-booking'].questions.title" />
+      <bat-text-header-description
+        small
+        v-if="settings.language['make-booking'].questions.content"
+        v-text="settings.language['make-booking'].questions.content"
+      />
     </bat-text-header>
 
     <bat-content>
@@ -58,6 +60,7 @@
 </template>
 
 <script>
+import Settings from '@/utilities/Settings';
 import Field from '@/components/Field';
 import FieldInput from '@/components/FieldInput';
 import Label from '@/components/Label';
@@ -65,7 +68,6 @@ import SelectInput from '@/components/SelectInput';
 import DateInput from '@/components/DateInput';
 import TextInput from '@/components/TextInput';
 import CheckboxInput from '@/components/CheckboxInput';
-
 import Answers from "@/utilities/Answers";
 
 const answersCacheKey = 'answers';
@@ -88,6 +90,7 @@ export default {
       loading: false,
       questions: [],
       answers: new Answers(),
+      settings: new Settings().load(),
     };
   },
 

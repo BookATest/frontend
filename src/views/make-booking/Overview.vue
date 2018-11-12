@@ -3,8 +3,12 @@
 
     <bat-text-header>
       <bat-text-header-progress :active="5" />
-      <bat-text-header-title>Appointment overview</bat-text-header-title>
-      <bat-text-header-description>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque dictum.</bat-text-header-description>
+      <bat-text-header-title v-text="settings.language['make-booking'].overview.title" />
+      <bat-text-header-description
+        small
+        v-if="settings.language['make-booking'].overview.content"
+        v-text="settings.language['make-booking'].overview.content"
+      />
     </bat-text-header>
 
     <bat-content>
@@ -25,6 +29,7 @@
 </template>
 
 <script>
+import Settings from '@/utilities/Settings';
 import BookingDetails from '@/components/BookingDetails';
 import Appointment from '@/utilities/Appointment';
 import Clinic from '@/utilities/Clinic';
@@ -45,6 +50,7 @@ export default {
       userDetailsCache: new UserDetails(),
       answersCache: new Answers(),
       submitting: false,
+      settings: new Settings().load(),
     };
   },
 
