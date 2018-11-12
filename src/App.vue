@@ -32,21 +32,39 @@ export default {
     BatHeader: Header,
     BatFooter: Footer,
   },
+
   computed: {
     isHome() {
       return this.$route.name === 'home'
     },
+
     hideHeader() {
       return this.isHome;
     },
+
     hideFooter() {
       return this.isHome;
     },
+
     contentClass() {
       return {
         'page--no-footer': this.isHome,
       };
     },
+  },
+
+  methods: {
+    injectApiCss() {
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = `${process.env.VUE_APP_API_URL}/v1/settings/styles.css`;
+      document.head.appendChild(link);
+    },
+  },
+
+  created() {
+    this.injectApiCss();
   },
 };
 </script>
