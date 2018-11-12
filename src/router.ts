@@ -9,14 +9,8 @@ import UserDetails from '@/utilities/UserDetails';
 import Location from '@/utilities/Location';
 import User from '@/utilities/User';
 import Answers from '@/utilities/Answers';
-
-// TODO: Remove these.
-const appointmentCache = new Appointment();
-const clinicCache = new Clinic();
-const userDetailsCache = new UserDetails();
-const locationCache = new Location();
-const userCache = new User();
-const answersCache = new Answers();
+import Token from '@/utilities/Token';
+import ServiceUser from '@/utilities/ServiceUser';
 
 Vue.use(Router);
 
@@ -235,23 +229,28 @@ const router = new Router({
       path: '/list-bookings/access-code',
       name: 'list-bookings.access-code',
       component: () => import('@/views/list-bookings/AccessCode.vue'),
-      beforeEnter: (to, from, next) => {
-        return next();
-      },
     },
     {
       path: '/list-bookings/token',
       name: 'list-bookings.token',
       component: () => import('@/views/list-bookings/Token.vue'),
-      beforeEnter: (to, from, next) => {
-        return next();
-      },
     },
     {
       path: '/list-bookings/appointments',
       name: 'list-bookings.appointments',
       component: () => import('@/views/list-bookings/Appointments.vue'),
       beforeEnter: (to, from, next) => {
+        const tokenCache = new Token();
+        const serviceUserCache = new ServiceUser();
+
+        if (tokenCache.get === undefined) {
+          return next({ name: 'list-bookings.access-code' });
+        }
+
+        if (serviceUserCache.get === undefined) {
+          return next({ name: 'list-bookings.access-code' });
+        }
+
         return next();
       },
     },
@@ -260,6 +259,17 @@ const router = new Router({
       name: 'list-bookings.cancel',
       component: () => import('@/views/list-bookings/Cancel.vue'),
       beforeEnter: (to, from, next) => {
+        const tokenCache = new Token();
+        const serviceUserCache = new ServiceUser();
+
+        if (tokenCache.get === undefined) {
+          return next({ name: 'list-bookings.access-code' });
+        }
+
+        if (serviceUserCache.get === undefined) {
+          return next({ name: 'list-bookings.access-code' });
+        }
+
         return next();
       },
     },
@@ -268,6 +278,17 @@ const router = new Router({
       name: 'list-bookings.cancelled',
       component: () => import('@/views/list-bookings/Cancelled.vue'),
       beforeEnter: (to, from, next) => {
+        const tokenCache = new Token();
+        const serviceUserCache = new ServiceUser();
+
+        if (tokenCache.get === undefined) {
+          return next({ name: 'list-bookings.access-code' });
+        }
+
+        if (serviceUserCache.get === undefined) {
+          return next({ name: 'list-bookings.access-code' });
+        }
+
         return next();
       },
     },
@@ -276,6 +297,17 @@ const router = new Router({
       name: 'list-bookings.token-expired',
       component: () => import('@/views/list-bookings/TokenExpired.vue'),
       beforeEnter: (to, from, next) => {
+        const tokenCache = new Token();
+        const serviceUserCache = new ServiceUser();
+
+        if (tokenCache.get === undefined) {
+          return next({ name: 'list-bookings.access-code' });
+        }
+
+        if (serviceUserCache.get === undefined) {
+          return next({ name: 'list-bookings.access-code' });
+        }
+
         return next();
       },
     },
