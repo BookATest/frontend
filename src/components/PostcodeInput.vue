@@ -3,6 +3,7 @@
     <input
       :value="value"
       @input="onInput"
+      @keypress.enter="onClick"
       ref="input"
       type="text"
       class="input input--text input--search"

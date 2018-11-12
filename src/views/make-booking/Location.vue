@@ -18,7 +18,7 @@
         <template v-if="hasGeolocationCapabilities">
           <p class="sm-copy text-center">or</p>
 
-          <bat-button location @click="fetchCoordinate">
+          <bat-button location :disabled="loadingLocation" @click="fetchCoordinate">
             <template v-if="loadingLocation">Finding location...</template>
             <template v-else>Find my location</template>
             <bat-icon location-arrow />
@@ -75,6 +75,10 @@ export default {
      * Triggerred when using the geo location.
      */
     fetchCoordinate() {
+      if (this.loadingLocation) {
+        return;
+      }
+
       this.loadingLocation = true;
 
       navigator.geolocation.getCurrentPosition(position => {

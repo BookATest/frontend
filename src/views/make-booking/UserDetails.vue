@@ -8,7 +8,7 @@
     </bat-text-header>
 
     <bat-content>
-      <div class="form">
+      <form @submit.prevent="onNext" class="form">
 
         <bat-field text>
           <label for="name">
@@ -41,11 +41,11 @@
         </bat-field>
 
         <bat-content-footer>
-          <bat-button @click="onNext" :primary="valid" :disabled="!valid">Continue</bat-button>
+          <bat-button :primary="valid" :disabled="!valid" type="submit">Continue</bat-button>
           <bat-button @click="onBack" back>Back</bat-button>
         </bat-content-footer>
 
-      </div>
+      </form>
     </bat-content>
 
   </div>
@@ -104,6 +104,10 @@ export default {
 
   methods: {
     onNext() {
+      if (!this.valid) {
+        return;
+      }
+
       // Cache the user details.
       this.userDetailsCache.cache({
         name: this.name,
