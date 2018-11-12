@@ -87,7 +87,7 @@
 
           <hr>
 
-          <bat-button @click="onCancel" secondary>Cancel</bat-button>
+          <bat-button @click="onCancel(appointment)" secondary>Cancel</bat-button>
 
           <bat-disclaimer>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</bat-disclaimer>
         </div>
@@ -209,11 +209,11 @@ export default {
       return appointments;
     },
 
-    onCancel() {
+    onCancel(appointment) {
       this.$router.push({
         name: 'list-bookings.cancel',
         params: {
-          appointment: this.appointment.id,
+          appointment: appointment.id,
         },
       });
     },
