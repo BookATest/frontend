@@ -197,6 +197,7 @@ const router = new Router({
         const clinicCache = new Clinic();
         const appointmentCache = new Appointment();
         const userDetailsCache = new UserDetails();
+        const userCache = new User();
 
         if (answersCache.all === undefined) {
           return next({ name: 'make-booking.questions' });
@@ -216,6 +217,10 @@ const router = new Router({
 
         if (userDetailsCache.get === undefined) {
           return next({ name: 'make-booking.user-details' });
+        }
+
+        if (userCache.get === undefined) {
+          return next({ name: 'make-booking.overview' });
         }
 
         if (appointmentCache.get.service_user_id === null) {
