@@ -11,11 +11,11 @@
         <bat-field code text text-label-top>
           <bat-field-input>
             <label for="code_1">Confirmation code</label>
-            <bat-text-input v-model="code1" @keyup="onKeyup($event, 1)" ref="code_1" maxlength="1" placeholder="-" name="code_1" />
-            <bat-text-input v-model="code2" @keyup="onKeyup($event, 2)" ref="code_2" maxlength="1" placeholder="-" />
-            <bat-text-input v-model="code3" @keyup="onKeyup($event, 3)" ref="code_3" maxlength="1" placeholder="-" />
-            <bat-text-input v-model="code4" @keyup="onKeyup($event, 4)" ref="code_4" maxlength="1" placeholder="-" />
-            <bat-text-input v-model="code5" @keyup="onKeyup($event, 5)" ref="code_5" maxlength="1" placeholder="-" />
+            <bat-text-input v-model="code1" @keypress="onKeypress($event, 1)" ref="code_1" maxlength="1" placeholder="-" name="code_1" />
+            <bat-text-input v-model="code2" @keypress="onKeypress($event, 2)" ref="code_2" maxlength="1" placeholder="-" />
+            <bat-text-input v-model="code3" @keypress="onKeypress($event, 3)" ref="code_3" maxlength="1" placeholder="-" />
+            <bat-text-input v-model="code4" @keypress="onKeypress($event, 4)" ref="code_4" maxlength="1" placeholder="-" />
+            <bat-text-input v-model="code5" @keypress="onKeypress($event, 5)" ref="code_5" maxlength="1" placeholder="-" />
           </bat-field-input>
           <p v-if="error" class="color-error">{{ error }}</p>
         </bat-field>
@@ -110,7 +110,7 @@ export default {
     /**
      * Places focus on the next input box.
      */
-    onKeyup(key, index) {
+    onKeypress(key, index) {
       // First, clear the error if there is one.
       this.error = null;
 
