@@ -29,4 +29,10 @@ export default class Answers {
 
     return this;
   }
+
+  public clear(): Answers {
+    window.sessionStorage.removeItem(this.cacheKey);
+
+    return this;
+  }
 };

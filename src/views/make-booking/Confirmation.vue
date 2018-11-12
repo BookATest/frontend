@@ -73,6 +73,10 @@
           </div>
         </div>
 
+        <hr>
+
+        <bat-button @click="onComplete" primary>Complete</bat-button>
+
     </bat-content>
 
   </div>
@@ -85,6 +89,9 @@ import Card from '@/components/Card';
 import Appointment from '@/utilities/Appointment';
 import Clinic from '@/utilities/Clinic';
 import UserDetails from '@/utilities/UserDetails';
+import Location from '@/utilities/Location';
+import User from '@/utilities/User';
+import Answers from '@/utilities/Answers';
 
 export default {
   name: 'Confirmation',
@@ -96,6 +103,12 @@ export default {
 
   data() {
     return {
+      appointmentCache: new Appointment(),
+      clinicCache: new Clinic(),
+      userDetailsCache: new UserDetails(),
+      locationCache: new Location(),
+      userCache: new User(),
+      answersCache: new Answers(),
       appointment: new Appointment().get,
       clinic: new Clinic().get,
       userDetails: new UserDetails().get,
@@ -127,6 +140,16 @@ export default {
 
     meridiem(appointment) {
       return moment(appointment.start_at, moment.ISO_8601).format('a');
+    },
+
+    onComplete() {
+      this.appointmentCache.clear();
+      this.clinicCache.clear();
+      this.userDetailsCache.clear();
+      this.locationCache.clear();
+      this.userCache.clear();
+      this.answersCache.clear();
+      this.$router.push({ name: 'home' });
     },
   },
 };

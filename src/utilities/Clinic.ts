@@ -19,4 +19,10 @@ export default class Clinic {
 
     return this;
   }
+
+  public clear(): Clinic {
+    window.sessionStorage.removeItem(this.cacheKey);
+
+    return this;
+  }
 };
