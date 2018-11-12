@@ -1,130 +1,90 @@
 <template>
   <div>
-    <label for="date-picker">Select date</label>
+    <bat-field date-picker>
+      <label for="date-picker">Select date</label>
 
-    <div class="date-picker">
+      <div class="date-picker">
 
-      <div class="date-picker__options">
+        <div class="date-picker__options">
 
-        <a
-          @click="onSelect(today)"
-          href="#"
-          class="date-picker__options__option"
-          :class="{ selected: value === today.format(html5DateFormat) }"
-          role="button"
-        >
-          Today
-        </a>
+          <a
+            @click="onSelect(today)"
+            href="#"
+            class="date-picker__options__option"
+            :class="{ selected: value === today.format(html5DateFormat) }"
+            role="button"
+          >
+            Today
+          </a>
 
-        <!---->&nbsp;<!---->
+          <!---->&nbsp;<!---->
 
-        <a
-          @click="onSelect(tomorrow)"
-          href="#"
-          class="date-picker__options__option"
-          :class="{ selected: value === tomorrow.format(html5DateFormat) }"
-          role="button"
-        >
-          Tomorrow
-        </a>
+          <a
+            @click="onSelect(tomorrow)"
+            href="#"
+            class="date-picker__options__option"
+            :class="{ selected: value === tomorrow.format(html5DateFormat) }"
+            role="button"
+          >
+            Tomorrow
+          </a>
 
-        <!---->&nbsp;<!---->
+          <!---->&nbsp;<!---->
 
-        <a
-          @click="onSelect(dayPlus2)"
-          href="#"
-          class="date-picker__options__option"
-          :class="{ selected: value === dayPlus2.format(html5DateFormat) }"
-          role="button"
-          v-text="dayPlus2.format('dddd')"
-        />
+          <a
+            @click="onSelect(dayPlus2)"
+            href="#"
+            class="date-picker__options__option"
+            :class="{ selected: value === dayPlus2.format(html5DateFormat) }"
+            role="button"
+            v-text="dayPlus2.format('dddd')"
+          />
 
-        <!---->&nbsp;<!---->
+          <!---->&nbsp;<!---->
 
-        <a
-          @click="onSelect(dayPlus3)"
-          href="#"
-          class="date-picker__options__option"
-          :class="{ selected: value === dayPlus3.format(html5DateFormat) }"
-          role="button"
-          v-text="dayPlus3.format('dddd')"
-        />
+          <a
+            @click="onSelect(dayPlus3)"
+            href="#"
+            class="date-picker__options__option"
+            :class="{ selected: value === dayPlus3.format(html5DateFormat) }"
+            role="button"
+            v-text="dayPlus3.format('dddd')"
+          />
+
+        </div>
+
+        <div class="date-picker__toggle">
+          <button @click="toggleDatePicker">
+            <div class="date-picker__toggle__icon">
+              <bat-icon arrow-up />
+            </div>
+          </button>
+        </div>
 
       </div>
+    </bat-field>
 
-      <div class="date-picker__toggle">
-        <a href="#">
-          <div class="date-picker__toggle__icon">
-            <bat-icon arrow-up />
-          </div>
-
-          <div class="date-picker__toggle__selection">
-            <span class="day">4</span>
-            <span class="month">May</span>
-          </div>
-        </a>
-      </div>
-
-      <table class="date-picker__table">
-        <thead>
-          <th>M</th>
-          <th>T</th>
-          <th>W</th>
-          <th>T</th>
-          <th>F</th>
-          <th>S</th>
-          <th>S</th>
-        </thead>
-
-        <tbody>
-          <tr>
-            <td class="unavailable">23 <span class="month">Apr</span></td>
-            <td class="unavailable">24</td>
-            <td class="current">25</td>
-            <td>26</td>
-            <td>27</td>
-            <td>28</td>
-            <td class="unavailable">29</td>
-          </tr>
-          <tr>
-            <td>30</td>
-            <td>1 <span class="month">May</span></td>
-            <td>2</td>
-            <td>3</td>
-            <td class="selected">4</td>
-            <td>5</td>
-            <td>6</td>
-          </tr>
-          <tr>
-            <td>7</td>
-            <td>8</td>
-            <td>9</td>
-            <td>10</td>
-            <td>11</td>
-            <td>12</td>
-            <td class="unavailable">13</td>
-          </tr>
-          <tr>
-            <td>14</td>
-            <td>15</td>
-            <td class="unavailable">16</td>
-            <td>17</td>
-            <td>18</td>
-            <td class="unavailable">19</td>
-            <td class="unavailable">20</td>
-          </tr>
-        </tbody>
-      </table>
-
-    </div>
+    <date-picker
+      ref="datePicker"
+      monday-first
+      input-class="date-picker--hidden"
+      @selected="onDateSelected"
+    />
   </div>
 </template>
 
 <script>
 import moment from "moment";
+import Datepicker from 'vuejs-datepicker';
+import Field from '@/components/Field';
 
 export default {
   name: 'DatePickerInput',
+
+  components: {
+    DatePicker: Datepicker,
+    BatField: Field,
+  },
 
   props: {
     value: {
@@ -146,6 +106,20 @@ export default {
     onSelect(date) {
       this.$emit('input', date.format(moment.HTML5_FMT.DATE));
     },
+
+    onDateSelected(date) {
+      this.onSelect(moment(date));
+    },
+
+    toggleDatePicker() {
+      this.$refs.datePicker.showCalendar();
+    },
   },
 };
 </script>
+
+<style lang="scss">
+.date-picker--hidden {
+  display: none;
+}
+</style>

@@ -46,8 +46,10 @@
     box-sizing: border-box;
     z-index: 1;
 
-    > a {
-      text-decoration: none;
+    > button {
+      display: inline;
+      padding: 0;
+      margin: 0;
     }
 
     .active & {
@@ -70,7 +72,7 @@
 
       i {
         color: $brand-primary;
-  
+
         &:before {
           width: auto;
           margin: 0;

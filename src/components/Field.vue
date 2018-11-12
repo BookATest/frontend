@@ -42,6 +42,9 @@ export default {
     code: {
       type: Boolean,
     },
+    overflow: {
+      type: Boolean,
+    },
   },
 
   computed: {
@@ -58,6 +61,7 @@ export default {
         'field--time': this.time,
         'field--radio': this.radio,
         'field--code': this.code,
+        'field--overflow': this.overflow,
       };
     },
   },

@@ -9,9 +9,7 @@
       <bat-loader v-if="loading" />
 
       <div v-else class="form">
-        <bat-field date-picker>
-          <bat-date-picker-input v-model="date" />
-        </bat-field>
+        <bat-date-picker-input v-model="date" />
 
         <bat-field time>
           <bat-time-input v-model="appointment" :date="date" />

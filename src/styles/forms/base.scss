@@ -136,6 +136,10 @@ form,
       }
     }
 
+    &--overflow {
+      overflow: visible;
+    }
+
     .error-message {
       display: inline-block;
       width: 70px;
