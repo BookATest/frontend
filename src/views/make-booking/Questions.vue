@@ -48,7 +48,7 @@
         </bat-field>
 
         <div class="actions">
-          <bat-button tag="button" primary type="submit">Continue</bat-button>
+          <bat-button tag="button" :primary="valid" :disabled="!valid" type="submit">Continue</bat-button>
         </div>
 
       </form>
@@ -89,6 +89,18 @@ export default {
       questions: [],
       answers: new Answers(),
     };
+  },
+
+  computed: {
+    valid() {
+      for (let question of this.questions) {
+        if (question.answer === '' || question.answer === null) {
+          return false;
+        }
+      }
+
+      return true;
+    },
   },
 
   methods: {
@@ -143,6 +155,10 @@ export default {
     },
 
     onNext() {
+      if (!this.valid) {
+        return;
+      }
+
       this.cacheAnswers();
       this.$router.push({ name: 'make-booking.location' });
     },
