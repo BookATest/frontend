@@ -134,6 +134,7 @@ export default {
       const response = await this.http.get(`/v1/service-users/${this.serviceUserCache.get.id}/appointments`, {
         params: {
           service_user_token: this.tokenCache.get,
+          append: 'user_first_name,user_last_name,user_email,user_phone',
         },
       });
       this.appointment = response.data.data[0];

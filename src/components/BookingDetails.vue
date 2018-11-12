@@ -89,7 +89,27 @@ export default {
 
   methods: {
     async fetchAppointment() {
-      // First attempt to get from cache.
+      // First, check if the appointment has the user details appended.
+      const properties = ['user_first_name', 'user_last_name', 'user_email', 'user_phone'];
+      let hasAllProperties = true;
+      for (let property of properties) {
+        if (!this.appointment.hasOwnProperty(property)) {
+          hasAllProperties = false;
+        }
+      }
+      if (hasAllProperties) {
+        this.user = {
+          id: this.appointment.user_id,
+          first_name: this.appointment.user_first_name,
+          last_name: this.appointment.user_last_name,
+          email: this.appointment.user_email,
+          phone: this.appointment.user_phone,
+          image_url: `${process.env.VUE_APP_API_URL}/v1/users/${this.appointment.user_id}/profile-picture.jpg`,
+        };
+        return;
+      }
+
+      // Second, attempt to get from cache.
       const user = this.userCache.get;
 
       if (user !== undefined) {
