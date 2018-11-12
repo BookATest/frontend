@@ -1,5 +1,5 @@
 <template>
-  <select @change="onChange" class="select">
+  <select @change="onChange" :value="value" class="select">
     <option :value="null" disabled :selected="value === null">-</option>
     <option
       v-for="option in options"
@@ -7,7 +7,6 @@
       :value="option.value"
       v-text="option.text"
       :disabled="option.disabled || false"
-      :selected="option.selected || false"
     />
   </select>
 </template>
