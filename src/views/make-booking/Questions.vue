@@ -11,7 +11,7 @@
     <bat-content>
       <bat-loader v-if="loading" />
 
-      <div v-else class="form">
+      <form v-else @submit.prevent="onNext" class="form">
 
         <bat-field
           v-for="(question, index) in questions" :key="question.id"
@@ -48,10 +48,10 @@
         </bat-field>
 
         <div class="actions">
-          <bat-button @click="onNext" tag="button" primary>Continue</bat-button>
+          <bat-button tag="button" primary type="submit">Continue</bat-button>
         </div>
 
-      </div>
+      </form>
     </bat-content>
 
   </div>
