@@ -73,7 +73,7 @@ export default {
 
     onNext() {
       // Do nothing if an appointment has not been selected.
-      if (this.appointment === null) {
+      if (!this.appointmentSelected) {
         return;
       }
 

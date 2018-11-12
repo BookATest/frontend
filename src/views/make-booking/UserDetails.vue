@@ -82,11 +82,35 @@ export default {
 
   computed: {
     valid() {
-      if (this.preferredContactMethod === 'phone') {
-        return (this.name.length > 1) && (this.phone.length > 1) && (this.preferredContactMethod !== '');
+      if (this.preferredContactMethod === '') {
+        return false;
       }
 
-      return (this.name.length > 1) && (this.phone.length > 1) && (this.email.length > 1) && (this.preferredContactMethod !== '');
+      if (this.preferredContactMethod === 'phone') {
+        // For phone.
+        if (this.name === '') {
+          return false;
+        }
+
+        if (!this.phone.match(/^(0[0-9]{10})$/g)) {
+          return false;
+        }
+      } else {
+        // For email or both.
+        if (this.name === '') {
+          return false;
+        }
+
+        if (!this.phone.match(/^(0[0-9]{10})$/g)) {
+          return false;
+        }
+
+        if (!this.email.match(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) {
+          return false;
+        }
+      }
+
+      return true;
     },
 
     showEmailInput() {

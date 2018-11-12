@@ -42,7 +42,7 @@
       </template>
 
       <bat-content-footer>
-        <bat-button @click="onNext" :disabled="selectedClinic === null">Select location</bat-button>
+        <bat-button @click="onNext" :disabled="!valid">Select location</bat-button>
         <bat-button :to="{ name: 'make-booking.location' }" back>Back</bat-button>
       </bat-content-footer>
     </bat-content>
@@ -90,6 +90,14 @@ export default {
 
       return this.clinics.find(clinic => clinic.id === this.selectedClinicId);
     },
+
+    valid() {
+      if (this.selectedClinicId === null) {
+        return false;
+      }
+
+      return true;
+    },
   },
 
   methods: {
@@ -133,6 +141,10 @@ export default {
     },
 
     onNext() {
+      if (!this.valid) {
+        return;
+      }
+
       this.clinic.cache(this.selectedClinic);
       this.$router.push({ name: 'make-booking.appointments' });
     },
