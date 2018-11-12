@@ -91,11 +91,13 @@ export default {
     async fetchAppointments() {
       this.loading = true;
 
+      const earliestTime = moment().add(this.clinic.get.appointment_booking_threshold, 'minutes');
+
       const response = await this.http.get('/v1/appointments', {
         params: {
           'filter[clinic_id]': this.clinic.get.id,
           'filter[available]': true,
-          'filter[starts_after]': moment(this.date, moment.HTML5_FMT.DATE).format('Y-MM-DD\\T00:00:00+00:00'),
+          'filter[starts_after]': earliestTime.format('Y-MM-DD\\THH:mm:ss+00:00'),
           'filter[starts_before]': moment(this.date, moment.HTML5_FMT.DATE).format('Y-MM-DD\\T23:59:59+00:00'),
           sort: 'start_at',
         }

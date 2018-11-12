@@ -71,6 +71,12 @@
           </div>
         </div>
 
+        <hr>
+
+        <bat-button @click="onCancel" secondary>Cancel</bat-button>
+
+        <bat-disclaimer>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</bat-disclaimer>
+
     </bat-content>
 
   </div>
@@ -80,6 +86,7 @@
 import moment from 'moment';
 import Card from '@/components/Card';
 import BookingDetails from '@/components/BookingDetails';
+import Disclaimer from '@/components/Disclaimer';
 import ServiceUser from '@/utilities/ServiceUser';
 import Token from '@/utilities/Token';
 
@@ -89,6 +96,7 @@ export default {
   components: {
     BatCard: Card,
     BatBookingDetails: BookingDetails,
+    BatDisclaimer: Disclaimer,
   },
 
   data() {
@@ -146,6 +154,15 @@ export default {
     async fetchClinic() {
       const response = await this.http.get(`/v1/clinics/${this.appointment.clinic_id}`);
       this.clinic = response.data.data;
+    },
+
+    onCancel() {
+      this.$router.push({
+        name: 'list-bookings.cancel',
+        params: {
+          appointment: this.appointment.id,
+        },
+      });
     },
   },
 

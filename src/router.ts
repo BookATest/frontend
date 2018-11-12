@@ -72,6 +72,16 @@ const router = new Router({
       name: 'list-bookings.appointments',
       component: () => import('@/views/list-bookings/Appointments.vue'),
     },
+    {
+      path: '/list-bookings/appointments/:appointment/cancel',
+      name: 'list-bookings.cancel',
+      component: () => import('@/views/list-bookings/Cancel.vue'),
+    },
+    {
+      path: '/list-bookings/appointments/cancelled',
+      name: 'list-bookings.cancelled',
+      component: () => import('@/views/list-bookings/Cancelled.vue'),
+    },
   ],
 });
 

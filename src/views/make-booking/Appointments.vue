@@ -48,7 +48,6 @@ export default {
       clinicCache: new Clinic(),
       appointmentCache: new Appointment(),
       clinic: null,
-      appointments: [],
       loading: false,
       date: moment().format(moment.HTML5_FMT.DATE),
       appointment: null,
@@ -72,22 +71,6 @@ export default {
       this.clinic = this.clinicCache.get;
     },
 
-    async fetchAppointments() {
-      this.loading = true;
-
-      const response = await this.http.get('/v1/appointments');
-      this.appointments = response.data.data;
-
-      // Set the selected appointment if cached.
-      const appointment = this.appointmentCache.get;
-      if (appointment) {
-        this.date = moment(appointment.start_at, moment.ISO_8601).format(moment.HTML5_FMT.DATE);
-        this.appointment = appointment;
-      }
-
-      this.loading = false;
-    },
-
     onNext() {
       // Do nothing if an appointment has not been selected.
       if (this.appointment === null) {
@@ -107,7 +90,6 @@ export default {
 
   created() {
     this.loadClinic();
-    this.fetchAppointments();
   },
 };
 </script>
