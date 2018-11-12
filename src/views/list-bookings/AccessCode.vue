@@ -17,7 +17,7 @@
         </bat-field>
 
          <div class="actions">
-          <bat-button v-if="!sending" primary type="submit">Send code</bat-button>
+          <bat-button v-if="!sending" :primary="valid" :disabled="!valid" type="submit">Send code</bat-button>
           <bat-button v-else disabled>Sending...</bat-button>
         </div>
       </form>
@@ -48,12 +48,26 @@ export default {
     };
   },
 
+  computed: {
+    valid() {
+      if (!this.phone.match(/^(0[0-9]{10})$/g)) {
+        return false;
+      }
+
+      return true;
+    },
+  },
+
   methods: {
     onInput() {
       this.error = null;
     },
 
     onSendCode() {
+      if (!this.valid) {
+        return;
+      }
+
       this.sending = true;
 
       this.http.post('/v1/service-users/access-code', { phone: this.phone })

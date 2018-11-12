@@ -22,7 +22,7 @@
 
         <div class="actions">
           <bat-button v-if="requestingToken || fetchingServiceUser" disabled>Logging in...</bat-button>
-          <bat-button v-else primary tpye="submit">Log in</bat-button>
+          <bat-button v-else :primary="valid" :disabled="!valid" tpye="submit">Log in</bat-button>
         </div>
       </form>
     </bat-content>
@@ -65,10 +65,23 @@ export default {
     code() {
       return '' + this.code1 + this.code2 + this.code3 + this.code4 + this.code5;
     },
+
+    valid() {
+      // Check if the code only contains digits.
+      if (!/^\d{5}$/.test(this.code)) {
+        return false;
+      }
+
+      return true;
+    },
   },
 
   methods: {
     onLogin() {
+      if (!this.valid) {
+        return;
+      }
+
       this.requestingToken = true;
 
       this.http.post('/v1/service-users/token', { access_code: this.code })
