@@ -110,6 +110,7 @@ export default {
 
       // Regex to check if no space.
       if (!/\s[0-9][A-Za-z]{2}$/.test(postcode)) {
+        // Add space as API requires one.
         postcode = postcode.slice(0, -3) + ' ' + postcode.slice(-3);
       }
 
