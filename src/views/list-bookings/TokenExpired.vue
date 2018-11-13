@@ -1,7 +1,12 @@
 <template>
 <div>
   <bat-text-header>
-    <bat-text-header-title>Token expired</bat-text-header-title>
+    <bat-text-header-title v-text="settings.language['list-bookings']['token-expired'].title" />
+      <bat-text-header-description
+        small
+        v-if="settings.language['list-bookings']['token-expired'].content"
+        v-text="settings.language['list-bookings']['token-expired'].content"
+      />
   </bat-text-header>
 
   <bat-content>
@@ -20,6 +25,7 @@
 </template>
 
 <script>
+import Settings from '@/utilities/Settings';
 import Alert from '@/components/Alert';
 import ServiceUser from '@/utilities/ServiceUser';
 import Token from '@/utilities/Token';
@@ -35,6 +41,7 @@ export default {
     return {
       serviceUserCache: new ServiceUser(),
       tokenCache: new Token(),
+      settings: new Settings().load(),
     };
   },
 

@@ -2,8 +2,12 @@
   <div>
 
     <bat-text-header>
-      <bat-text-header-title>Cancelled</bat-text-header-title>
-      <bat-text-header-description small>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque dictum.</bat-text-header-description>
+      <bat-text-header-title v-text="settings.language['list-bookings'].cancelled.title" />
+      <bat-text-header-description
+        small
+        v-if="settings.language['list-bookings'].cancelled.content"
+        v-text="settings.language['list-bookings'].cancelled.content"
+      />
     </bat-text-header>
 
     <bat-content>
@@ -14,11 +18,18 @@
 </template>
 
 <script>
+import Settings from '@/utilities/Settings';
 import Token from '@/utilities/Token';
 import Alert from '@/components/Alert';
 
 export default {
   name: 'Cancelled',
+
+  data() {
+    return {
+      settings: new Settings().load(),
+    };
+  },
 
   methods: {
     onBack() {

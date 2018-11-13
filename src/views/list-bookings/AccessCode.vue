@@ -2,8 +2,12 @@
   <div>
 
     <bat-text-header>
-      <bat-text-header-title>My appointment</bat-text-header-title>
-      <bat-text-header-description small>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque dictum.</bat-text-header-description>
+      <bat-text-header-title v-text="settings.language['list-bookings']['access-code'].title" />
+      <bat-text-header-description
+        small
+        v-if="settings.language['list-bookings']['access-code'].content"
+        v-text="settings.language['list-bookings']['access-code'].content"
+      />
     </bat-text-header>
 
     <bat-content>
@@ -27,6 +31,7 @@
 </template>
 
 <script>
+import Settings from '@/utilities/Settings';
 import Field from '@/components/Field';
 import FieldInput from '@/components/FieldInput';
 import TextInput from '@/components/TextInput';
@@ -45,6 +50,7 @@ export default {
       phone: '',
       sending: false,
       error: null,
+      settings: new Settings().load(),
     };
   },
 

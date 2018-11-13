@@ -2,7 +2,12 @@
   <div>
 
     <bat-text-header>
-      <bat-text-header-title>Cancel</bat-text-header-title>
+      <bat-text-header-title v-text="settings.language['list-bookings'].cancel.title" />
+      <bat-text-header-description
+        small
+        v-if="settings.language['list-bookings'].cancel.content"
+        v-text="settings.language['list-bookings'].cancel.content"
+      />
     </bat-text-header>
 
     <bat-content>
@@ -25,6 +30,7 @@
 </template>
 
 <script>
+import Settings from '@/utilities/Settings';
 import Token from '@/utilities/Token';
 import Alert from '@/components/Alert';
 
@@ -39,6 +45,7 @@ export default {
     return {
       tokenCache: new Token(),
       cancelling: false,
+      settings: new Settings().load(),
     };
   },
 

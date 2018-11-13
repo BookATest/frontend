@@ -2,7 +2,12 @@
   <div>
 
     <bat-text-header>
-      <bat-text-header-title>Booked appointments</bat-text-header-title>
+      <bat-text-header-title v-text="settings.language['list-bookings'].appointments.title" />
+      <bat-text-header-description
+        small
+        v-if="settings.language['list-bookings'].appointments.content"
+        v-text="settings.language['list-bookings'].appointments.content"
+      />
     </bat-text-header>
 
     <bat-loader v-if="loading" />
@@ -116,6 +121,7 @@
 </template>
 
 <script>
+import Settings from '@/utilities/Settings';
 import moment from 'moment';
 import Card from '@/components/Card';
 import BookingDetails from '@/components/BookingDetails';
@@ -139,6 +145,7 @@ export default {
       showDirections: false,
       appointments: [],
       loading: false,
+      settings: new Settings().load(),
     };
   },
 
