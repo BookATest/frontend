@@ -106,7 +106,14 @@ export default {
     },
 
     cachePostcode() {
-      this.location.cache(this.postcode);
+      let postcode = this.postcode;
+
+      // Regex to check if no space.
+      if (!/\s[0-9][A-Za-z]{2}$/.test(postcode)) {
+        postcode = postcode.slice(0, -3) + ' ' + postcode.slice(-3);
+      }
+
+      this.location.cache(postcode);
     },
   },
 
