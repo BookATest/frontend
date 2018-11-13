@@ -31,6 +31,9 @@ export default {
     inactive: {
       type: Boolean,
     },
+    clickable: {
+      type: Boolean,
+    },
   },
 
   computed: {
@@ -39,6 +42,7 @@ export default {
         'card--primary': this.primary,
         'card--selected': this.selected,
         'card--inactive': this.inactive,
+        'card--clickable': this.clickable,
       };
     },
   },

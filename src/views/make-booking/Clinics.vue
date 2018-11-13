@@ -25,6 +25,7 @@
           @select="onSelectClinic(clinic)"
           @deselect="onDeselectClinic(clinic)"
           primary
+          clickable
           :selected="selectedClinicId === clinic.id"
           :title="clinic.name"
         >

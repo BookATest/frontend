@@ -28,6 +28,12 @@
     border-color: $mine-shaft;
   }
 
+  &--clickable {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
   &--not-eligible {
     background-color: $brand-primary-10;
     border-color: transparent;
