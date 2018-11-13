@@ -53,7 +53,7 @@ export default {
       appointmentCache: new Appointment(),
       clinic: null,
       loading: false,
-      date: moment().format(moment.HTML5_FMT.DATE),
+      date: null,
       appointment: null,
       settings: new Settings().load(),
     };
@@ -66,14 +66,30 @@ export default {
   },
 
   watch: {
-    date() {
-      this.time = null;
+    date(newDate, oldDate) {
+      if (oldDate === null) {
+        return;
+      }
+
+      this.appointment = null;
     },
   },
 
   methods: {
     loadClinic() {
       this.clinic = this.clinicCache.get;
+    },
+
+    loadAppointment() {
+      const appointment = this.appointmentCache.get;
+
+      if (appointment === undefined) {
+        this.date = moment().format(moment.HTML5_FMT.DATE)
+        return;
+      }
+
+      this.date = moment(appointment.start_at, moment.ISO_8601).format(moment.HTML5_FMT.DATE);
+      this.appointment = appointment;
     },
 
     onNext() {
@@ -95,6 +111,7 @@ export default {
 
   created() {
     this.loadClinic();
+    this.loadAppointment();
   },
 };
 </script>
