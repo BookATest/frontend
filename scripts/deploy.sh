@@ -2,6 +2,10 @@
 
 set -e
 
+# Create AWS dir for credentials and config.
+echo "Creating AWS config directory..."
+mkdir ~/.aws
+
 # Set AWS CLI credentials.
 echo "Setting AWS credentials..."
 touch ~/.aws/credentials
