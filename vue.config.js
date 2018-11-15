@@ -16,7 +16,13 @@ module.exports = {
       cloudfrontId: undefined,
       cloudfrontMatchers: '/*',
       uploadConcurrency: 5,
-      pluginVersion: '3.0.0'
+      pluginVersion: '3.0.0',
+      registry: undefined,
+      createBucket: false,
+      staticHosting: false,
+      assetMatch: '**',
+      deployPath: '/',
+      acl: 'public-read'
     }
   }
 }
