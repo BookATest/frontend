@@ -37,3 +37,6 @@ npm run test:unit
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+### Built with
+![Browserstack logo(https://raw.githubusercontent.com/BookATest/frontend/master/tests/.browserstack/logo.png)
