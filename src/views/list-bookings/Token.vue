@@ -15,7 +15,7 @@
         <bat-field code text-label-top center>
           <bat-field-input>
             <label for="code">Confirmation code</label>
-            <bat-text-input v-model="code" maxlength="5" id="code" placeholder="XXXXX" />
+            <bat-text-input v-model="code" type="number" maxlength="5" id="code" placeholder="XXXXX" />
           </bat-field-input>
           <p v-if="error" class="color-error">{{ error }}</p>
         </bat-field>
