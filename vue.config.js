@@ -7,11 +7,12 @@ module.exports = {
   productionSourceMap: true,
   pluginOptions: {
     s3Deploy: {
-      bucket: undefined,
       region: 'eu-west-1',
+      bucket: undefined,
       assetPath: 'dist',
       pwa: false,
       enableCloudfront: true,
+      cloudfrontId: undefined,
       cloudfrontMatchers: '/*',
       uploadConcurrency: 5,
       pluginVersion: '3.0.0'
