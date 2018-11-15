@@ -2,7 +2,7 @@
 
 .field__input {
   display: inline-block;
- 
+
   @include breakpoint($break_mobile) {
     display: block;
   }
@@ -49,7 +49,6 @@ input, textarea, .input, select {
   }
 
   .field--code & {
-    width: 32px;
     padding: $base-margin*0.75 $base-margin*0.5;
     margin: 0 $base-margin*0.15;
     text-align: center;
@@ -67,7 +66,7 @@ input, textarea, .input, select {
     }
   }
 
-  .field--inline {    
+  .field--inline {
     @include breakpoint($break_mobile) {
       display: block;
     }

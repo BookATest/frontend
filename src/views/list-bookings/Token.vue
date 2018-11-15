@@ -12,14 +12,10 @@
 
     <bat-content>
       <form @submit.prevent="onLogin" class="form text-center">
-        <bat-field code text text-label-top>
+        <bat-field code text-label-top center>
           <bat-field-input>
-            <label for="code_1">Confirmation code</label>
-            <bat-text-input v-model="code1" @keypress="onKeypress($event, 1)" ref="code_1" maxlength="1" placeholder="-" name="code_1" />
-            <bat-text-input v-model="code2" @keypress="onKeypress($event, 2)" ref="code_2" maxlength="1" placeholder="-" />
-            <bat-text-input v-model="code3" @keypress="onKeypress($event, 3)" ref="code_3" maxlength="1" placeholder="-" />
-            <bat-text-input v-model="code4" @keypress="onKeypress($event, 4)" ref="code_4" maxlength="1" placeholder="-" />
-            <bat-text-input v-model="code5" @keypress="onKeypress($event, 5)" ref="code_5" maxlength="1" placeholder="-" />
+            <label for="code">Confirmation code</label>
+            <bat-text-input v-model="code" maxlength="5" id="code" placeholder="XXXXX" />
           </bat-field-input>
           <p v-if="error" class="color-error">{{ error }}</p>
         </bat-field>
@@ -53,11 +49,7 @@ export default {
 
   data() {
     return {
-      code1: '',
-      code2: '',
-      code3: '',
-      code4: '',
-      code5: '',
+      code: '',
       serviceUserCache: new ServiceUser(),
       tokenCache: new Token(),
       requestingToken: false,
@@ -68,10 +60,6 @@ export default {
   },
 
   computed: {
-    code() {
-      return '' + this.code1 + this.code2 + this.code3 + this.code4 + this.code5;
-    },
-
     valid() {
       // Check if the code only contains digits.
       if (!/^\d{5}$/.test(this.code)) {
@@ -111,35 +99,6 @@ export default {
           this.error = error.response.data.errors.access_code[0];
         })
         .then(() => this.requestingToken = false);
-    },
-
-    /**
-     * Places focus on the next input box.
-     */
-    onKeypress(key, index) {
-      // First, clear the error if there is one.
-      this.error = null;
-
-      // Attempt to parse the key pressed into an integer.
-      const number = parseInt(key);
-
-      // Exit if the key was not a number.
-      if (isNaN(number)) {
-        return;
-      }
-
-      // Exit if the number is less than 0 or greater than 9.
-      if (number < 0 || number > 9) {
-        return;
-      }
-
-      // Do nothing if on last input.
-      if (index === 5) {
-        return;
-      }
-
-      // Shift focus to the next input.
-      this.$refs[`code_${index + 1}`].$el.focus();
     },
   },
 };
