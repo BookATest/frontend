@@ -14,7 +14,7 @@ cache:
     - $HOME/.local
 
 before_install:
-  - pip install awscli
+  - pip install --user awscli
   - export PATH=$PATH:$HOME/.local/bin
 
 install:
