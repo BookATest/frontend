@@ -10,7 +10,7 @@ export default class Appointment {
     this.appointment = JSON.parse(json) || undefined;
   }
 
-  public get get(): object | undefined {
+  public get get(): any | undefined {
     return this.appointment;
   }
 
