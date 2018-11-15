@@ -40,3 +40,4 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ### Built with
 ![Browserstack logo](https://raw.githubusercontent.com/BookATest/frontend/master/tests/.browserstack/logo.png)
+We use [Browserstack](https://www.browserstack.com) for cross browser testing.
