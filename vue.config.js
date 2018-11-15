@@ -7,6 +7,7 @@ module.exports = {
   productionSourceMap: true,
   pluginOptions: {
     s3Deploy: {
+      bucket: undefined,
       region: 'eu-west-1',
       assetPath: 'dist',
       pwa: false,
