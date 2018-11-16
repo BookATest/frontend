@@ -190,7 +190,7 @@ export default {
         });
 
         // Append an expanded property.
-        appointments.forEach(appointment => appointment.expanded = false);
+        appointments.forEach((appointment) => appointment.expanded = false);
 
         // Set the first appointment to be expanded.
         if (appointments.length > 0) {
@@ -212,13 +212,12 @@ export default {
     async appendClinics(appointments) {
       // Fetch all the clinics.
       const clinics = await this.fetchAll('/v1/clinics', {
-        'filter[id]': appointments.map(appointment => appointment.clinic_id).join(','),
+        'filter[id]': appointments.map((appointment) => appointment.clinic_id).join(','),
       });
 
       // Append the clinic to the appointment.
-      appointments.forEach(appointment => {
-        const clinic = clinics.find(clinic => clinic.id === appointment.clinic_id);
-        appointment.clinic = clinic;
+      appointments.forEach((appointment) => {
+        appointment.clinic = clinics.find((clinic) => clinic.id === appointment.clinic_id);
       });
 
       return appointments;

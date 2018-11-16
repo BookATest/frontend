@@ -77,10 +77,10 @@ export default {
       this.sending = true;
 
       this.http.post('/v1/service-users/access-code', { phone: this.phone })
-        .then(response => {
+        .then((response) => {
           this.$router.push({ name: 'list-bookings.token' });
         })
-        .catch(error => {
+        .catch((error) => {
           this.error = error.response.data.errors.phone[0];
         })
         .then(() => this.sending = false);

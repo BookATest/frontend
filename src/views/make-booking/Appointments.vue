@@ -30,12 +30,12 @@
 </template>
 
 <script>
-import moment from "moment";
-import Field from "@/components/Field";
-import DatePickerInput from "@/components/DatePickerInput";
-import TimeInput from "@/components/TimeInput";
-import Clinic from "@/utilities/Clinic";
-import Appointment from "@/utilities/Appointment";
+import moment from 'moment';
+import Field from '@/components/Field';
+import DatePickerInput from '@/components/DatePickerInput';
+import TimeInput from '@/components/TimeInput';
+import Clinic from '@/utilities/Clinic';
+import Appointment from '@/utilities/Appointment';
 import Settings from '@/utilities/Settings';
 
 export default {
@@ -84,7 +84,7 @@ export default {
       const appointment = this.appointmentCache.get;
 
       if (appointment === undefined) {
-        this.date = moment().format(moment.HTML5_FMT.DATE)
+        this.date = moment().format(moment.HTML5_FMT.DATE);
         return;
       }
 

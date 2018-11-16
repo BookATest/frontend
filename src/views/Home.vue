@@ -31,7 +31,7 @@ export default {
   },
 
   created() {
-    Settings.create().then(settings => this.settings = settings.load());
+    Settings.create().then((settings) => this.settings = settings.load());
   },
 };
 </script>

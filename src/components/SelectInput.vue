@@ -23,26 +23,28 @@ export default {
     options: {
       required: true,
       type: Array,
-      validate: prop => {
+      validate: (prop) => {
         for (const item in prop) {
-          if (typeof(item) !== 'object') {
-            return false;
-          }
+          if (prop.hasOwnProperty(item)) {
+            if (typeof(item) !== 'object') {
+              return false;
+            }
 
-          if (!item.hasOwnProperty('value')) {
-            return false;
-          }
+            if (!item.hasOwnProperty('value')) {
+              return false;
+            }
 
-          if (!item.hasOwnProperty('text')) {
-            return false;
-          }
+            if (!item.hasOwnProperty('text')) {
+              return false;
+            }
 
-          if (item.hasOwnProperty('disabled') && typeof(item) !== 'boolean') {
-            return false;
-          }
+            if (item.hasOwnProperty('disabled') && typeof(item) !== 'boolean') {
+              return false;
+            }
 
-          if (item.hasOwnProperty('selected') && typeof(item) !== 'boolean') {
-            return false;
+            if (item.hasOwnProperty('selected') && typeof(item) !== 'boolean') {
+              return false;
+            }
           }
         }
 

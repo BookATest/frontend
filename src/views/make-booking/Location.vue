@@ -39,8 +39,8 @@
 <script>
 import Settings from '@/utilities/Settings';
 import Field from '@/components/Field';
-import PostcodeInput from "@/components/PostcodeInput";
-import Location from "@/utilities/Location";
+import PostcodeInput from '@/components/PostcodeInput';
+import Location from '@/utilities/Location';
 
 export default {
   name: 'Location',
@@ -84,7 +84,7 @@ export default {
 
       this.loadingLocation = true;
 
-      navigator.geolocation.getCurrentPosition(position => {
+      navigator.geolocation.getCurrentPosition((position) => {
         this.coordinate.lat = position.coords.latitude;
         this.coordinate.lon = position.coords.longitude;
 

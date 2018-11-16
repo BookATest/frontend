@@ -35,7 +35,7 @@ export default {
 
   computed: {
     isHome() {
-      return this.$route.name === 'home'
+      return this.$route.name === 'home';
     },
 
     hideHeader() {

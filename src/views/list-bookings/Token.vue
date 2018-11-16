@@ -79,7 +79,7 @@ export default {
       this.requestingToken = true;
 
       this.http.post('/v1/service-users/token', { access_code: this.code })
-        .then(response => {
+        .then((response) => {
           // Cache the token.
           const token = response.data.token;
           this.tokenCache.cache(token);
@@ -87,15 +87,15 @@ export default {
           // Fetch the service user.
           this.fetchingServiceUser = true;
           this.http.get(`/v1/service-users/token/${token}`)
-            .then(response => {
+            .then((tokenResponse) => {
               // Cache the service user.
-              this.serviceUserCache.cache(response.data.data);
+              this.serviceUserCache.cache(tokenResponse.data.data);
 
               // Redirect to appointments page.
               this.$router.push({ name: 'list-bookings.appointments' });
             });
         })
-        .catch(error => {
+        .catch((error) => {
           this.error = error.response.data.errors.access_code[0];
         })
         .then(() => this.requestingToken = false);

@@ -45,7 +45,7 @@ export default {
         'icon-arrow-up': this.arrowUp,
         'icon-alert': this.alert,
       };
-    }
+    },
   },
 };
 </script>
