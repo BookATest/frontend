@@ -17,6 +17,7 @@
     :class="classes"
     role="button"
     @click="onClick"
+    :type="type"
   >
     <slot />
   </button>
@@ -47,6 +48,9 @@ export default {
     },
     tag: {
       default: 'a',
+    },
+    type: {
+      default: 'button',
     },
   },
 

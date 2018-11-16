@@ -20,8 +20,9 @@
         <template v-if="hasGeolocationCapabilities">
           <p class="sm-copy text-center">or</p>
 
-          <bat-button location :disabled="loadingLocation" @click="fetchCoordinate">
-            <template v-if="loadingLocation">Finding location...</template>
+          <bat-button location :disabled="loadingLocation || noGeolocation" @click="fetchCoordinate">
+            <template v-if="noGeolocation">Could not find your location</template>
+            <template v-else-if="loadingLocation">Finding location...</template>
             <template v-else>Find my location</template>
             <bat-icon location-arrow />
           </bat-button>
@@ -60,6 +61,7 @@ export default {
         lon: null,
       },
       hasGeolocationCapabilities: navigator.geolocation,
+      noGeolocation: false,
       settings: new Settings().load(),
     };
   },
@@ -94,6 +96,9 @@ export default {
         this.loadingLocation = false;
 
         this.$router.push({ name: 'make-booking.clinics' });
+      }, () => {
+        this.noGeolocation = true;
+        this.loadingLocation = false;
       });
     },
 
