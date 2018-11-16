@@ -68,7 +68,7 @@ import SelectInput from '@/components/SelectInput';
 import DateInput from '@/components/DateInput';
 import TextInput from '@/components/TextInput';
 import CheckboxInput from '@/components/CheckboxInput';
-import Answers from "@/utilities/Answers";
+import Answers from '@/utilities/Answers';
 
 const answersCacheKey = 'answers';
 
@@ -96,7 +96,7 @@ export default {
 
   computed: {
     valid() {
-      for (let question of this.questions) {
+      for (const question of this.questions) {
         if (question.answer === '' || question.answer === null) {
           return false;
         }
@@ -119,26 +119,26 @@ export default {
 
     parseQuestion(question) {
       switch (question.type) {
-          case 'select':
-            question.answer = null;
-            question.options = question.options.map(option => ({ value: option, text: option }));
-            break;
-          case 'checkbox':
-            question.answer = false;
-            break;
-          case 'date':
-          case 'text':
-          default:
-            question.answer = '';
-            break;
-        }
+        case 'select':
+          question.answer = null;
+          question.options = question.options.map((option) => ({ value: option, text: option }));
+          break;
+        case 'checkbox':
+          question.answer = false;
+          break;
+        case 'date':
+        case 'text':
+        default:
+          question.answer = '';
+          break;
+      }
 
-        return question;
+      return question;
     },
 
     fetchAnswers() {
       // Loop through each question.
-      this.questions.forEach(question => {
+      this.questions.forEach((question) => {
         // Get the answer for the question.
         const answer = this.answers.find(question.id);
 
@@ -151,7 +151,7 @@ export default {
 
     cacheAnswers() {
       // Create a parsed answers array.
-      const answers = this.questions.map(question => ({ question_id: question.id, answer: question.answer }));
+      const answers = this.questions.map((question) => ({ question_id: question.id, answer: question.answer }));
 
       // Store the answers array as a JSON string in session storage.
       this.answers.cache(answers);

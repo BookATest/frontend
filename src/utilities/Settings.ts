@@ -2,15 +2,6 @@ import SettingsInterface from '@/utilities/SettingsInterface';
 import http from '@/http';
 
 export default class Settings {
-  public static async create(): Promise<Settings> {
-    const settings = new Settings();
-
-    if (!settings.isCached) {
-      settings.cache(await settings.fetch());
-    }
-
-    return settings;
-  }
 
   protected static get sessionStorageKey(): string {
     return 'api_settings';
@@ -22,6 +13,23 @@ export default class Settings {
 
   public static get isCached(): boolean {
     return window.sessionStorage.getItem(Settings.sessionStorageKey) !== null;
+  }
+
+  public get name(): string {
+    return this.load().name;
+  }
+  public static async create(): Promise<Settings> {
+    const settings = new Settings();
+
+    if (!settings.isCached) {
+      settings.cache(await settings.fetch());
+    }
+
+    return settings;
+  }
+
+  public load(): SettingsInterface {
+    return JSON.parse(window.sessionStorage.getItem(Settings.sessionStorageKey) || '{}');
   }
 
   protected cache(settings: SettingsInterface): Settings {
@@ -44,13 +52,5 @@ export default class Settings {
       primary_colour: data.primary_colour,
       secondary_colour: data.secondary_colour,
     };
-  }
-
-  public load(): SettingsInterface {
-    return JSON.parse(window.sessionStorage.getItem(Settings.sessionStorageKey) || '{}');
-  }
-
-  public get name(): string {
-    return this.load().name;
   }
 }

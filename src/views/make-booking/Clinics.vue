@@ -57,10 +57,10 @@
 
 <script>
 import Settings from '@/utilities/Settings';
-import Card from "@/components/Card";
-import Location from "@/utilities/Location";
-import Answers from "@/utilities/Answers";
-import Clinic from "@/utilities/Clinic";
+import Card from '@/components/Card';
+import Location from '@/utilities/Location';
+import Answers from '@/utilities/Answers';
+import Clinic from '@/utilities/Clinic';
 
 export default {
   name: 'Clinics',
@@ -95,7 +95,7 @@ export default {
         return null;
       }
 
-      return this.clinics.find(clinic => clinic.id === this.selectedClinicId);
+      return this.clinics.find((clinic) => clinic.id === this.selectedClinicId);
     },
 
     valid() {
@@ -111,7 +111,7 @@ export default {
     async fetchClinics() {
       this.loading = true;
 
-      let payload = {
+      const payload = {
         answers: this.answers.all,
       };
 

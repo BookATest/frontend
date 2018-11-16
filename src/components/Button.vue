@@ -46,7 +46,7 @@ export default {
       type: Boolean,
     },
     tag: {
-      default: 'a'
+      default: 'a',
     },
   },
 
@@ -59,7 +59,7 @@ export default {
         'btn--back': this.back,
         'btn--disabled': this.disabled,
       };
-    }
+    },
   },
 
   methods: {

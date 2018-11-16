@@ -92,7 +92,7 @@ export default {
       // First, check if the appointment has the user details appended.
       const properties = ['user_first_name', 'user_last_name', 'user_email', 'user_phone'];
       let hasAllProperties = true;
-      for (let property of properties) {
+      for (const property of properties) {
         if (!this.appointment.hasOwnProperty(property)) {
           hasAllProperties = false;
         }

@@ -74,7 +74,7 @@
 </template>
 
 <script>
-import moment from "moment";
+import moment from 'moment';
 import Datepicker from 'vuejs-datepicker';
 import Field from '@/components/Field';
 

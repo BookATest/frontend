@@ -10,31 +10,31 @@ export default {
 
   props: {
     inline: {
-      type: Boolean
+      type: Boolean,
     },
     select: {
-      type: Boolean
+      type: Boolean,
     },
     date: {
-      type: Boolean
+      type: Boolean,
     },
     text: {
-      type: Boolean
+      type: Boolean,
     },
     checkbox: {
-      type: Boolean
+      type: Boolean,
     },
     search: {
-      type: Boolean
+      type: Boolean,
     },
     datePicker: {
-      type: Boolean
+      type: Boolean,
     },
     time: {
-      type: Boolean
+      type: Boolean,
     },
     radio: {
-      type: Boolean
+      type: Boolean,
     },
     textLabelTop: {
       type: Boolean,
