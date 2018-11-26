@@ -7,7 +7,7 @@
 
     <div class="time__row__items">
 
-      <div v-for="appointment in appointments" :key="appointment.id" class="time__row__items__item">
+      <div v-for="appointment in uniqueAppointments" :key="appointment.id" class="time__row__items__item">
 
         <input
           type="radio"
@@ -45,6 +45,45 @@ export default {
 
     appointments: {
       required: true,
+    },
+  },
+
+  computed: {
+    uniqueAppointments() {
+      const times = [];
+
+      // For the selected appointment.
+      if (this.value) {
+        times.push(this.value.start_at);
+      }
+
+      return this.appointments
+        .sort(() => 0.5 - Math.random()) // Randomly sort the appointments.
+        .filter((appointment) => { // Filter out multiple appointments for the same time.
+          // For the selected appointment.
+          if (this.value && this.value.id === appointment.id) {
+            return true;
+          }
+
+          // For overlapping appointments.
+          if (times.includes(appointment.start_at)) {
+            return false;
+          }
+
+          times.push(appointment.start_at);
+          return true;
+        })
+        .sort((appointmentA, appointmentB) => { // Sort appointments in time order.
+          if (new Date(appointmentA.start_at) > new Date(appointmentB.start_at)) {
+            return 1;
+          }
+
+          if (new Date(appointmentA.start_at) < new Date(appointmentB.start_at)) {
+            return -1;
+          }
+
+          return 0;
+        });
     },
   },
 
