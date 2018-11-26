@@ -37,6 +37,7 @@ import FieldInput from '@/components/FieldInput';
 import TextInput from '@/components/TextInput';
 import Token from '@/utilities/Token';
 import ServiceUser from '@/utilities/ServiceUser';
+import Phone from '@/utilities/Phone';
 
 export default {
   name: 'Token',
@@ -56,6 +57,7 @@ export default {
       fetchingServiceUser: false,
       error: null,
       settings: new Settings().load(),
+      phoneCache: new Phone(),
     };
   },
 
@@ -78,7 +80,10 @@ export default {
 
       this.requestingToken = true;
 
-      this.http.post('/v1/service-users/token', { access_code: this.code })
+      this.http.post('/v1/service-users/token', {
+        phone: this.phoneCache.get,
+        access_code: this.code,
+      })
         .then((response) => {
           // Cache the token.
           const token = response.data.token;

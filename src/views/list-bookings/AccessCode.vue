@@ -32,6 +32,7 @@
 
 <script>
 import Settings from '@/utilities/Settings';
+import Phone from '@/utilities/Phone';
 import Field from '@/components/Field';
 import FieldInput from '@/components/FieldInput';
 import TextInput from '@/components/TextInput';
@@ -51,6 +52,7 @@ export default {
       sending: false,
       error: null,
       settings: new Settings().load(),
+      phoneCache: new Phone(),
     };
   },
 
@@ -78,6 +80,7 @@ export default {
 
       this.http.post('/v1/service-users/access-code', { phone: this.phone })
         .then((response) => {
+          this.phoneCache.cache(this.phone);
           this.$router.push({ name: 'list-bookings.token' });
         })
         .catch((error) => {

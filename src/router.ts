@@ -11,6 +11,7 @@ import User from '@/utilities/User';
 import Answers from '@/utilities/Answers';
 import Token from '@/utilities/Token';
 import ServiceUser from '@/utilities/ServiceUser';
+import Phone from '@/utilities/Phone';
 
 Vue.use(Router);
 
@@ -252,6 +253,15 @@ const router = new Router({
       path: '/list-bookings/token',
       name: 'list-bookings.token',
       component: () => import('@/views/list-bookings/Token.vue'),
+      beforeEnter: (to, from, next) => {
+        const phoneCache = new Phone();
+
+        if (phoneCache.get === undefined) {
+          return next({ name: 'list-bookings.access-code' });
+        }
+
+        return next();
+      },
     },
     {
       path: '/list-bookings/appointments',
