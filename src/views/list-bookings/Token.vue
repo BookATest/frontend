@@ -22,7 +22,7 @@
 
         <div class="actions">
           <bat-button v-if="requestingToken || fetchingServiceUser" disabled>Logging in...</bat-button>
-          <bat-button v-else :primary="valid" :disabled="!valid" tpye="submit">Log in</bat-button>
+          <bat-button v-else :primary="valid" :disabled="!valid" type="submit">Log in</bat-button>
         </div>
       </form>
     </bat-content>
