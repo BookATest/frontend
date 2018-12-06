@@ -118,7 +118,7 @@ export default {
       appointment: new Appointment().get,
       clinic: new Clinic().get,
       userDetails: new UserDetails().get,
-      showDirections: false,
+      showDirections: true,
       settings: new Settings().load(),
     };
   },
