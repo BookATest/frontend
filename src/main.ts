@@ -8,7 +8,7 @@ import Vue from 'vue';
 import App from './App.vue';
 import router from './router';
 import http from './http';
-import VueAnalytics from 'vue-analytics';
+const VueAnalytics = require('vue-analytics');
 
 // Only use Google Analytics if ID is in the environment.
 if (process.env.VUE_APP_GOOGLE_ANALYTICS_ID) {
