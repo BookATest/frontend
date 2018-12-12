@@ -60,9 +60,9 @@ do
 
     # Build.
     echo "Building..."
-    node_modules/.bin/vue-cli-service build --mode staging
+    node_modules/.bin/vue-cli-service build --mode ${ENVIRONMENT}
 
     # Deploy to S3.
     echo "Deploying..."
-    node_modules/.bin/vue-cli-service s3-deploy --mode staging
+    node_modules/.bin/vue-cli-service s3-deploy --mode ${ENVIRONMENT}
 done
