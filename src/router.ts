@@ -168,6 +168,40 @@ const router = new Router({
       },
     },
     {
+      path: '/make-booking/no-consent',
+      name: 'make-booking.no-consent',
+      component: () => import('@/views/make-booking/NoConsent.vue'),
+      beforeEnter: (to, from, next) => {
+        const answersCache = new Answers();
+        const locationCache = new Location();
+        const clinicCache = new Clinic();
+        const appointmentCache = new Appointment();
+        const userDetailsCache = new UserDetails();
+
+        if (answersCache.all === undefined) {
+          return next({ name: 'make-booking.questions' });
+        }
+
+        if (locationCache.getCoordinate === undefined && locationCache.getPostcode === undefined) {
+          return next({ name: 'make-booking.location' });
+        }
+
+        if (clinicCache.get === undefined) {
+          return next({ name: 'make-booking.clinics' });
+        }
+
+        if (appointmentCache.get === undefined) {
+          return next({ name: 'make-booking.appointments' });
+        }
+
+        if (userDetailsCache.get === undefined) {
+          return next({ name: 'make-booking.user-details' });
+        }
+
+        return next();
+      },
+    },
+    {
       path: '/make-booking/overview',
       name: 'make-booking.overview',
       component: () => import('@/views/make-booking/Overview.vue'),
