@@ -11,7 +11,7 @@
     </bat-text-header>
 
     <bat-content>
-      <div class="results">
+      <div v-if="clinics.length > 0" class="results">
         <span class="results__text">Showing results for</span>
         <span class="results__term" v-text="locationText" />
       </div>
@@ -19,36 +19,42 @@
       <bat-loader v-if="loading" />
 
       <template v-else>
-        <bat-card
-          v-for="clinic in clinics"
-          :key="clinic.id"
-          @select="onSelectClinic(clinic)"
-          @deselect="onDeselectClinic(clinic)"
-          primary
-          clickable
-          :selected="selectedClinicId === clinic.id"
-          :title="clinic.name"
-        >
-          <p>
-            {{ clinic.address_line_1 }}<br>
-            <template v-if="clinic.address_line_2">
-              {{ clinic.address_line_2 }}<br>
-            </template>
-            <template v-if="clinic.address_line_3">
-              {{ clinic.address_line_3 }}<br>
-            </template>
-            {{ clinic.city }}<br>
-            {{ clinic.postcode }}
-          </p>
+        <template v-if="clinics.length > 0">
+          <bat-card
+            v-for="clinic in clinics"
+            :key="clinic.id"
+            @select="onSelectClinic(clinic)"
+            @deselect="onDeselectClinic(clinic)"
+            primary
+            clickable
+            :selected="selectedClinicId === clinic.id"
+            :title="clinic.name"
+          >
+            <p>
+              {{ clinic.address_line_1 }}<br>
+              <template v-if="clinic.address_line_2">
+                {{ clinic.address_line_2 }}<br>
+              </template>
+              <template v-if="clinic.address_line_3">
+                {{ clinic.address_line_3 }}<br>
+              </template>
+              {{ clinic.city }}<br>
+              {{ clinic.postcode }}
+            </p>
 
-          <span slot="meta">{{ toMiles(clinic.distance) }} miles</span>
-        </bat-card>
+            <span slot="meta">{{ toMiles(clinic.distance) }} miles</span>
+          </bat-card>
+        </template>
 
-        <p v-if="clinics.length === 0">You're not eligible at any clinics.</p>
+        <template v-else>
+          <h2>Other services</h2>
+          <p>We're only funded to provide this service for men who have sex with men and trans people who are aged 16 or over.</p>
+          <p>If you'd like to order a home testing kit or find your nearest clinic, visit the <a href="https://greenwichsexualhealth.org" target="_blank">Greenwich Sexual Health</a> website.</p>
+        </template>
       </template>
 
       <bat-content-footer>
-        <bat-button @click="onNext" :disabled="!valid">Select location</bat-button>
+        <bat-button v-if="clinics.length > 0" @click="onNext" :disabled="!valid">Select location</bat-button>
         <bat-button :to="{ name: 'make-booking.location' }" back>Back</bat-button>
       </bat-content-footer>
     </bat-content>
