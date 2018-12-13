@@ -47,9 +47,7 @@
         </template>
 
         <template v-else>
-          <h2>Other services</h2>
-          <p>We're only funded to provide this service for men who have sex with men and trans people who are aged 16 or over.</p>
-          <p>If you'd like to order a home testing kit or find your nearest clinic, visit the <a href="https://greenwichsexualhealth.org" target="_blank">Greenwich Sexual Health</a> website.</p>
+          <div>{{ settings.language['make-booking'].clinics.ineligible }}</div>
         </template>
       </template>
 
