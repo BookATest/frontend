@@ -41,15 +41,11 @@
 <script>
 import Settings from '@/utilities/Settings';
 import Alert from '@/components/Alert';
-import Appointment from '@/utilities/Appointment';
-import Clinic from '@/utilities/Clinic';
 import UserDetails from '@/utilities/UserDetails';
-import Location from '@/utilities/Location';
 import User from '@/utilities/User';
-import Answers from '@/utilities/Answers';
 
 export default {
-  name: 'Notification',
+  name: 'Consent',
 
   components: {
     BatAlert: Alert,
@@ -57,12 +53,7 @@ export default {
 
   data() {
     return {
-      appointmentCache: new Appointment(),
-      clinicCache: new Clinic(),
       userDetailsCache: new UserDetails(),
-      locationCache: new Location(),
-      userCache: new User(),
-      answersCache: new Answers(),
       settings: new Settings().load(),
     };
   },
@@ -86,13 +77,7 @@ export default {
     },
 
     onNo() {
-      this.appointmentCache.clear();
-      this.clinicCache.clear();
-      this.userDetailsCache.clear();
-      this.locationCache.clear();
-      this.userCache.clear();
-      this.answersCache.clear();
-      this.$router.push({ name: 'home' });
+      this.$router.push({ name: 'make-booking.no-consent' });
     },
 
     onBack() {
