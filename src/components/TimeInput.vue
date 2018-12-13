@@ -64,7 +64,7 @@ export default {
         const startAt = moment(appointment.start_at, moment.ISO_8601);
         const startHour = startAt.hour() + 1;
 
-        return startHour > 12 && startHour < 18;
+        return startHour >= 12 && startHour < 18;
       });
     },
 
@@ -76,7 +76,7 @@ export default {
         const startAt = moment(appointment.start_at, moment.ISO_8601);
         const startHour = startAt.hour() + 1;
 
-        return startHour > 18;
+        return startHour >= 18;
       });
     },
   },
