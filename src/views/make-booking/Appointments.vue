@@ -114,8 +114,10 @@ export default {
     loadAppointment() {
       const appointment = this.appointmentCache.get;
 
-      this.date = moment(appointment.start_at, moment.ISO_8601).format(moment.HTML5_FMT.DATE);
-      this.appointment = appointment;
+      if (appointment !== undefined) {
+        this.date = moment(appointment.start_at, moment.ISO_8601).format(moment.HTML5_FMT.DATE);
+        this.appointment = appointment;
+      }
     },
 
     onNext() {
