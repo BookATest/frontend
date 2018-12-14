@@ -1,72 +1,18 @@
 <template>
   <div>
     <bat-field date-picker>
-      <label for="date-picker">Select date</label>
 
-      <div class="date-picker">
+      <a @click.prevent="toggleDatePicker" href="#">
+        <strong>Choose another date?</strong>
+      </a>
 
-        <div class="date-picker__options">
-
-          <a
-            @click="onSelect(today)"
-            href="#"
-            class="date-picker__options__option"
-            :class="{ selected: value === today.format(html5DateFormat) }"
-            role="button"
-          >
-            Today
-          </a>
-
-          <!---->&nbsp;<!---->
-
-          <a
-            @click="onSelect(tomorrow)"
-            href="#"
-            class="date-picker__options__option"
-            :class="{ selected: value === tomorrow.format(html5DateFormat) }"
-            role="button"
-          >
-            Tomorrow
-          </a>
-
-          <!---->&nbsp;<!---->
-
-          <a
-            @click="onSelect(dayPlus2)"
-            href="#"
-            class="date-picker__options__option"
-            :class="{ selected: value === dayPlus2.format(html5DateFormat) }"
-            role="button"
-            v-text="dayPlus2.format('dddd')"
-          />
-
-          <!---->&nbsp;<!---->
-
-          <a
-            @click="onSelect(dayPlus3)"
-            href="#"
-            class="date-picker__options__option"
-            :class="{ selected: value === dayPlus3.format(html5DateFormat) }"
-            role="button"
-            v-text="dayPlus3.format('dddd')"
-          />
-
-        </div>
-
-        <div class="date-picker__toggle">
-          <button @click="toggleDatePicker">
-            <div class="date-picker__toggle__icon">
-              <bat-icon arrow-up />
-            </div>
-          </button>
-        </div>
-
-      </div>
     </bat-field>
 
     <date-picker
+      :value="value"
       ref="datePicker"
       monday-first
+      :disabled-dates="disabledDates"
       input-class="date-picker--hidden"
       @selected="onDateSelected"
     />
@@ -90,6 +36,11 @@ export default {
     value: {
       required: true,
     },
+
+    availableAppointments: {
+      required: true,
+      type: Array
+    }
   },
 
   data() {
@@ -99,6 +50,19 @@ export default {
       dayPlus2: moment().add(2, 'days'),
       dayPlus3: moment().add(3, 'days'),
       html5DateFormat: moment.HTML5_FMT.DATE,
+      disabledDates: {
+        customPredictor: (date) => {
+          const checkDate = moment(date)
+
+          const appointmentExists = this.availableAppointments.find((appointment) => {
+            const appointmentDate = moment(appointment.start_at, moment.ISO_8601);
+
+            return checkDate.format(moment.HTML5_FMT.DATE) === appointmentDate.format(moment.HTML5_FMT.DATE);
+          });
+
+          return appointmentExists === undefined;
+        }
+      }
     };
   },
 
@@ -114,7 +78,7 @@ export default {
     toggleDatePicker() {
       this.$refs.datePicker.showCalendar();
     },
-  },
+  }
 };
 </script>
 
