@@ -6,7 +6,7 @@
       <bat-text-header-description
         small
         v-if="settings.language['list-bookings'].cancelled.content"
-        v-text="settings.language['list-bookings'].cancelled.content"
+        v-html="toHtml(settings.language['list-bookings'].cancelled.content)"
       />
     </bat-text-header>
 

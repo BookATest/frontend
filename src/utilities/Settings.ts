@@ -32,10 +32,8 @@ export default class Settings {
     return JSON.parse(window.sessionStorage.getItem(Settings.sessionStorageKey) || '{}');
   }
 
-  protected cache(settings: SettingsInterface): Settings {
+  protected cache(settings: SettingsInterface) {
     window.sessionStorage.setItem(Settings.sessionStorageKey, JSON.stringify(settings));
-
-    return this;
   }
 
   protected async fetch(): Promise<SettingsInterface> {

@@ -7,7 +7,7 @@
       <bat-text-header-description
         small
         v-if="settings.language['make-booking']['no-consent'].content"
-        v-text="settings.language['make-booking']['no-consent'].content"
+        v-html="toHtml(settings.language['make-booking']['no-consent'].content)"
       />
     </bat-text-header>
 

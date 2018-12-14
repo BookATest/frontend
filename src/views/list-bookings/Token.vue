@@ -6,7 +6,7 @@
       <bat-text-header-description
         small
         v-if="settings.language['list-bookings'].token.content"
-        v-text="settings.language['list-bookings'].token.content"
+        v-html="toHtml(settings.language['list-bookings'].token.content)"
       />
     </bat-text-header>
 
