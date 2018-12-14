@@ -48,7 +48,7 @@ export default {
     morningAppointments() {
       return this.appointments.filter((appointment) => {
         const startAt = moment(appointment.start_at, moment.ISO_8601);
-        const startHour = startAt.hour() + 1;
+        const startHour = startAt.hour();
 
         return startHour < 12;
       });
@@ -60,7 +60,7 @@ export default {
     afternoonAppointments() {
       return this.appointments.filter((appointment) => {
         const startAt = moment(appointment.start_at, moment.ISO_8601);
-        const startHour = startAt.hour() + 1;
+        const startHour = startAt.hour();
 
         return startHour >= 12 && startHour < 18;
       });
@@ -72,7 +72,7 @@ export default {
     eveningAppointments() {
       return this.appointments.filter((appointment) => {
         const startAt = moment(appointment.start_at, moment.ISO_8601);
-        const startHour = startAt.hour() + 1;
+        const startHour = startAt.hour();
 
         return startHour >= 18;
       });
