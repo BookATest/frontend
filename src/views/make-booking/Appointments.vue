@@ -96,8 +96,12 @@ export default {
         'sort': 'start_at',
       });
 
-      if (this.appointments.length > 0) {
-        this.date = moment(this.appointments[0].start_at, moment.ISO_8601).format(moment.HTML5_FMT.DATE);
+      if (this.date === null) {
+        if (this.appointments.length > 0) {
+          this.date = moment(this.appointments[0].start_at, moment.ISO_8601).format(moment.HTML5_FMT.DATE);
+        } else {
+          this.date = moment().format(moment.HTML5_FMT.DATE);
+        }
       }
 
       this.loadingAppointments = false;
@@ -109,11 +113,6 @@ export default {
 
     loadAppointment() {
       const appointment = this.appointmentCache.get;
-
-      if (appointment === undefined) {
-        this.date = moment().format(moment.HTML5_FMT.DATE);
-        return;
-      }
 
       this.date = moment(appointment.start_at, moment.ISO_8601).format(moment.HTML5_FMT.DATE);
       this.appointment = appointment;
@@ -143,9 +142,9 @@ export default {
   },
 
   created() {
-    this.loadAllAppointments();
     this.loadClinic();
     this.loadAppointment();
+    this.loadAllAppointments();
   },
 };
 </script>
