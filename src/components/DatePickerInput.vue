@@ -10,6 +10,7 @@
     </bat-field>
 
     <date-picker
+      :value="value"
       ref="datePicker"
       monday-first
       :disabled-dates="disabledDates"
