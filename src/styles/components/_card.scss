@@ -52,7 +52,7 @@
   &--booking {
     display: block;
     margin: 0 auto $base-margin*1.5;
-    max-width: 272px;
+    max-width: 325px;
     background-color: $brand-primary-10;
     border: none;
     padding: $base-margin $base-margin*1.5;
@@ -72,6 +72,40 @@
   }
 
   &__description {
+
+  }
+
+  &__profile {
+    
+    display: table;
+    margin-top: $base-margin;
+
+    &__image {
+      
+      display: table-cell;
+      vertical-align: middle;
+      width: 50px;
+
+      img {
+        max-width: 50px;
+        width: 100%;
+        height: auto;
+        border-radius: 100%;
+      }
+
+    }
+
+    &__item {
+      
+      display: table-cell;
+      vertical-align: middle;
+      padding-left: $base-margin;
+
+      h4 {
+        margin-bottom: $base-margin*0.5;
+      }
+
+    }
 
   }
 

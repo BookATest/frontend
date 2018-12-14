@@ -17,31 +17,22 @@
       <h3 class="card__title">Your appointment is with:</h3>
 
       <bat-loader v-if="loading" />
-      <div v-else class="card__details">
+      <div v-else class="card__profile">
 
-        <div class="card__details__item">
-          <span>name</span>
-          <span>{{ user.first_name }} {{ user.last_name }}</span>
-        </div>
-
-        <div v-if="user.email" class="card__details__item">
-          <span>email</span>
-          <span>{{ user.email }}</span>
-        </div>
-
-        <div v-if="user.phone" class="card__details__item">
-          <span>phone</span>
-          <span>{{ user.phone }}</span>
-        </div>
-
-        <div class="card__details__item">
-          <span>image</span>
+        <div class="card__profile__image">
           <img
             :src="user.image_url"
             :alt="`Image of ${user.first_name} ${user.last_name}`"
-            style="display: inline-block; max-width: 25%; border-radius: 100%; vertical-align: text-top;"
           >
         </div>
+
+        <div class="card__profile__item">
+          <h4>{{ user.first_name }} {{ user.last_name }}</h4>
+          <p class="xs-copy" v-if="user.phone || user.email">
+            You can contact {{user.first_name}} about your booking via <a v-if="user.email" :href="`mailto:${user.email}`">email</a> <span v-if="user.phone && user.email"> or </span> <a v-if="user.phone" :href="`tel:${user.phone}`">phone</a>
+          </p>
+        </div>
+
       </div>
     </div>
 

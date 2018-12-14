@@ -8,7 +8,7 @@
       </div>
 
       <div class="footer__contact flex-col flex-col--6 text-center">
-        <p class="xs-copy">If you experience any issues with the booking system, please contact:</p>
+        <p class="xs-copy">Please get in touch if you have any problems booking a test</p>
         <p class="xs-copy"><a :href="`mailto:${settings.email}`">{{ settings.email }}</a> <a :href="`tel:${settings.phone}`">{{ settings.phone }}</a></p>
       </div>
 

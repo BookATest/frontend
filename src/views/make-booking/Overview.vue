@@ -18,7 +18,7 @@
       />
 
       <div class="inline-buttons">
-        <bat-button @click="onAmmend" secondary>Ammend</bat-button>
+        <bat-button @click="onAmend" secondary>Amend</bat-button>
 
         <bat-button v-if="submitting" @click="onConfirm" disabled>Confirming...</bat-button>
         <bat-button v-else @click="onConfirm" primary>Confirm appointment</bat-button>
@@ -55,7 +55,7 @@ export default {
   },
 
   methods: {
-    onAmmend() {
+    onAmend() {
       this.$router.push({ name: 'make-booking.appointments' });
     },
 

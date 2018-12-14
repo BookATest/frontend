@@ -26,6 +26,9 @@
   &__image {
     display: block;
     margin: 0 auto $base-margin*2.5;
+    max-width: 150px;
+    width: 100%;
+    height: auto;
   }
 
   &__progress {
