@@ -15,7 +15,7 @@
 
       <bat-alert>
         <p class="sm-copy">
-          We'll send you a confirmation <strong>{{ confirmationMethod }}</strong> immediatley when you confirm your appointment. You'll also receive a reminder <strong>{{ confirmationMethod }}</strong> the day before your appointment.
+          We'll send you a confirmation <strong>{{ confirmationMethod }}</strong> immediatley when you confirm your appointment and also a reminder notification the day before your appointment.
         </p>
       </bat-alert>
 
