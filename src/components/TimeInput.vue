@@ -1,8 +1,6 @@
 <template>
   <div>
 
-    <label for="time">Select time</label>
-
     <bat-loader v-if="loading" />
     <div v-else class="time">
       <bat-time-row :value="value" @input="onInput" :appointments="morningAppointments">Morning</bat-time-row>

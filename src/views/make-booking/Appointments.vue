@@ -14,6 +14,13 @@
       <bat-loader v-if="loading" />
 
       <div v-else class="form">
+
+        <bat-alert icon>
+          <p class="sm-copy">
+            Showing available appointments for: <br /> <strong>Monday 17th December</strong>
+          </p>
+        </bat-alert>
+
         <bat-date-picker-input v-model="date" />
 
         <bat-field time>
@@ -37,6 +44,7 @@ import TimeInput from '@/components/TimeInput';
 import Clinic from '@/utilities/Clinic';
 import Appointment from '@/utilities/Appointment';
 import Settings from '@/utilities/Settings';
+import Alert from '@/components/Alert';
 
 export default {
   name: 'Appointments',
@@ -45,6 +53,7 @@ export default {
     BatField: Field,
     BatDatePickerInput: DatePickerInput,
     BatTimeInput: TimeInput,
+    BatAlert: Alert,
   },
 
   data() {

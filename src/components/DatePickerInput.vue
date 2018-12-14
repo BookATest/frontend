@@ -1,67 +1,11 @@
 <template>
   <div>
     <bat-field date-picker>
-      <label for="date-picker">Select date</label>
-
-      <div class="date-picker">
-
-        <div class="date-picker__options">
-
-          <a
-            @click="onSelect(today)"
-            href="#"
-            class="date-picker__options__option"
-            :class="{ selected: value === today.format(html5DateFormat) }"
-            role="button"
-          >
-            Today
-          </a>
-
-          <!---->&nbsp;<!---->
-
-          <a
-            @click="onSelect(tomorrow)"
-            href="#"
-            class="date-picker__options__option"
-            :class="{ selected: value === tomorrow.format(html5DateFormat) }"
-            role="button"
-          >
-            Tomorrow
-          </a>
-
-          <!---->&nbsp;<!---->
-
-          <a
-            @click="onSelect(dayPlus2)"
-            href="#"
-            class="date-picker__options__option"
-            :class="{ selected: value === dayPlus2.format(html5DateFormat) }"
-            role="button"
-            v-text="dayPlus2.format('dddd')"
-          />
-
-          <!---->&nbsp;<!---->
-
-          <a
-            @click="onSelect(dayPlus3)"
-            href="#"
-            class="date-picker__options__option"
-            :class="{ selected: value === dayPlus3.format(html5DateFormat) }"
-            role="button"
-            v-text="dayPlus3.format('dddd')"
-          />
-
-        </div>
-
-        <div class="date-picker__toggle">
-          <button @click="toggleDatePicker">
-            <div class="date-picker__toggle__icon">
-              <bat-icon arrow-up />
-            </div>
-          </button>
-        </div>
-
-      </div>
+      
+      <a @click.prevent="toggleDatePicker" href="#">
+        <strong>Choose another date?</strong>
+      </a>
+      
     </bat-field>
 
     <date-picker
