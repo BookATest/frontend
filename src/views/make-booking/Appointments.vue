@@ -17,7 +17,7 @@
 
         <bat-alert icon>
           <p class="sm-copy">
-            Showing available appointments for: <br /> <strong>Monday 17th December</strong>
+            Showing available appointments for: <br /> <strong>{{ date | fullDate }}</strong>
           </p>
         </bat-alert>
 
@@ -116,6 +116,12 @@ export default {
       this.appointmentCache.clear();
       this.$router.push({ name: 'make-booking.clinics' });
     },
+  },
+
+  filters: {
+    fullDate(date) {
+      return moment(date, moment.ISO_8601).format('dddd Do MMMM');
+    }
   },
 
   created() {
