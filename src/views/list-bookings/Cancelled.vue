@@ -12,6 +12,7 @@
 
     <bat-content>
       <bat-button @click="onBack" primary>Back to appointments</bat-button>
+      <bat-button @click="onHome" secondary>Book a new appointment</bat-button>
     </bat-content>
 
   </div>
@@ -34,6 +35,9 @@ export default {
   methods: {
     onBack() {
       this.$router.push({ name: 'list-bookings.appointments' });
+    },
+    onHome() {
+      this.$router.push({ name: 'home' });
     },
   },
 };

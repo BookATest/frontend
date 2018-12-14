@@ -67,7 +67,7 @@
           <hr>
 
           <div class="title-strip">
-            <h4>Notification</h4>
+            <h4>Cancel appointment</h4>
           </div>
 
           <div class="card card--alert card--alert--icon">
@@ -76,7 +76,7 @@
             </div>
 
             <div class="card__message">
-              <p class="sm-copy">We have just sent you a SMS Message confirmation.</p>
+              <p class="sm-copy">If you can't attend, please cancel your appointment below.</p>
             </div>
           </div>
 
