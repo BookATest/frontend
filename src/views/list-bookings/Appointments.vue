@@ -70,23 +70,13 @@
             <h4>Notification</h4>
           </div>
 
-          <div class="notification-preview">
-            <div class="notification-preview__instructions">
-              <p class="sm-copy">We will contact you by phone.</p>
-            </div>
-
-            <div class="notification-preview__speech-bubble speech-bubble">
-              <p class="sm-copy">Pick up milk at {{ time(appointment) }}{{ meridiem(appointment) }}...</p>
-            </div>
-          </div>
-
           <div class="card card--alert card--alert--icon">
             <div class="card__icon">
               <bat-icon alert />
             </div>
 
             <div class="card__message">
-              <p class="sm-copy">You should have received {{ notificationType }} confirmation</p>
+              <p class="sm-copy">We have just sent you a SMS Message confirmation.</p>
             </div>
           </div>
 
@@ -94,7 +84,6 @@
 
           <bat-button @click="onCancel(appointment)" secondary>Cancel</bat-button>
 
-          <bat-disclaimer>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</bat-disclaimer>
         </div>
 
         <hr v-if="(index + 1) < appointments.length">
