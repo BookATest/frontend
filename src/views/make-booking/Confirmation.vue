@@ -6,7 +6,7 @@
       <bat-text-header-description
         small
         v-if="settings.language['make-booking'].confirmation.content"
-        v-text="settings.language['make-booking'].confirmation.content"
+        v-html="toHtml(settings.language['make-booking'].confirmation.content)"
       />
     </bat-text-header>
 
@@ -58,23 +58,13 @@
           <h4>Notification</h4>
         </div>
 
-        <div class="notification-preview">
-          <div class="notification-preview__instructions">
-            <p class="sm-copy">We will contact you by phone.</p>
-          </div>
-
-          <div class="notification-preview__speech-bubble speech-bubble">
-            <p class="sm-copy">Pick up milk at {{ time(appointment) }}{{ meridiem(appointment) }}...</p>
-          </div>
-        </div>
-
         <div class="card card--alert card--alert--icon">
           <div class="card__icon">
             <bat-icon alert />
           </div>
 
           <div class="card__message">
-            <p class="sm-copy">You should have received {{ notificationType }} confirmation</p>
+            <p class="sm-copy">We have just sent you a SMS Message confirmation.</p>
           </div>
         </div>
 

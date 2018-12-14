@@ -6,7 +6,7 @@
       <bat-text-header-description
         small
         v-if="settings.language['list-bookings'].appointments.content"
-        v-text="settings.language['list-bookings'].appointments.content"
+        v-html="toHtml(settings.language['list-bookings'].appointments.content)"
       />
     </bat-text-header>
 
@@ -67,17 +67,7 @@
           <hr>
 
           <div class="title-strip">
-            <h4>Notification</h4>
-          </div>
-
-          <div class="notification-preview">
-            <div class="notification-preview__instructions">
-              <p class="sm-copy">We will contact you by phone.</p>
-            </div>
-
-            <div class="notification-preview__speech-bubble speech-bubble">
-              <p class="sm-copy">Pick up milk at {{ time(appointment) }}{{ meridiem(appointment) }}...</p>
-            </div>
+            <h4>Cancel appointment</h4>
           </div>
 
           <div class="card card--alert card--alert--icon">
@@ -86,7 +76,7 @@
             </div>
 
             <div class="card__message">
-              <p class="sm-copy">You should have received {{ notificationType }} confirmation</p>
+              <p class="sm-copy">If you can't attend, please cancel your appointment below.</p>
             </div>
           </div>
 
@@ -94,7 +84,6 @@
 
           <bat-button @click="onCancel(appointment)" secondary>Cancel</bat-button>
 
-          <bat-disclaimer>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</bat-disclaimer>
         </div>
 
         <hr v-if="(index + 1) < appointments.length">

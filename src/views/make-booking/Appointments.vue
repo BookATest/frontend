@@ -6,15 +6,22 @@
       <bat-text-header-description
         small
         v-if="settings.language['make-booking'].appointments.content"
-        v-text="settings.language['make-booking'].appointments.content"
+        v-html="toHtml(settings.language['make-booking'].appointments.content)"
       />
     </bat-text-header>
 
     <bat-content>
-      <bat-loader v-if="loading" />
+      <bat-loader v-if="loadingAppointments || loading" />
 
       <div v-else class="form">
-        <bat-date-picker-input v-model="date" />
+
+        <bat-alert icon>
+          <p class="sm-copy">
+            Showing available appointments for: <br /> <strong>{{ date | fullDate }}</strong>
+          </p>
+        </bat-alert>
+
+        <bat-date-picker-input :available-appointments="appointments" v-model="date" />
 
         <bat-field time>
           <bat-time-input v-model="appointment" :date="date" />
@@ -37,6 +44,7 @@ import TimeInput from '@/components/TimeInput';
 import Clinic from '@/utilities/Clinic';
 import Appointment from '@/utilities/Appointment';
 import Settings from '@/utilities/Settings';
+import Alert from '@/components/Alert';
 
 export default {
   name: 'Appointments',
@@ -45,12 +53,15 @@ export default {
     BatField: Field,
     BatDatePickerInput: DatePickerInput,
     BatTimeInput: TimeInput,
+    BatAlert: Alert,
   },
 
   data() {
     return {
       clinicCache: new Clinic(),
       appointmentCache: new Appointment(),
+      appointments: [],
+      loadingAppointments: false,
       clinic: null,
       loading: false,
       date: null,
@@ -76,6 +87,26 @@ export default {
   },
 
   methods: {
+    async loadAllAppointments() {
+      this.loadingAppointments = true;
+
+      this.appointments = await this.fetchAll('/v1/appointments', {
+        'filter[clinic_id]': this.clinicCache.get.id,
+        'filter[available]': true,
+        'sort': 'start_at',
+      });
+
+      if (this.date === null) {
+        if (this.appointments.length > 0) {
+          this.date = moment(this.appointments[0].start_at, moment.ISO_8601).format(moment.HTML5_FMT.DATE);
+        } else {
+          this.date = moment().format(moment.HTML5_FMT.DATE);
+        }
+      }
+
+      this.loadingAppointments = false;
+    },
+
     loadClinic() {
       this.clinic = this.clinicCache.get;
     },
@@ -83,13 +114,10 @@ export default {
     loadAppointment() {
       const appointment = this.appointmentCache.get;
 
-      if (appointment === undefined) {
-        this.date = moment().format(moment.HTML5_FMT.DATE);
-        return;
+      if (appointment !== undefined) {
+        this.date = moment(appointment.start_at, moment.ISO_8601).format(moment.HTML5_FMT.DATE);
+        this.appointment = appointment;
       }
-
-      this.date = moment(appointment.start_at, moment.ISO_8601).format(moment.HTML5_FMT.DATE);
-      this.appointment = appointment;
     },
 
     onNext() {
@@ -109,9 +137,16 @@ export default {
     },
   },
 
+  filters: {
+    fullDate(date) {
+      return moment(date, moment.ISO_8601).format('dddd Do MMMM');
+    }
+  },
+
   created() {
     this.loadClinic();
     this.loadAppointment();
+    this.loadAllAppointments();
   },
 };
 </script>

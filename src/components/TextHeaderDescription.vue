@@ -1,7 +1,7 @@
 <template>
-  <p class="text-header__description" :class="{ 'sm-copy': small }">
+  <div class="text-header__description" :class="{ 'sm-copy': small }">
     <slot />
-  </p>
+  </div>
 </template>
 
 <script>

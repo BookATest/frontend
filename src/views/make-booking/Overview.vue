@@ -7,7 +7,7 @@
       <bat-text-header-description
         small
         v-if="settings.language['make-booking'].overview.content"
-        v-text="settings.language['make-booking'].overview.content"
+        v-html="toHtml(settings.language['make-booking'].overview.content)"
       />
     </bat-text-header>
 
@@ -18,7 +18,7 @@
       />
 
       <div class="inline-buttons">
-        <bat-button @click="onAmmend" secondary>Ammend</bat-button>
+        <bat-button @click="onAmend" secondary>Amend</bat-button>
 
         <bat-button v-if="submitting" @click="onConfirm" disabled>Confirming...</bat-button>
         <bat-button v-else @click="onConfirm" primary>Confirm appointment</bat-button>
@@ -55,7 +55,7 @@ export default {
   },
 
   methods: {
-    onAmmend() {
+    onAmend() {
       this.$router.push({ name: 'make-booking.appointments' });
     },
 

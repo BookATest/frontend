@@ -6,18 +6,18 @@
       <bat-text-header-description
         small
         v-if="settings.language['list-bookings'].cancel.content"
-        v-text="settings.language['list-bookings'].cancel.content"
+        v-html="toHtml(settings.language['list-bookings'].cancel.content)"
       />
     </bat-text-header>
 
     <bat-content>
       <bat-alert icon>
-        <p class="sm-copy">You will forfit your appointment when you cancel.</p>
+        <p class="sm-copy">This will make your appointment available for others to book.</p>
       </bat-alert>
 
       <div class="title-strip text-center">
         <h3 v-if="cancelling">Cancelling...</h3>
-        <h3 v-else>Are you sure?</h3>
+        <h3 v-else>Are you sure you want to cancel?</h3>
       </div>
 
       <div class="inline-buttons">

@@ -26,6 +26,9 @@
   &__image {
     display: block;
     margin: 0 auto $base-margin*2.5;
+    max-width: 150px;
+    width: 100%;
+    height: auto;
   }
 
   &__progress {
@@ -68,6 +71,13 @@
   }
 
   &__description {
+
     margin-top: $base-margin*1.5;
+
+    ul {
+      text-align: left;
+      margin-bottom: $base-margin*1.5;
+    }
+
   }
 }
