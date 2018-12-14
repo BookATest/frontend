@@ -7,7 +7,7 @@
       <bat-text-header-description
         small
         v-if="settings.language.home.content"
-        v-text="settings.language.home.content"
+        v-html="toHtml(settings.language.home.content)"
       />
     </bat-text-header>
 

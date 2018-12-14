@@ -6,7 +6,7 @@
       <bat-text-header-description
         small
         v-if="settings.language['make-booking'].clinics.content"
-        v-text="settings.language['make-booking'].clinics.content"
+        v-html="toHtml(settings.language['make-booking'].clinics.content)"
       />
     </bat-text-header>
 
@@ -47,7 +47,7 @@
         </template>
 
         <template v-else>
-          <div>{{ settings.language['make-booking'].clinics.ineligible }}</div>
+          <div v-html="toHtml(settings.language['make-booking'].clinics.ineligible)"></div>
         </template>
       </template>
 

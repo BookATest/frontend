@@ -9,6 +9,7 @@ import App from './App.vue';
 import router from './router';
 import http from './http';
 const VueAnalytics = require('vue-analytics');
+import MarkdownConverter from "@/classes/MarkdownConverter";
 
 // Only use Google Analytics if ID is in the environment.
 if (process.env.VUE_APP_GOOGLE_ANALYTICS_ID) {
@@ -41,6 +42,10 @@ Vue.mixin({
       } while (!allFetched);
 
       return resources;
+    },
+
+    toHtml(markdown) {
+      return MarkdownConverter.toHtml(markdown);
     },
   },
 });

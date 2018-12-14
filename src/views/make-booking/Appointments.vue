@@ -6,7 +6,7 @@
       <bat-text-header-description
         small
         v-if="settings.language['make-booking'].appointments.content"
-        v-text="settings.language['make-booking'].appointments.content"
+        v-html="toHtml(settings.language['make-booking'].appointments.content)"
       />
     </bat-text-header>
 
