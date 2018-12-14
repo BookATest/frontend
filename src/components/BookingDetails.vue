@@ -88,7 +88,7 @@ export default {
   },
 
   methods: {
-    async fetchAppointment() {
+    fetchAppointment() {
       // First, check if the appointment has the user details appended.
       const properties = ['user_first_name', 'user_last_name', 'user_email', 'user_phone'];
       let hasAllProperties = true;
@@ -120,24 +120,25 @@ export default {
       // Else, load from the API.
       this.loading = true;
 
-      const response = await this.http.get(`/v1/appointments/${this.appointment.id}`, {
+      this.http.get(`/v1/appointments/${this.appointment.id}`, {
         params: {
           append: 'user_first_name,user_last_name,user_email,user_phone',
         },
+      }).then((response) => {
+        const data = response.data.data;
+
+        this.user = {
+          id: data.user_id,
+          first_name: data.user_first_name,
+          last_name: data.user_last_name,
+          email: data.user_email,
+          phone: data.user_phone,
+          image_url: `${process.env.VUE_APP_API_URL}/v1/users/${data.user_id}/profile-picture.jpg`,
+        };
+        this.userCache.cache(this.user);
+
+        this.loading = false;
       });
-      const data = response.data.data;
-
-      this.user = {
-        id: data.user_id,
-        first_name: data.user_first_name,
-        last_name: data.user_last_name,
-        email: data.user_email,
-        phone: data.user_phone,
-        image_url: `${process.env.VUE_APP_API_URL}/v1/users/${data.user_id}/profile-picture.jpg`,
-      };
-      this.userCache.cache(this.user);
-
-      this.loading = false;
     },
   },
 
