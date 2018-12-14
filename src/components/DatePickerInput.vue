@@ -2,8 +2,7 @@
   <div>
     <bat-field date-picker>
 
-      <bat-loader v-if="loading" />
-      <a v-else @click.prevent="toggleDatePicker" href="#">
+      <a @click.prevent="toggleDatePicker" href="#">
         <strong>Choose another date?</strong>
       </a>
 
@@ -24,7 +23,6 @@
 import moment from 'moment';
 import Datepicker from 'vuejs-datepicker';
 import Field from '@/components/Field';
-import Clinic from '@/utilities/Clinic';
 
 export default {
   name: 'DatePickerInput',
@@ -38,13 +36,15 @@ export default {
     value: {
       required: true,
     },
+
+    availableAppointments: {
+      required: true,
+      type: Array
+    }
   },
 
   data() {
     return {
-      clinicCache: new Clinic(),
-      appointments: [],
-      loading: false,
       today: moment(),
       tomorrow: moment().add(1, 'day'),
       dayPlus2: moment().add(2, 'days'),
@@ -54,7 +54,7 @@ export default {
         customPredictor: (date) => {
           const checkDate = moment(date)
 
-          const appointmentExists = this.appointments.find((appointment) => {
+          const appointmentExists = this.availableAppointments.find((appointment) => {
             const appointmentDate = moment(appointment.start_at, moment.ISO_8601);
 
             return checkDate.format(moment.HTML5_FMT.DATE) === appointmentDate.format(moment.HTML5_FMT.DATE);
@@ -78,22 +78,6 @@ export default {
     toggleDatePicker() {
       this.$refs.datePicker.showCalendar();
     },
-
-    async fetchAppointments() {
-      this.loading = true;
-
-      this.appointments = await this.fetchAll('/v1/appointments', {
-        'filter[clinic_id]': this.clinicCache.get.id,
-        'filter[available]': true,
-        'sort': 'start_at',
-      });
-
-      this.loading = false;
-    }
-  },
-
-  created() {
-    this.fetchAppointments();
   }
 };
 </script>

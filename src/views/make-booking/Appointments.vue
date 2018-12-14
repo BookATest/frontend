@@ -11,7 +11,7 @@
     </bat-text-header>
 
     <bat-content>
-      <bat-loader v-if="loading" />
+      <bat-loader v-if="loadingAppointments || loading" />
 
       <div v-else class="form">
 
@@ -21,7 +21,7 @@
           </p>
         </bat-alert>
 
-        <bat-date-picker-input v-model="date" />
+        <bat-date-picker-input :available-appointments="appointments" v-model="date" />
 
         <bat-field time>
           <bat-time-input v-model="appointment" :date="date" />
@@ -60,6 +60,8 @@ export default {
     return {
       clinicCache: new Clinic(),
       appointmentCache: new Appointment(),
+      appointments: [],
+      loadingAppointments: false,
       clinic: null,
       loading: false,
       date: null,
@@ -85,6 +87,22 @@ export default {
   },
 
   methods: {
+    async loadAllAppointments() {
+      this.loadingAppointments = true;
+
+      this.appointments = await this.fetchAll('/v1/appointments', {
+        'filter[clinic_id]': this.clinicCache.get.id,
+        'filter[available]': true,
+        'sort': 'start_at',
+      });
+
+      if (this.appointments.length > 0) {
+        this.date = moment(this.appointments[0].start_at, moment.ISO_8601).format(moment.HTML5_FMT.DATE);
+      }
+
+      this.loadingAppointments = false;
+    },
+
     loadClinic() {
       this.clinic = this.clinicCache.get;
     },
@@ -125,6 +143,7 @@ export default {
   },
 
   created() {
+    this.loadAllAppointments();
     this.loadClinic();
     this.loadAppointment();
   },
