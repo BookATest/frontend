@@ -93,7 +93,13 @@ export default {
       const extraBookingThreshold = 10;
       const totalBookingThreshold = extraBookingThreshold + this.clinic.get.appointment_booking_threshold;
 
-      const earliestTime = moment().utc().add(totalBookingThreshold, 'minutes');
+      const dateIsToday = moment(this.date, moment.HTML5_FMT.DATE)
+        .isSame(moment().startOf('day'));
+
+      const earliestTime = dateIsToday
+        ? moment().utc().add(totalBookingThreshold, 'minutes')
+        : moment(this.date, moment.HTML5_FMT.DATE);
+
       const endOfDay = moment(this.date, moment.HTML5_FMT.DATE).endOf('day');
 
       const response = await this.http.get('/v1/appointments', {
