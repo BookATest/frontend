@@ -24,13 +24,7 @@ Set the configuration by creating the environment file.
 
 ```bash
 # If needed, change the values to fit in with your installation.
-cat > .env.local << EOF
-VUE_APP_API_URL=http://localhost
-VUE_APP_GOOGLE_ANALYTICS_ID=xxx
-
-VUE_APP_S3D_BUCKET=xxx
-VUE_APP_S3D_CLOUDFRONT_ID=xxx
-EOF
+cp .env.example .env.local
 ```
 
 Run a server with hot reload.
