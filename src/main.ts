@@ -8,13 +8,14 @@ import Vue from 'vue';
 import App from './App.vue';
 import router from './router';
 import http from './http';
-const VueAnalytics = require('vue-analytics');
-import MarkdownConverter from "@/classes/MarkdownConverter";
+import VueAnalytics from 'vue-analytics';
+import MarkdownConverter from '@/classes/MarkdownConverter';
 
 // Only use Google Analytics if ID is in the environment.
 if (process.env.VUE_APP_GOOGLE_ANALYTICS_ID) {
   Vue.use(VueAnalytics, {
     id: process.env.VUE_APP_GOOGLE_ANALYTICS_ID,
+    router,
   });
 }
 
