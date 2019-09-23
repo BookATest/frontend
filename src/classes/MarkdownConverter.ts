@@ -1,22 +1,22 @@
-const Showdown = require("showdown");
+import Showdown from 'showdown';
 
 class MarkdownConverter {
   private showdownConverter: any;
 
   constructor() {
     const classMap: any = {};
-    const bindings = Object.keys(classMap).map(key => ({
-      type: "output",
-      regex: new RegExp(`<${key}>`, "g"),
-      replace: `<${key} class="${classMap[key]}">`
+    const bindings = Object.keys(classMap).map((key) => ({
+      type: 'output',
+      regex: new RegExp(`<${key}>`, 'g'),
+      replace: `<${key} class="${classMap[key]}">`,
     }));
     this.showdownConverter = new Showdown.Converter({
       extensions: [...bindings],
-      noHeaderId: true
+      noHeaderId: true,
     });
   }
 
-  toHtml(markdown: string) {
+  public toHtml(markdown: string) {
     return this.showdownConverter.makeHtml(markdown);
   }
 }
