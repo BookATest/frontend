@@ -20,30 +20,39 @@
 
       <template v-else>
         <template v-if="clinics.length > 0">
-          <bat-card
-            v-for="clinic in clinics"
-            :key="clinic.id"
-            @select="onSelectClinic(clinic)"
-            @deselect="onDeselectClinic(clinic)"
-            primary
-            clickable
-            :selected="selectedClinicId === clinic.id"
-            :title="clinic.name"
-          >
-            <p>
-              {{ clinic.address_line_1 }}<br>
-              <template v-if="clinic.address_line_2">
-                {{ clinic.address_line_2 }}<br>
-              </template>
-              <template v-if="clinic.address_line_3">
-                {{ clinic.address_line_3 }}<br>
-              </template>
-              {{ clinic.city }}<br>
-              {{ clinic.postcode }}
-            </p>
+          <template v-for="(clinic, index) in clinics">
+            <bat-card
+              v-if="index < 3 || showAll"
+              :key="clinic.id"
+              @select="onSelectClinic(clinic)"
+              @deselect="onDeselectClinic(clinic)"
+              primary
+              clickable
+              :selected="selectedClinicId === clinic.id"
+              :title="clinic.name"
+            >
+              <p>
+                {{ clinic.address_line_1 }}<br>
+                <template v-if="clinic.address_line_2">
+                  {{ clinic.address_line_2 }}<br>
+                </template>
+                <template v-if="clinic.address_line_3">
+                  {{ clinic.address_line_3 }}<br>
+                </template>
+                {{ clinic.city }}<br>
+                {{ clinic.postcode }}
+              </p>
 
-            <span slot="meta">{{ toMiles(clinic.distance) }} miles</span>
-          </bat-card>
+              <span slot="meta">{{ toMiles(clinic.distance) }} miles</span>
+            </bat-card>
+          </template>
+
+          <bat-button
+            v-if="clinics.length > 3 && showAll === false"
+            @click="onShowMore"
+          >
+            Show More
+          </bat-button>
         </template>
 
         <template v-else>
@@ -82,6 +91,7 @@ export default {
       selectedClinicId: null,
       loading: false,
       settings: new Settings().load(),
+      showAll: false,
     };
   },
 
@@ -158,6 +168,10 @@ export default {
 
       this.clinic.cache(this.selectedClinic);
       this.$router.push({ name: 'make-booking.appointments' });
+    },
+
+    onShowMore() {
+      this.showAll = true;
     },
   },
 
