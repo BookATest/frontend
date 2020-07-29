@@ -2,11 +2,11 @@
   <div>
     <bat-text-header>
       <bat-text-header-progress :active="2" />
-      <bat-text-header-title v-text="settings.language['make-booking'].appointments.title" />
+      <bat-text-header-title v-text="language['make-booking'].appointments.title" />
       <bat-text-header-description
         small
-        v-if="settings.language['make-booking'].appointments.content"
-        v-html="toHtml(settings.language['make-booking'].appointments.content)"
+        v-if="language['make-booking'].appointments.content"
+        v-html="toHtml(language['make-booking'].appointments.content)"
       />
     </bat-text-header>
 
@@ -74,6 +74,24 @@ export default {
     appointmentSelected() {
       return this.appointment !== null;
     },
+
+    language() {
+      const appointments = {
+        title: this.settings.language['make-booking'].appointments.title,
+        content: this.settings.language['make-booking'].appointments.content,
+      }
+
+      if (this.clinic.language['make-booking'].appointments.title !== null) {
+        appointments.title = this.clinic.language['make-booking'].appointments.title;
+        appointments.content = this.clinic.language['make-booking'].appointments.content;
+      }
+
+      return {
+        'make-booking': {
+          appointments
+        }
+      }
+    }
   },
 
   watch: {
