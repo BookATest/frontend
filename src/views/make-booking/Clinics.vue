@@ -61,7 +61,7 @@
       </template>
 
       <bat-content-footer>
-        <bat-button v-if="clinics.length > 0" @click="onNext" :disabled="!valid">Select location</bat-button>
+        <bat-button v-if="clinics.length > 0" @click="onNext" :disabled="!valid">Continue</bat-button>
         <bat-button :to="{ name: 'make-booking.location' }" back>Back</bat-button>
       </bat-content-footer>
     </bat-content>
